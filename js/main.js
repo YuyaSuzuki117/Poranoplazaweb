@@ -26,6 +26,25 @@
   window.addEventListener("scroll", handleHeaderScroll, { passive: true });
 
   /* ========================================
+     Sticky Phone CTA
+     ======================================== */
+  const stickyCta = document.getElementById("sticky-cta");
+  if (stickyCta) {
+    function handleStickyCta() {
+      if (window.scrollY > window.innerHeight * 0.8) {
+        stickyCta.style.opacity = "1";
+        stickyCta.style.pointerEvents = "auto";
+        stickyCta.style.transform = "translateY(0)";
+      } else {
+        stickyCta.style.opacity = "0";
+        stickyCta.style.pointerEvents = "none";
+        stickyCta.style.transform = "translateY(1rem)";
+      }
+    }
+    window.addEventListener("scroll", handleStickyCta, { passive: true });
+  }
+
+  /* ========================================
      Mobile Menu
      ======================================== */
   const menuToggle = document.getElementById("menu-toggle");
@@ -165,50 +184,6 @@
       }
     });
   });
-
-  /* ========================================
-     Testimonial Dot Navigation
-     ======================================== */
-  const testimonialScroll = document.querySelector(".testimonial-scroll");
-  const dots = document.querySelectorAll(".dot-nav button");
-
-  if (testimonialScroll && dots.length > 0) {
-    // Click dot to scroll
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        const cards = testimonialScroll.querySelectorAll(".testimonial-card");
-        if (cards[index]) {
-          cards[index].scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "start",
-          });
-        }
-      });
-    });
-
-    // Update active dot on scroll
-    const updateDots = () => {
-      const cards = testimonialScroll.querySelectorAll(".testimonial-card");
-      const scrollLeft = testimonialScroll.scrollLeft;
-      const containerWidth = testimonialScroll.offsetWidth;
-      let activeIndex = 0;
-
-      cards.forEach((card, index) => {
-        const cardLeft = card.offsetLeft - testimonialScroll.offsetLeft;
-        if (cardLeft <= scrollLeft + containerWidth * 0.3) {
-          activeIndex = index;
-        }
-      });
-
-      dots.forEach((dot, index) => {
-        dot.classList.toggle("is-active", index === activeIndex);
-        dot.setAttribute("aria-selected", index === activeIndex ? "true" : "false");
-      });
-    };
-
-    testimonialScroll.addEventListener("scroll", updateDots, { passive: true });
-  }
 
   /* ========================================
      Current Year in Footer

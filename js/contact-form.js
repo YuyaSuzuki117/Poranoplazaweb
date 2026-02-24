@@ -135,27 +135,59 @@
       }
     });
 
-    // Show success state
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML =
-      '<svg class="animate-spin size-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 送信中...';
+    // Build mailto URL with form data
+    const serviceLabels = {
+      interior: "内装工事",
+      aircon: "空調設備工事",
+      electrical: "一般電気工事",
+      fire: "消防設備工事",
+      estimate: "お見積もり依頼",
+      other: "その他",
+    };
 
-    // Simulate form submission (replace with actual endpoint)
-    setTimeout(() => {
-      // Success message
-      form.innerHTML = `
-        <div class="text-center py-12">
-          <div class="size-16 mx-auto mb-6 rounded-full bg-green-500/20 flex items-center justify-center">
-            <svg class="size-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-            </svg>
-          </div>
-          <h3 class="font-display text-fluid-2xl font-bold text-white mb-3">送信完了</h3>
-          <p class="text-white/60 text-fluid-base">お問い合わせありがとうございます。<br>担当者より2営業日以内にご連絡いたします。</p>
+    const subject = encodeURIComponent(
+      "【お問い合わせ】" + (serviceLabels[formData.service] || formData.service)
+    );
+
+    const bodyParts = [
+      "お名前: " + formData.name,
+      "会社名: " + formData.company,
+      "メールアドレス: " + formData.email,
+      formData.phone ? "電話番号: " + formData.phone : "",
+      "ご相談内容: " + (serviceLabels[formData.service] || formData.service),
+      "",
+      "お問い合わせ内容:",
+      formData.message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const mailtoUrl =
+      "mailto:info@poranoplaza.com?subject=" +
+      subject +
+      "&body=" +
+      encodeURIComponent(bodyParts);
+
+    // Show confirmation message
+    form.innerHTML = `
+      <div class="text-center py-12">
+        <div class="size-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center">
+          <svg class="size-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
         </div>
-      `;
-    }, 1500);
+        <h3 class="font-display text-fluid-2xl font-bold text-navy-900 mb-3">メールアプリが開きます</h3>
+        <p class="text-navy-500 text-fluid-base mb-6">内容をご確認の上、送信してください。<br>メールアプリが開かない場合は、下のボタンをクリックしてください。</p>
+        <a href="${mailtoUrl}" class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-navy-600 hover:bg-navy-500 text-white font-display font-bold rounded-lg no-underline transition-colors duration-150 text-fluid-base">
+          <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+          メールアプリを開く
+        </a>
+      </div>
+    `;
+
+    // Open mailto link
+    window.location.href = mailtoUrl;
   });
 })();
