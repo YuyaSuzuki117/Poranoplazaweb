@@ -75,8 +75,11 @@
     .noise-texture > * { position: relative; z-index: 2; }
     .reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    .site-header { background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
     .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+    .site-header > div { display: flex; align-items: center; justify-content: space-between; padding: 1rem clamp(1rem, 0.5rem + 2.5vw, 2rem); max-width: 80rem; margin: 0 auto; }
+    .site-header .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .site-header .header-logo img { height: 2.25rem; width: auto; filter: brightness(0); }
     .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
     .mobile-menu.is-open { opacity: 1; visibility: visible; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
@@ -102,10 +105,10 @@
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
   <!-- HEADER (Light) -->
-  <header class="site-header fixed top-0 left-0 right-0" style="z-index: var(--z-sticky);">
-    <div class="mx-auto max-w-7xl px-(--spacing-section-x) py-4 flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-3 no-underline" aria-label="ポラーノプラザ ホーム">
-        <img src="../images/logo-original.png" alt="" class="h-9 w-auto" aria-hidden="true">
+  <header class="site-header">
+    <div>
+      <a href="../index.html" class="header-logo" aria-label="ポラーノプラザ ホーム">
+        <img src="../images/logo-original.png" alt="" aria-hidden="true">
         <div>
           <span class="font-display font-bold text-fluid-lg text-navy-900 block leading-tight">ポラーノプラザ</span>
           <span class="text-xs text-navy-400 leading-tight block">内装工事のプロフェッショナル</span>
@@ -130,7 +133,7 @@
   </header>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: var(--z-overlay); backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
+  <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: 300; backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
     <button type="button" id="menu-close" class="absolute top-5 right-5 p-2 text-navy-800" aria-label="メニューを閉じる">
       <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
     </button>
@@ -147,36 +150,36 @@
 
   <main id="main-content">
     <!-- Breadcrumb -->
-    <div class="pt-24 pb-4 px-(--spacing-section-x)">
+    <div class="pt-24 pb-4 px-(--spacing-section-x) bg-navy-950">
       <div class="mx-auto max-w-6xl">
         <nav aria-label="パンくずナビ">
-          <ol class="flex items-center gap-2 text-fluid-xs text-navy-400">
-            <li><a href="../index.html" class="hover:text-navy-900 no-underline transition-colors duration-150">TOP</a></li>
+          <ol class="flex items-center gap-2 text-fluid-xs text-white/40">
+            <li><a href="../index.html" class="hover:text-white no-underline transition-colors duration-150">TOP</a></li>
             <li aria-hidden="true">/</li>
-            <li><span class="text-navy-700" aria-current="page">会社概要</span></li>
+            <li><span class="text-white/70" aria-current="page">会社概要</span></li>
           </ol>
         </nav>
       </div>
     </div>
 
     <!-- Page Hero -->
-    <section class="bg-slate-50 pb-12 pt-8 px-(--spacing-section-x)">
+    <section class="noise-texture bg-navy-950 pb-12 pt-8 px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal">
-          <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Company</p>
-          <h1 class="text-fluid-4xl font-bold text-navy-900 mb-4">会社概要</h1>
-          <p class="text-navy-400 text-fluid-lg max-w-2xl">「作業員から技術者へ」── 確かな技術で空間を変えるプロフェッショナル集団。</p>
+          <p class="text-accent-400 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Company</p>
+          <h1 class="text-fluid-4xl font-bold text-white mb-4">会社概要</h1>
+          <p class="text-white/60 text-fluid-lg max-w-2xl">「作業員から技術者へ」── 確かな技術で空間を変えるプロフェッショナル集団。</p>
         </div>
       </div>
     </section>
 
     <!-- Mission -->
-    <section class="bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section class="noise-texture bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-4xl text-center">
         <div class="reveal">
-          <p class="text-warm-500 font-display font-bold text-fluid-sm mb-4 uppercase tracking-wider">Our Mission</p>
-          <h2 class="text-fluid-3xl font-bold text-navy-900 mb-6">作業員から技術者へ</h2>
-          <p class="text-navy-500 text-fluid-base leading-relaxed max-w-2xl mx-auto">
+          <p class="text-warm-400 font-display font-bold text-fluid-sm mb-4 uppercase tracking-wider">Our Mission</p>
+          <h2 class="text-fluid-3xl font-bold text-white mb-6">作業員から技術者へ</h2>
+          <p class="text-white/50 text-fluid-base leading-relaxed max-w-2xl mx-auto">
             私たちポラーノプラザは、ただ作業をこなすだけでなく、一人ひとりが技術者としての誇りを持ち、お客様の空間をより良く変えることを使命としています。見積もりから施工、アフターフォローまで一貫して自社対応することで、品質と信頼をお約束します。
           </p>
         </div>
@@ -434,33 +437,33 @@
     </section>
 
     <!-- Strengths -->
-    <section class="bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section class="noise-texture bg-navy-900 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal text-center mb-12">
-          <p class="text-warm-500 font-display font-bold text-fluid-sm mb-3 uppercase tracking-wider">Strengths</p>
-          <h2 class="text-fluid-2xl font-bold text-navy-900">当社の強み</h2>
+          <p class="text-warm-400 font-display font-bold text-fluid-sm mb-3 uppercase tracking-wider">Strengths</p>
+          <h2 class="text-fluid-2xl font-bold text-white">当社の強み</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
-          <div class="rounded-2xl bg-white border border-slate-200 p-8 text-center">
-            <div class="size-14 rounded-xl bg-navy-50 flex items-center justify-center mx-auto mb-5">
-              <svg class="size-7 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .415.336.75.75.75z" /></svg>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-8 text-center">
+            <div class="size-14 rounded-xl bg-navy-600/30 flex items-center justify-center mx-auto mb-5">
+              <svg class="size-7 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .415.336.75.75.75z" /></svg>
             </div>
-            <h3 class="font-display font-bold text-navy-900 text-fluid-lg mb-3">店舗内装に特化</h3>
-            <p class="text-navy-500 text-fluid-sm leading-relaxed">飲食店・小売店・クリニックなど、店舗に特化した内装工事の豊富な実績。業態ごとの最適な提案力が強みです。</p>
+            <h3 class="font-display font-bold text-white text-fluid-lg mb-3">店舗内装に特化</h3>
+            <p class="text-white/50 text-fluid-sm leading-relaxed">飲食店・小売店・クリニックなど、店舗に特化した内装工事の豊富な実績。業態ごとの最適な提案力が強みです。</p>
           </div>
-          <div class="rounded-2xl bg-white border border-slate-200 p-8 text-center">
-            <div class="size-14 rounded-xl bg-navy-50 flex items-center justify-center mx-auto mb-5">
-              <svg class="size-7 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-8 text-center">
+            <div class="size-14 rounded-xl bg-navy-600/30 flex items-center justify-center mx-auto mb-5">
+              <svg class="size-7 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
             </div>
-            <h3 class="font-display font-bold text-navy-900 text-fluid-lg mb-3">海外資材の直輸入</h3>
-            <p class="text-navy-500 text-fluid-sm leading-relaxed">海外から内装資材を直輸入することで、コスト削減と独自性のあるデザインを両立。他社にはない素材提案が可能です。</p>
+            <h3 class="font-display font-bold text-white text-fluid-lg mb-3">海外資材の直輸入</h3>
+            <p class="text-white/50 text-fluid-sm leading-relaxed">海外から内装資材を直輸入することで、コスト削減と独自性のあるデザインを両立。他社にはない素材提案が可能です。</p>
           </div>
-          <div class="rounded-2xl bg-white border border-slate-200 p-8 text-center sm:col-span-2 lg:col-span-1">
-            <div class="size-14 rounded-xl bg-navy-50 flex items-center justify-center mx-auto mb-5">
-              <svg class="size-7 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.867 1.71-6.137L2.25 8.75h6.3L11.42 2.75l2.87 6h6.3l-5.497 4.15 1.71 6.137L11.42 15.17z" /></svg>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-8 text-center sm:col-span-2 lg:col-span-1">
+            <div class="size-14 rounded-xl bg-navy-600/30 flex items-center justify-center mx-auto mb-5">
+              <svg class="size-7 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.867 1.71-6.137L2.25 8.75h6.3L11.42 2.75l2.87 6h6.3l-5.497 4.15 1.71 6.137L11.42 15.17z" /></svg>
             </div>
-            <h3 class="font-display font-bold text-navy-900 text-fluid-lg mb-3">特殊工事にも対応</h3>
-            <p class="text-navy-500 text-fluid-sm leading-relaxed">電気・空調・消防設備まで対応できる技術者を擁し、内装に関わる特殊工事もワンストップで完結。複数業者の手配が不要です。</p>
+            <h3 class="font-display font-bold text-white text-fluid-lg mb-3">特殊工事にも対応</h3>
+            <p class="text-white/50 text-fluid-sm leading-relaxed">電気・空調・消防設備まで対応できる技術者を擁し、内装に関わる特殊工事もワンストップで完結。複数業者の手配が不要です。</p>
           </div>
         </div>
       </div>

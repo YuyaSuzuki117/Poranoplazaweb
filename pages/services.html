@@ -79,8 +79,11 @@
     .noise-texture > * { position: relative; z-index: 2; }
     .reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    .site-header { background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
     .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+    .site-header > div { display: flex; align-items: center; justify-content: space-between; padding: 1rem clamp(1rem, 0.5rem + 2.5vw, 2rem); max-width: 80rem; margin: 0 auto; }
+    .site-header .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .site-header .header-logo img { height: 2.25rem; width: auto; filter: brightness(0); }
     .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
     .mobile-menu.is-open { opacity: 1; visibility: visible; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
@@ -90,10 +93,10 @@
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
   <!-- HEADER -->
-  <header class="site-header fixed top-0 left-0 right-0" style="z-index: var(--z-sticky);">
-    <div class="mx-auto max-w-7xl px-(--spacing-section-x) py-4 flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-3 text-navy-900 no-underline" aria-label="ポラーノプラザ ホーム">
-        <img src="../images/logo-original.png" alt="" class="h-9 w-auto" aria-hidden="true">
+  <header class="site-header">
+    <div>
+      <a href="../index.html" class="header-logo" aria-label="ポラーノプラザ ホーム">
+        <img src="../images/logo-original.png" alt="" aria-hidden="true">
         <div>
           <span class="font-display font-bold text-fluid-lg block leading-tight text-navy-900">ポラーノプラザ</span>
           <span class="text-xs text-navy-400 leading-tight block">内装工事のプロフェッショナル</span>
@@ -117,7 +120,7 @@
     </div>
   </header>
 
-  <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: var(--z-overlay); backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
+  <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: 300; backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
     <button type="button" id="menu-close" class="absolute top-5 right-5 p-2 text-navy-900" aria-label="メニューを閉じる">
       <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
     </button>
@@ -130,25 +133,25 @@
 
   <main id="main-content">
     <!-- Breadcrumb -->
-    <div class="pt-24 pb-4 px-(--spacing-section-x)">
+    <div class="pt-24 pb-4 px-(--spacing-section-x) bg-navy-950">
       <div class="mx-auto max-w-6xl">
         <nav aria-label="パンくずナビ">
-          <ol class="flex items-center gap-2 text-fluid-xs text-navy-400">
-            <li><a href="../index.html" class="hover:text-navy-900 no-underline transition-colors duration-150">TOP</a></li>
+          <ol class="flex items-center gap-2 text-fluid-xs text-white/40">
+            <li><a href="../index.html" class="hover:text-white no-underline transition-colors duration-150">TOP</a></li>
             <li aria-hidden="true">/</li>
-            <li><span class="text-navy-700" aria-current="page">サービス</span></li>
+            <li><span class="text-white/70" aria-current="page">サービス</span></li>
           </ol>
         </nav>
       </div>
     </div>
 
     <!-- Page Hero -->
-    <section class="noise-texture bg-white pb-(--spacing-section-y) pt-8 px-(--spacing-section-x)">
+    <section class="noise-texture bg-navy-950 pb-(--spacing-section-y) pt-8 px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal">
-          <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Services</p>
-          <h1 class="text-fluid-4xl font-bold text-navy-900 mb-4">サービス紹介</h1>
-          <p class="text-navy-400 text-fluid-lg max-w-2xl">設計・見積もりから施工・アフターサポートまで、4つのサービスをワンストップで提供します。</p>
+          <p class="text-accent-400 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Services</p>
+          <h1 class="text-fluid-4xl font-bold text-white mb-4">サービス紹介</h1>
+          <p class="text-white/60 text-fluid-lg max-w-2xl">設計・見積もりから施工・アフターサポートまで、4つのサービスをワンストップで提供します。</p>
         </div>
       </div>
     </section>
