@@ -89,9 +89,9 @@
     .skip-link { position: absolute; top: -100%; left: 1rem; z-index: var(--z-toast); padding: 0.75rem 1.5rem; background: var(--color-navy-600); color: white; border-radius: 0 0 0.5rem 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s ease-out; }
     .skip-link:focus { top: 0; }
 
-    /* Header - light */
-    .site-header { transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
-    .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+    /* Header */
+    .site-header { background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
+    .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
 
     .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
     .mobile-menu.is-open { opacity: 1; visibility: visible; }
@@ -350,35 +350,35 @@
       </div>
     </section>
 
-    <!-- STRENGTHS -->
-    <section id="strengths" class="bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- STRENGTHS (Dark accent section) -->
+    <section id="strengths" class="noise-texture bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal text-center mb-16">
-          <p class="text-navy-600 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Why Choose Us</p>
-          <h2 class="text-fluid-3xl font-bold text-navy-900">ポラーノプラザの強み</h2>
+          <p class="text-accent-400 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Why Choose Us</p>
+          <h2 class="text-fluid-3xl font-bold text-white">ポラーノプラザの強み</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 reveal-stagger">
           <div class="reveal text-center md:text-left">
-            <span class="text-navy-600 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">01</span>
-            <h3 class="font-display text-fluid-xl font-bold text-navy-900 mb-2">店舗内装に特化</h3>
-            <p class="text-navy-400 text-fluid-sm leading-relaxed">飲食・物販など店舗施工に多数実績。パチンコ楽園（浜友グループ）、病院・クリニック、イタリアン、焼肉屋、BAR等、幅広い業態に対応。</p>
+            <span class="text-warm-400 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">01</span>
+            <h3 class="font-display text-fluid-xl font-bold text-white mb-2">店舗内装に特化</h3>
+            <p class="text-white/50 text-fluid-sm leading-relaxed">飲食・物販など店舗施工に多数実績。パチンコ楽園（浜友グループ）、病院・クリニック、イタリアン、焼肉屋、BAR等、幅広い業態に対応。</p>
           </div>
           <div class="reveal text-center md:text-left">
-            <span class="text-navy-600 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">02</span>
-            <h3 class="font-display text-fluid-xl font-bold text-navy-900 mb-2">海外資材の直輸入</h3>
-            <p class="text-navy-400 text-fluid-sm leading-relaxed">海外資材を独自ルートで安定調達。コストダウンとオリジナリティの高いデザインを両立します。</p>
+            <span class="text-warm-400 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">02</span>
+            <h3 class="font-display text-fluid-xl font-bold text-white mb-2">海外資材の直輸入</h3>
+            <p class="text-white/50 text-fluid-sm leading-relaxed">海外資材を独自ルートで安定調達。コストダウンとオリジナリティの高いデザインを両立します。</p>
           </div>
           <div class="reveal text-center md:text-left">
-            <span class="text-navy-600 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">03</span>
-            <h3 class="font-display text-fluid-xl font-bold text-navy-900 mb-2">特殊工事にも対応</h3>
-            <p class="text-navy-400 text-fluid-sm leading-relaxed">照明の多い工事や病院のような特殊な要件にも対応。第一種電気工事士、消防設備士甲種など国家資格保有者が在籍。</p>
+            <span class="text-warm-400 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">03</span>
+            <h3 class="font-display text-fluid-xl font-bold text-white mb-2">特殊工事にも対応</h3>
+            <p class="text-white/50 text-fluid-sm leading-relaxed">照明の多い工事や病院のような特殊な要件にも対応。第一種電気工事士、消防設備士甲種など国家資格保有者が在籍。</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- PROCESS FLOW -->
-    <section class="bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section class="bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal text-center mb-12">
           <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase">Process</p>
@@ -433,8 +433,8 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- TESTIMONIALS (Warm background) -->
+    <section id="testimonials" class="bg-surface-warm py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal mb-12">
           <p class="text-navy-600 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Voice</p>
