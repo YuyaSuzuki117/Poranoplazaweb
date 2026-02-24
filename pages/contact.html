@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | 株式会社ポラーノプラザ</title>
+  <meta name="description" content="内装工事・空調設備・電気工事・消防設備に関するお問い合わせ・お見積もり依頼はこちら。24時間お電話でも受付中。">
+  <link rel="canonical" href="https://poranoplaza.com/pages/contact.html">
+  <meta property="og:title" content="お問い合わせ | 株式会社ポラーノプラザ">
+  <meta property="og:description" content="内装工事に関するお問い合わせ・お見積もり依頼はこちら。24時間お電話でも受付中。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://poranoplaza.com/pages/contact.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-navy-50: #E8EDF6;
+      --color-navy-100: #C5D0E8;
+      --color-navy-200: #9FB2D9;
+      --color-navy-300: #7894CA;
+      --color-navy-400: #5B7DBE;
+      --color-navy-500: #3E66B2;
+      --color-navy-600: #204495;
+      --color-navy-700: #1A3778;
+      --color-navy-800: #142B5E;
+      --color-navy-900: #0E1F44;
+      --color-navy-950: #0A1628;
+      --color-accent-400: #4DA3DB;
+      --color-accent-500: #2589D0;
+      --color-accent-600: #1E6FA8;
+      --color-warm-400: #D97706;
+      --color-warm-500: #B45309;
+      --color-surface-light: #F9FAFB;
+      --color-surface-warm: #FFFBF5;
+      --color-surface-dark: #0A1628;
+      --font-display: "Zen Kaku Gothic New", sans-serif;
+      --font-body: "Noto Sans JP", sans-serif;
+      --text-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-fluid-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.9375rem);
+      --text-fluid-base: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+      --text-fluid-lg: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+      --text-fluid-xl: clamp(1.125rem, 0.95rem + 0.875vw, 1.5rem);
+      --text-fluid-2xl: clamp(1.25rem, 1rem + 1.25vw, 1.875rem);
+      --text-fluid-3xl: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
+      --text-fluid-4xl: clamp(1.875rem, 1.3rem + 2.875vw, 3.25rem);
+      --z-sticky: 200;
+      --z-overlay: 300;
+      --z-toast: 500;
+      --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
+      --spacing-section-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+    }
+  </style>
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; }
+    p { text-wrap: pretty; }
+    ::selection { background-color: var(--color-navy-600); color: white; }
+    :focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
+    .skip-link { position: absolute; top: -100%; left: 1rem; z-index: var(--z-toast); padding: 0.75rem 1.5rem; background: var(--color-navy-600); color: white; border-radius: 0 0 0.5rem 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s ease-out; }
+    .skip-link:focus { top: 0; }
+    .noise-texture { position: relative; }
+    .noise-texture::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 256px 256px; pointer-events: none; z-index: 1; }
+    .noise-texture > * { position: relative; z-index: 2; }
+    .reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .site-header { transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
+    .site-header.is-scrolled { background-color: rgba(10, 22, 40, 0.95); backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+    .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
+    .mobile-menu.is-open { opacity: 1; visibility: visible; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+    /* Form field styles */
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 0.5rem;
+      color: white;
+      font-family: var(--font-body);
+      font-size: var(--text-fluid-base);
+      transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+    }
+    .form-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+    .form-input:focus {
+      border-color: var(--color-accent-500);
+      box-shadow: 0 0 0 3px rgba(37, 137, 208, 0.15);
+      outline: none;
+    }
+    .form-input[aria-invalid="true"] {
+      border-color: #EF4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+    }
+    select.form-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg fill='%23999' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1.25rem; padding-right: 2.5rem; }
+    .form-error { color: #EF4444; font-size: var(--text-fluid-xs); margin-top: 0.375rem; }
+    .form-label { display: block; color: rgba(255, 255, 255, 0.7); font-size: var(--text-fluid-sm); font-weight: 500; margin-bottom: 0.5rem; }
+    .form-required { color: #EF4444; margin-left: 0.25rem; }
+  </style>
+</head>
+<body class="bg-surface-dark text-surface-light leading-relaxed overflow-x-hidden">
+  <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
+  <!-- HEADER -->
+  <header class="site-header fixed top-0 left-0 right-0" style="z-index: var(--z-sticky);">
+    <div class="mx-auto max-w-7xl px-(--spacing-section-x) py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3 text-white no-underline" aria-label="ポラーノプラザ ホーム">
+        <div class="size-10 rounded-lg bg-navy-600 flex items-center justify-center font-display font-bold text-xl">P</div>
+        <div>
+          <span class="font-display font-bold text-fluid-lg block leading-tight">ポラーノプラザ</span>
+          <span class="text-xs text-white/50 leading-tight block">内装工事のプロフェッショナル</span>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-8" aria-label="メインナビゲーション">
+        <a href="../index.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">TOP</a>
+        <a href="services.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">サービス</a>
+        <a href="works.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">施工実績</a>
+        <a href="company.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
+        <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-600 hover:bg-navy-500 text-white text-sm font-bold font-display rounded-lg no-underline transition-colors duration-150" aria-current="page">
+          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+          お問い合わせ
+        </a>
+      </nav>
+      <button type="button" id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2 -mr-2" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開く">
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-4 h-0.5 bg-white rounded-full"></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-navy-950/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: var(--z-overlay); backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
+    <button type="button" id="menu-close" class="absolute top-5 right-5 p-2 text-white" aria-label="メニューを閉じる">
+      <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+    </button>
+    <a href="../index.html" class="font-display text-2xl font-bold text-white no-underline">TOP</a>
+    <a href="services.html" class="font-display text-2xl font-bold text-white no-underline">サービス</a>
+    <a href="works.html" class="font-display text-2xl font-bold text-white no-underline">施工実績</a>
+    <a href="company.html" class="font-display text-2xl font-bold text-white no-underline">会社概要</a>
+    <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3 bg-navy-600 text-white font-display font-bold rounded-lg no-underline text-xl">お問い合わせ</a>
+  </div>
+
+  <main id="main-content">
+    <!-- Breadcrumb -->
+    <div class="pt-24 pb-4 px-(--spacing-section-x)">
+      <div class="mx-auto max-w-6xl">
+        <nav aria-label="パンくずナビ">
+          <ol class="flex items-center gap-2 text-fluid-xs text-white/40">
+            <li><a href="../index.html" class="hover:text-white no-underline transition-colors duration-150">TOP</a></li>
+            <li aria-hidden="true">/</li>
+            <li><span class="text-white/70" aria-current="page">お問い合わせ</span></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="noise-texture bg-surface-dark pb-12 pt-8 px-(--spacing-section-x)">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal">
+          <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Contact</p>
+          <h1 class="text-fluid-4xl font-bold text-white mb-4">お問い合わせ</h1>
+          <p class="text-white/50 text-fluid-lg max-w-2xl">内装工事に関するご相談・お見積もりは無料です。お気軽にお問い合わせください。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="noise-texture bg-navy-900 py-(--spacing-section-y) px-(--spacing-section-x)">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+          <!-- Phone & Info -->
+          <div class="lg:col-span-1">
+            <div class="reveal">
+              <!-- Phone -->
+              <div class="rounded-2xl bg-navy-800/50 border border-white/5 p-6 mb-6">
+                <h2 class="font-display text-fluid-lg font-bold text-white mb-3">お電話でのお問い合わせ</h2>
+                <a href="tel:0120-000-000" class="flex items-center gap-3 text-white no-underline group">
+                  <div class="size-12 rounded-full bg-navy-600 flex items-center justify-center flex-shrink-0">
+                    <svg class="size-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                  </div>
+                  <div>
+                    <span class="block font-display text-fluid-xl font-bold" style="font-variant-numeric: tabular-nums;">0120-000-000</span>
+                    <span class="block text-white/50 text-fluid-xs">24時間受付対応</span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Info -->
+              <div class="rounded-2xl bg-navy-800/50 border border-white/5 p-6">
+                <h2 class="font-display text-fluid-lg font-bold text-white mb-4">お問い合わせについて</h2>
+                <ul class="space-y-3 text-white/50 text-fluid-sm">
+                  <li class="flex items-start gap-2">
+                    <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    お見積もりは無料です
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    2営業日以内にご返信します
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    一都三県対応
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    24時間緊急対応可能
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="lg:col-span-2">
+            <div class="reveal">
+              <form id="contact-form" class="rounded-2xl bg-navy-800/30 border border-white/5 p-6 md:p-8" novalidate>
+                <h2 class="font-display text-fluid-xl font-bold text-white mb-6">メールフォーム</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                  <!-- Name -->
+                  <div>
+                    <label for="field-name" class="form-label">
+                      お名前<span class="form-required" aria-label="必須">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="field-name"
+                      name="name"
+                      class="form-input"
+                      placeholder="山田 太郎"
+                      required
+                      autocomplete="name"
+                      aria-describedby="error-name"
+                    >
+                    <p id="error-name" class="form-error" hidden aria-live="polite"></p>
+                  </div>
+
+                  <!-- Company -->
+                  <div>
+                    <label for="field-company" class="form-label">
+                      会社名<span class="form-required" aria-label="必須">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="field-company"
+                      name="company"
+                      class="form-input"
+                      placeholder="株式会社○○"
+                      required
+                      autocomplete="organization"
+                      aria-describedby="error-company"
+                    >
+                    <p id="error-company" class="form-error" hidden aria-live="polite"></p>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                  <!-- Email -->
+                  <div>
+                    <label for="field-email" class="form-label">
+                      メールアドレス<span class="form-required" aria-label="必須">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="field-email"
+                      name="email"
+                      class="form-input"
+                      placeholder="info@example.com"
+                      required
+                      autocomplete="email"
+                      aria-describedby="error-email"
+                    >
+                    <p id="error-email" class="form-error" hidden aria-live="polite"></p>
+                  </div>
+
+                  <!-- Phone -->
+                  <div>
+                    <label for="field-phone" class="form-label">
+                      電話番号
+                    </label>
+                    <input
+                      type="tel"
+                      id="field-phone"
+                      name="phone"
+                      class="form-input"
+                      placeholder="03-0000-0000"
+                      autocomplete="tel"
+                      aria-describedby="error-phone"
+                    >
+                    <p id="error-phone" class="form-error" hidden aria-live="polite"></p>
+                  </div>
+                </div>
+
+                <!-- Service Type -->
+                <div class="mb-5">
+                  <label for="field-service" class="form-label">
+                    ご相談内容<span class="form-required" aria-label="必須">*</span>
+                  </label>
+                  <select
+                    id="field-service"
+                    name="service"
+                    class="form-input"
+                    required
+                    aria-describedby="error-service"
+                  >
+                    <option value="">選択してください</option>
+                    <option value="interior">内装工事</option>
+                    <option value="aircon">空調設備工事</option>
+                    <option value="electrical">一般電気工事</option>
+                    <option value="fire">消防設備工事</option>
+                    <option value="estimate">お見積もり依頼</option>
+                    <option value="other">その他</option>
+                  </select>
+                  <p id="error-service" class="form-error" hidden aria-live="polite"></p>
+                </div>
+
+                <!-- Message -->
+                <div class="mb-6">
+                  <label for="field-message" class="form-label">
+                    お問い合わせ内容<span class="form-required" aria-label="必須">*</span>
+                  </label>
+                  <textarea
+                    id="field-message"
+                    name="message"
+                    class="form-input"
+                    rows="6"
+                    placeholder="工事内容やご要望をお知らせください"
+                    required
+                    aria-describedby="error-message"
+                  ></textarea>
+                  <p id="error-message" class="form-error" hidden aria-live="polite"></p>
+                </div>
+
+                <!-- Submit -->
+                <button
+                  type="submit"
+                  class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-3.5 bg-navy-600 hover:bg-navy-500 text-white font-display font-bold rounded-lg transition-colors duration-150 text-fluid-base"
+                >
+                  <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                  </svg>
+                  送信する
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="noise-texture bg-navy-950 pt-16 pb-8 px-(--spacing-section-x)">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div class="sm:col-span-2 lg:col-span-1">
+          <a href="../index.html" class="flex items-center gap-3 text-white no-underline mb-4" aria-label="ポラーノプラザ ホーム">
+            <div class="size-10 rounded-lg bg-navy-600 flex items-center justify-center font-display font-bold text-xl">P</div>
+            <span class="font-display font-bold text-fluid-lg">ポラーノプラザ</span>
+          </a>
+          <p class="text-white/40 text-fluid-sm">内装工事のプロフェッショナル集団。</p>
+        </div>
+        <div>
+          <h3 class="font-display font-bold text-white text-fluid-sm mb-4">サービス</h3>
+          <ul class="space-y-2.5">
+            <li><a href="services.html#interior" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">内装工事</a></li>
+            <li><a href="services.html#aircon" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">空調設備工事</a></li>
+            <li><a href="services.html#electrical" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">一般電気工事</a></li>
+            <li><a href="services.html#fire" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">消防設備工事</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display font-bold text-white text-fluid-sm mb-4">企業情報</h3>
+          <ul class="space-y-2.5">
+            <li><a href="company.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">会社概要</a></li>
+            <li><a href="works.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">施工実績</a></li>
+            <li><a href="contact.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">お問い合わせ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display font-bold text-white text-fluid-sm mb-4">お問い合わせ</h3>
+          <a href="tel:0120-000-000" class="flex items-center gap-2 text-white/50 hover:text-white no-underline transition-colors duration-150 text-fluid-sm">
+            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+            <span style="font-variant-numeric: tabular-nums;">0120-000-000</span>
+          </a>
+          <p class="text-white/30 text-fluid-xs mt-1 pl-6">24時間受付対応</p>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8">
+        <p class="text-white/30 text-fluid-xs text-center">&copy; <span id="current-year">2026</span> 株式会社ポラーノプラザ All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/contact-form.js"></script>
+</body>
+</html>

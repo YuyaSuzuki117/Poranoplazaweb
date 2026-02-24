@@ -1,0 +1,10 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#1A202C"/>
+  <rect x="30" y="30" width="540" height="340" fill="#2D3748" rx="8"/>
+  <rect x="50" y="60" width="240" height="140" fill="#4A5568" rx="4"/>
+  <rect x="310" y="60" width="240" height="140" fill="#4A5568" rx="4"/>
+  <rect x="50" y="220" width="160" height="120" fill="#4A5568" rx="4"/>
+  <rect x="230" y="220" width="160" height="120" fill="#4A5568" rx="4"/>
+  <rect x="410" y="220" width="140" height="120" fill="#4A5568" rx="4"/>
+  <text x="300" y="380" text-anchor="middle" fill="#A0AEC0" font-family="sans-serif" font-size="14" font-weight="bold">内装工事</text>
+</svg>

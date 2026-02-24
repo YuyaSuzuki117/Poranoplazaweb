@@ -1,0 +1,9 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#1A202C"/>
+  <circle cx="300" cy="180" r="60" fill="#C53030" opacity="0.3"/>
+  <circle cx="300" cy="180" r="40" fill="#E53E3E" opacity="0.4"/>
+  <circle cx="300" cy="180" r="20" fill="#FC8181" opacity="0.6"/>
+  <path d="M285 220 Q300 140 315 220" fill="#E53E3E" opacity="0.5"/>
+  <path d="M275 230 Q300 120 325 230" fill="#FC8181" opacity="0.3"/>
+  <text x="300" y="380" text-anchor="middle" fill="#FC8181" font-family="sans-serif" font-size="14" font-weight="bold">消防設備工事</text>
+</svg>
