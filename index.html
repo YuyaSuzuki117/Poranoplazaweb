@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>株式会社ポラーノプラザ | 内装工事・空調設備・電気工事 一都三県対応</title>
-  <meta name="description" content="内装工事のプロフェッショナル集団。見積もりから施工までワンストップ対応。24時間緊急対応可能。一都三県エリアの内装・空調・電気・消防設備工事はポラーノプラザへ。">
+  <meta name="description" content="飲食店・店舗の内装工事はポラーノプラザへ。スケルトンから500万〜1億規模まで対応。イメージパース提案・図面作成・施工まで全工程を自社で一貫対応。24時間受付。">
   <link rel="canonical" href="https://poranoplaza.com/">
 
   <!-- OGP -->
   <meta property="og:title" content="株式会社ポラーノプラザ | 内装工事・空調設備・電気工事">
-  <meta property="og:description" content="内装工事のプロフェッショナル集団。見積もりから施工までワンストップ対応。24時間緊急対応可能。">
+  <meta property="og:description" content="飲食店・店舗の内装工事はポラーノプラザへ。スケルトンから全工程を自社で一貫対応。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://poranoplaza.com/">
   <meta property="og:locale" content="ja_JP">
@@ -20,14 +20,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS v4 (CDN for development) -->
+  <!-- Tailwind CSS v4 (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <!-- img-comparison-slider -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css">
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
 
-  <!-- Custom Theme -->
   <style type="text/tailwindcss">
     @theme {
       --color-navy-50: #E8EDF6;
@@ -41,22 +40,17 @@
       --color-navy-800: #142B5E;
       --color-navy-900: #0E1F44;
       --color-navy-950: #0A1628;
-
       --color-accent-400: #4DA3DB;
       --color-accent-500: #2589D0;
       --color-accent-600: #1E6FA8;
-
       --color-warm-400: #D97706;
       --color-warm-500: #B45309;
       --color-warm-600: #92400E;
-
       --color-surface-light: #F9FAFB;
       --color-surface-warm: #FFFBF5;
       --color-surface-dark: #0A1628;
-
       --font-display: "Zen Kaku Gothic New", sans-serif;
       --font-body: "Noto Sans JP", sans-serif;
-
       --text-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
       --text-fluid-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.9375rem);
       --text-fluid-base: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
@@ -66,75 +60,40 @@
       --text-fluid-3xl: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
       --text-fluid-4xl: clamp(1.875rem, 1.3rem + 2.875vw, 3.25rem);
       --text-fluid-5xl: clamp(2.25rem, 1.5rem + 3.75vw, 4rem);
-
       --z-base: 0;
       --z-dropdown: 100;
       --z-sticky: 200;
       --z-overlay: 300;
       --z-modal: 400;
       --z-toast: 500;
-
       --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
       --spacing-section-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
     }
   </style>
 
   <style>
-    /* Base */
     html { scroll-behavior: smooth; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
-    body {
-      font-family: var(--font-body);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--font-display);
-      text-wrap: balance;
-    }
+    body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); text-wrap: balance; }
     p { text-wrap: pretty; }
-    ::selection {
-      background-color: var(--color-navy-600);
-      color: white;
-    }
-    :focus-visible {
-      outline: 2px solid var(--color-accent-500);
-      outline-offset: 2px;
-    }
+    ::selection { background-color: var(--color-navy-600); color: white; }
+    :focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
 
-    /* Skip link */
-    .skip-link {
-      position: absolute; top: -100%; left: 1rem;
-      z-index: var(--z-toast); padding: 0.75rem 1.5rem;
-      background: var(--color-navy-600); color: white;
-      border-radius: 0 0 0.5rem 0.5rem; font-weight: 600;
-      text-decoration: none; transition: top 0.2s ease-out;
-    }
+    .skip-link { position: absolute; top: -100%; left: 1rem; z-index: var(--z-toast); padding: 0.75rem 1.5rem; background: var(--color-navy-600); color: white; border-radius: 0 0 0.5rem 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s ease-out; }
     .skip-link:focus { top: 0; }
 
-    /* Noise texture */
-    .noise-texture { position: relative; }
-    .noise-texture::before {
-      content: ""; position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      background-repeat: repeat; background-size: 256px 256px;
-      pointer-events: none; z-index: 1;
-    }
-    .noise-texture > * { position: relative; z-index: 2; }
+    /* Header - light */
+    .site-header { transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
+    .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
 
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0; transform: translateY(1.5rem);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
+    .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
+    .mobile-menu.is-open { opacity: 1; visibility: visible; }
+
+    .reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
     .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
     .reveal-stagger > .reveal:nth-child(2) { transition-delay: 100ms; }
@@ -143,278 +102,159 @@
     .reveal-stagger > .reveal:nth-child(5) { transition-delay: 400ms; }
     .reveal-stagger > .reveal:nth-child(6) { transition-delay: 500ms; }
 
-    /* Header */
-    .site-header {
-      transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
-    }
-    .site-header.is-scrolled {
-      background-color: rgba(10, 22, 40, 0.95);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
+    img-comparison-slider { --divider-width: 3px; --divider-color: white; --default-handle-opacity: 1; --default-handle-shadow: 0 4px 12px rgba(0,0,0,0.4); border-radius: 0.75rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
 
-    /* Mobile menu */
-    .mobile-menu {
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
-    }
-    .mobile-menu.is-open { opacity: 1; visibility: visible; }
-
-    /* img-comparison-slider */
-    img-comparison-slider {
-      --divider-width: 3px;
-      --divider-color: white;
-      --default-handle-opacity: 1;
-      --default-handle-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      border-radius: 0.75rem;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Bento card */
     .bento-card { transition: transform 0.2s ease-out; }
     .bento-card:hover { transform: translateY(-2px); }
     .bento-card img { transition: transform 0.4s ease-out; }
     .bento-card:hover img { transform: scale(1.03); }
 
-    /* Testimonial scroll */
-    .testimonial-scroll {
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
+    .testimonial-scroll { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .testimonial-scroll::-webkit-scrollbar { display: none; }
     .testimonial-card { scroll-snap-align: start; }
 
-    /* Dot navigation */
-    .dot-nav button {
-      width: 0.5rem; height: 0.5rem; border-radius: 50%;
-      background: rgba(10, 22, 40, 0.2); border: none; cursor: pointer;
-      transition: background 0.2s ease-out, transform 0.2s ease-out;
-      padding: 0;
-    }
-    .dot-nav button.is-active {
-      background: var(--color-navy-600);
-      transform: scale(1.4);
-    }
-    .dot-nav button:hover { background: var(--color-navy-400); }
+    .dot-nav button { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: rgba(10,22,40,0.15); border: none; cursor: pointer; transition: background 0.2s ease-out, transform 0.2s ease-out; padding: 0; }
+    .dot-nav button.is-active { background: var(--color-navy-600); transform: scale(1.4); }
 
-    /* Hamburger icon animation */
-    .hamburger-line {
-      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    }
-
-    /* sr-only utility */
-    .sr-only {
-      position: absolute; width: 1px; height: 1px;
-      padding: 0; margin: -1px; overflow: hidden;
-      clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
-    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
   </style>
 
-  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "株式会社ポラーノプラザ",
-    "description": "内装工事のプロフェッショナル集団。見積もりから施工までワンストップ対応。24時間緊急対応可能。一都三県エリアの内装・空調・電気・消防設備工事。",
+    "description": "飲食店・店舗の内装工事。スケルトンから全工程を自社で一貫対応。電気・空調・消防設備工事も。",
     "url": "https://poranoplaza.com/",
-    "areaServed": [
-      { "@type": "State", "name": "東京都" },
-      { "@type": "State", "name": "神奈川県" },
-      { "@type": "State", "name": "埼玉県" },
-      { "@type": "State", "name": "千葉県" }
-    ],
+    "telephone": "03-6821-1924",
+    "email": "info@poranoplaza.com",
+    "address": { "@type": "PostalAddress", "streetAddress": "東京都豊島区東池袋1-44-4", "postalCode": "170-0013", "addressCountry": "JP" },
+    "areaServed": ["東京都", "神奈川県", "埼玉県", "千葉県", "兵庫県"],
+    "founder": { "@type": "Person", "name": "片山 功一" },
+    "foundingDate": "2020-02-18",
     "serviceType": ["内装工事", "空調設備工事", "一般電気工事", "消防設備工事"],
     "slogan": "作業員から技術者へ"
   }
   </script>
 </head>
 
-<body class="bg-surface-dark text-surface-light leading-relaxed overflow-x-hidden">
-
-  <!-- Skip Link -->
+<body class="bg-white text-navy-900 leading-relaxed overflow-x-hidden">
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
-  <!-- ============================================
-       HEADER
-       ============================================ -->
+  <!-- HEADER (Light) -->
   <header class="site-header fixed top-0 left-0 right-0" style="z-index: var(--z-sticky);">
     <div class="mx-auto max-w-7xl px-(--spacing-section-x) py-4 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 text-white no-underline" aria-label="ポラーノプラザ ホーム">
-        <div class="size-10 rounded-lg bg-navy-600 flex items-center justify-center font-display font-bold text-xl">P</div>
+      <a href="/" class="flex items-center gap-3 no-underline" aria-label="ポラーノプラザ ホーム">
+        <img src="images/logo-original.png" alt="" class="h-9 w-auto" aria-hidden="true">
         <div>
-          <span class="font-display font-bold text-fluid-lg block leading-tight">ポラーノプラザ</span>
-          <span class="text-xs text-white/50 leading-tight block">内装工事のプロフェッショナル</span>
+          <span class="font-display font-bold text-fluid-lg text-navy-900 block leading-tight">ポラーノプラザ</span>
+          <span class="text-xs text-navy-400 leading-tight block">内装工事のプロフェッショナル</span>
         </div>
       </a>
 
-      <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-8" aria-label="メインナビゲーション">
-        <a href="/" class="text-white/90 hover:text-white text-sm font-medium no-underline transition-colors duration-150" aria-current="page">TOP</a>
-        <a href="pages/services.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">サービス</a>
-        <a href="pages/works.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">施工実績</a>
-        <a href="pages/company.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
+        <a href="/" class="text-navy-700 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150" aria-current="page">TOP</a>
+        <a href="pages/services.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">サービス</a>
+        <a href="pages/works.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">施工実績</a>
+        <a href="pages/company.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
         <a href="pages/contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-600 hover:bg-navy-500 text-white text-sm font-bold font-display rounded-lg no-underline transition-colors duration-150">
-          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-          </svg>
+          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
           お問い合わせ
         </a>
       </nav>
 
-      <!-- Mobile Menu Toggle -->
-      <button
-        type="button"
-        id="menu-toggle"
-        class="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="メニューを開く"
-      >
-        <span class="hamburger-line block w-6 h-0.5 bg-white rounded-full"></span>
-        <span class="hamburger-line block w-6 h-0.5 bg-white rounded-full"></span>
-        <span class="hamburger-line block w-4 h-0.5 bg-white rounded-full"></span>
+      <button type="button" id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2 -mr-2" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開く">
+        <span class="block w-6 h-0.5 bg-navy-800 rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-navy-800 rounded-full"></span>
+        <span class="block w-4 h-0.5 bg-navy-800 rounded-full"></span>
       </button>
     </div>
   </header>
 
-  <!-- Mobile Menu Overlay -->
-  <div
-    id="mobile-menu"
-    class="mobile-menu fixed inset-0 bg-navy-950/[0.98] flex flex-col items-center justify-center gap-8"
-    style="z-index: var(--z-overlay); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);"
-    role="dialog"
-    aria-modal="true"
-    aria-label="モバイルメニュー"
-  >
-    <button
-      type="button"
-      id="menu-close"
-      class="absolute top-5 right-5 p-2 text-white"
-      aria-label="メニューを閉じる"
-    >
-      <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: var(--z-overlay); backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
+    <button type="button" id="menu-close" class="absolute top-5 right-5 p-2 text-navy-800" aria-label="メニューを閉じる">
+      <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
     </button>
-
-    <a href="/" class="font-display text-2xl font-bold text-white no-underline hover:text-accent-500 transition-colors duration-150">TOP</a>
-    <a href="pages/services.html" class="font-display text-2xl font-bold text-white no-underline hover:text-accent-500 transition-colors duration-150">サービス</a>
-    <a href="pages/works.html" class="font-display text-2xl font-bold text-white no-underline hover:text-accent-500 transition-colors duration-150">施工実績</a>
-    <a href="pages/company.html" class="font-display text-2xl font-bold text-white no-underline hover:text-accent-500 transition-colors duration-150">会社概要</a>
-    <a href="pages/contact.html" class="inline-flex items-center gap-2 px-8 py-3 bg-navy-600 text-white font-display font-bold rounded-lg no-underline text-xl">
-      お問い合わせ
-    </a>
-
-    <a href="tel:0120-000-000" class="mt-4 text-white/60 text-sm no-underline">
-      <span class="block text-center font-display text-xl text-white font-bold">0120-000-000</span>
-      <span class="block text-center text-xs mt-1">24時間対応</span>
+    <a href="/" class="font-display text-2xl font-bold text-navy-900 no-underline">TOP</a>
+    <a href="pages/services.html" class="font-display text-2xl font-bold text-navy-900 no-underline">サービス</a>
+    <a href="pages/works.html" class="font-display text-2xl font-bold text-navy-900 no-underline">施工実績</a>
+    <a href="pages/company.html" class="font-display text-2xl font-bold text-navy-900 no-underline">会社概要</a>
+    <a href="pages/contact.html" class="inline-flex items-center gap-2 px-8 py-3 bg-navy-600 text-white font-display font-bold rounded-lg no-underline text-xl">お問い合わせ</a>
+    <a href="tel:03-6821-1924" class="mt-4 text-navy-400 text-sm no-underline">
+      <span class="block text-center font-display text-xl text-navy-900 font-bold" style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
+      <span class="block text-center text-xs mt-1">24時間受付</span>
     </a>
   </div>
 
-  <!-- ============================================
-       MAIN CONTENT
-       ============================================ -->
+  <!-- MAIN -->
   <main id="main-content">
 
-    <!-- ==========================================
-         SECTION 1: HERO - Before/After
-         ========================================== -->
-    <section class="noise-texture relative min-h-dvh flex flex-col items-center justify-center bg-surface-dark px-(--spacing-section-x) pt-24 pb-16">
+    <!-- HERO -->
+    <section class="relative min-h-dvh flex flex-col items-center justify-center bg-slate-50 px-(--spacing-section-x) pt-24 pb-16">
       <div class="mx-auto max-w-4xl w-full text-center">
-
-        <!-- B/A Slider -->
         <div class="reveal relative mb-10">
           <img-comparison-slider class="w-full aspect-[4/3] md:aspect-[16/10]" tabindex="0" aria-label="施工前と施工後の比較スライダー">
             <figure slot="first" class="m-0 p-0">
-              <img
-                src="images/hero/before.svg"
-                alt="内装工事施工前の店舗内装"
-                width="800"
-                height="600"
-                loading="eager"
-              >
+              <img src="images/hero/before.jpg" alt="内装工事施工前" width="800" height="600" loading="eager">
             </figure>
             <figure slot="second" class="m-0 p-0">
-              <img
-                src="images/hero/after.svg"
-                alt="内装工事施工後の完成した店舗内装"
-                width="800"
-                height="600"
-                loading="eager"
-              >
+              <img src="images/hero/after.jpg" alt="内装工事施工後" width="800" height="600" loading="eager">
             </figure>
-            <!-- Custom handle -->
             <div slot="handle">
               <div class="flex items-center justify-center size-12 rounded-full bg-white shadow-lg cursor-ew-resize">
-                <svg class="size-5 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" />
-                </svg>
+                <svg class="size-5 text-navy-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg>
               </div>
             </div>
           </img-comparison-slider>
-          <!-- Labels -->
-          <span class="absolute top-4 left-4 px-3 py-1 bg-navy-950/70 text-white text-xs font-display font-bold rounded uppercase tracking-wide pointer-events-none" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
-          <span class="absolute top-4 right-4 px-3 py-1 bg-navy-950/70 text-white text-xs font-display font-bold rounded uppercase tracking-wide pointer-events-none" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
+          <span class="absolute top-4 left-4 px-3 py-1 bg-navy-900/70 text-white text-xs font-display font-bold rounded uppercase tracking-wide pointer-events-none" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
+          <span class="absolute top-4 right-4 px-3 py-1 bg-navy-900/70 text-white text-xs font-display font-bold rounded uppercase tracking-wide pointer-events-none" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
         </div>
 
-        <!-- Hero Text -->
         <div class="reveal">
-          <h1 class="text-fluid-4xl font-bold mb-4 text-white">確かな技術で、空間を変える。</h1>
-          <p class="text-fluid-lg text-white/60 mb-8 max-w-2xl mx-auto">
-            作業員から技術者へ ── 見積もりから施工まで<br class="hidden sm:inline">ワンストップで対応する内装工事のプロフェッショナル
+          <h1 class="text-fluid-4xl font-bold mb-4 text-navy-900">確かな技術で、空間を変える。</h1>
+          <p class="text-fluid-lg text-navy-500 mb-8 max-w-2xl mx-auto">
+            作業員から技術者へ ── スケルトンからデザイン・施工まで<br class="hidden sm:inline">全工程を自社で一貫対応する内装工事のプロフェッショナル
           </p>
         </div>
 
-        <!-- CTA Buttons -->
         <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href="pages/works.html" class="inline-flex items-center gap-2 px-8 py-3.5 bg-navy-600 hover:bg-navy-500 text-white font-display font-bold rounded-lg no-underline transition-all duration-150 hover:-translate-y-px text-fluid-sm">
             施工実績を見る
-            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
+            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
           </a>
-          <a href="pages/contact.html" class="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent border-2 border-white/30 hover:border-white/60 hover:bg-white/5 text-white font-display font-bold rounded-lg no-underline transition-all duration-150 hover:-translate-y-px text-fluid-sm">
+          <a href="pages/contact.html" class="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-navy-200 hover:border-navy-400 text-navy-700 font-display font-bold rounded-lg no-underline transition-all duration-150 hover:-translate-y-px text-fluid-sm">
             お問い合わせ
           </a>
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="mt-16 flex flex-col items-center gap-2 text-white/30" aria-hidden="true">
+        <div class="mt-16 flex flex-col items-center gap-2 text-navy-300" aria-hidden="true">
           <span class="text-xs font-display">SCROLL</span>
-          <div class="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"></div>
+          <div class="w-px h-8 bg-gradient-to-b from-navy-300 to-transparent"></div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 2: SERVICES - Bento Grid
-         ========================================== -->
-    <section id="services" class="noise-texture bg-navy-900 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- SERVICES - Bento Grid -->
+    <section id="services" class="bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
-        <!-- Section Header -->
         <div class="reveal mb-12">
-          <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Services</p>
-          <h2 class="text-fluid-3xl font-bold text-white mb-3">ワンストップで対応する<br class="hidden sm:inline">4つのサービス</h2>
-          <p class="text-fluid-base text-white/50 max-w-xl">設計・見積もりから施工・アフターサポートまで。複数業者の手配不要で、コスト削減と工期短縮を実現します。</p>
+          <p class="text-navy-600 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Services</p>
+          <h2 class="text-fluid-3xl font-bold text-navy-900 mb-3">全工程を自社で一貫対応</h2>
+          <p class="text-fluid-base text-navy-400 max-w-xl">イメージパース提案・図面作成から施工・アフターサポートまで。飲食店を中心に500万〜1億規模の工事をスケルトンから承ります。</p>
         </div>
 
-        <!-- Bento Grid -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 reveal-stagger" style="grid-auto-rows: minmax(10rem, 1fr);">
-
           <!-- Interior (main - 2x2) -->
           <a href="pages/services.html#interior" class="reveal bento-card relative overflow-hidden rounded-2xl col-span-2 row-span-2 no-underline group">
-            <img src="images/services/interior.svg" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
-            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent flex flex-col justify-end p-6 md:p-8">
+            <img src="images/services/interior.jpg" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent flex flex-col justify-end p-6 md:p-8">
               <span class="inline-flex items-center gap-1 text-warm-400 font-display font-bold text-fluid-xs mb-2">
                 <svg class="size-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                 メイン事業
               </span>
               <h3 class="font-display text-fluid-2xl font-bold text-white mb-1">内装工事</h3>
-              <p class="text-white/60 text-fluid-sm">オフィス・店舗・商業施設の内装を<br>デザインから施工まで一貫対応</p>
+              <p class="text-white/70 text-fluid-sm">飲食店・店舗・商業施設の内装を<br>デザインから施工まで一貫対応</p>
               <span class="mt-4 inline-flex items-center gap-1 text-white/80 text-sm font-medium group-hover:text-white transition-colors duration-150">
                 詳しく見る
                 <svg class="size-4 transition-transform duration-150 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
@@ -422,180 +262,140 @@
             </div>
           </a>
 
-          <!-- HVAC -->
           <a href="pages/services.html#aircon" class="reveal bento-card relative overflow-hidden rounded-2xl no-underline group">
-            <img src="images/services/aircon.svg" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
+            <img src="images/services/aircon.jpg" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
             <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 to-transparent flex flex-col justify-end p-4 md:p-5">
               <h3 class="font-display text-fluid-lg font-bold text-white mb-0.5">空調設備工事</h3>
-              <p class="text-white/50 text-fluid-xs hidden md:block">設置・交換・メンテナンス</p>
+              <p class="text-white/60 text-fluid-xs hidden md:block">設置・交換・メンテナンス</p>
             </div>
           </a>
 
-          <!-- Electrical -->
           <a href="pages/services.html#electrical" class="reveal bento-card relative overflow-hidden rounded-2xl no-underline group">
-            <img src="images/services/electrical.svg" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
+            <img src="images/services/electrical.jpg" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
             <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 to-transparent flex flex-col justify-end p-4 md:p-5">
               <h3 class="font-display text-fluid-lg font-bold text-white mb-0.5">一般電気工事</h3>
-              <p class="text-white/50 text-fluid-xs hidden md:block">配線・照明・分電盤</p>
+              <p class="text-white/60 text-fluid-xs hidden md:block">配線・照明・分電盤</p>
             </div>
           </a>
 
-          <!-- Fire Safety -->
           <a href="pages/services.html#fire" class="reveal bento-card relative overflow-hidden rounded-2xl no-underline group">
-            <img src="images/services/fire.svg" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
+            <img src="images/services/fire.jpg" alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true">
             <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 to-transparent flex flex-col justify-end p-4 md:p-5">
               <h3 class="font-display text-fluid-lg font-bold text-white mb-0.5">消防設備工事</h3>
-              <p class="text-white/50 text-fluid-xs hidden md:block">設置・点検・届出</p>
+              <p class="text-white/60 text-fluid-xs hidden md:block">設置・点検・届出</p>
             </div>
           </a>
 
-          <!-- 24h Badge -->
-          <div class="reveal bento-card relative overflow-hidden rounded-2xl bg-navy-800 flex flex-col items-center justify-center p-5 text-center">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl leading-none" style="font-variant-numeric: tabular-nums;">24</span>
-            <span class="text-white/80 font-display font-bold text-fluid-sm mt-1">時間対応</span>
-            <span class="text-white/40 text-fluid-xs mt-2">緊急時も安心の<br>即時対応体制</span>
+          <div class="reveal bento-card relative overflow-hidden rounded-2xl bg-navy-600 flex flex-col items-center justify-center p-5 text-center">
+            <span class="text-white font-display font-bold text-fluid-4xl leading-none" style="font-variant-numeric: tabular-nums;">24</span>
+            <span class="text-white/90 font-display font-bold text-fluid-sm mt-1">時間受付</span>
+            <span class="text-white/60 text-fluid-xs mt-2">緊急時も安心の<br>即時対応体制</span>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 3: PORTFOLIO HIGHLIGHTS
-         ========================================== -->
-    <section id="works" class="noise-texture bg-surface-dark py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- PORTFOLIO -->
+    <section id="works" class="bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
-        <!-- Section Header -->
         <div class="reveal mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
-            <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Works</p>
-            <h2 class="text-fluid-3xl font-bold text-white">施工実績</h2>
+            <p class="text-navy-600 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Works</p>
+            <h2 class="text-fluid-3xl font-bold text-navy-900">施工実績</h2>
           </div>
-          <a href="pages/works.html" class="inline-flex items-center gap-1 text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150 group">
+          <a href="pages/works.html" class="inline-flex items-center gap-1 text-navy-400 hover:text-navy-700 text-sm font-medium no-underline transition-colors duration-150 group">
             すべての施工実績を見る
             <svg class="size-4 transition-transform duration-150 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
           </a>
         </div>
 
-        <!-- Editorial Grid (asymmetric) -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 reveal-stagger">
-
-          <!-- Main project with B/A slider -->
           <div class="reveal md:col-span-7">
             <div class="relative rounded-2xl overflow-hidden mb-4">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="オフィス内装リニューアルの施工前後比較">
-                <figure slot="first" class="m-0 p-0">
-                  <img src="images/hero/before.svg" alt="施工前のオフィス内装" width="600" height="400" loading="lazy">
-                </figure>
-                <figure slot="second" class="m-0 p-0">
-                  <img src="images/hero/after.svg" alt="施工後のオフィス内装" width="600" height="400" loading="lazy">
-                </figure>
-                <div slot="handle">
-                  <div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize">
-                    <svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" />
-                    </svg>
-                  </div>
-                </div>
+              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="店舗内装の施工前後比較">
+                <figure slot="first" class="m-0 p-0"><img src="images/hero/before.jpg" alt="施工前" width="600" height="400" loading="lazy"></figure>
+                <figure slot="second" class="m-0 p-0"><img src="images/hero/after.jpg" alt="施工後" width="600" height="400" loading="lazy"></figure>
+                <div slot="handle"><div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize"><svg class="size-4 text-navy-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg></div></div>
               </img-comparison-slider>
-              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
-              <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-900/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
+              <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-900/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
             </div>
-            <div class="px-1">
-              <span class="text-accent-500 text-fluid-xs font-display font-bold uppercase tracking-wider">Office</span>
-              <h3 class="text-fluid-xl font-bold text-white mt-1 mb-1">渋谷区オフィス内装リニューアル</h3>
-              <p class="text-white/50 text-fluid-sm">築15年のオフィスビルをモダンなワークスペースにフルリノベーション。天井・壁・床の改修からLED照明への全面切替まで。</p>
-            </div>
+            <span class="text-navy-600 text-fluid-xs font-display font-bold uppercase tracking-wider">Restaurant</span>
+            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-1">飲食店 スケルトン内装工事</h3>
+            <p class="text-navy-400 text-fluid-sm">スケルトンからカウンター造作、厨房設備、天井・壁・床、LED照明まで全工程を自社施工。</p>
           </div>
 
-          <!-- Side projects -->
           <div class="md:col-span-5 flex flex-col gap-4 md:gap-6">
             <a href="pages/works.html" class="reveal group block no-underline">
               <div class="relative rounded-2xl overflow-hidden mb-3">
-                <img src="images/portfolio/project-2.svg" alt="飲食店の新装工事" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
-                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/60 to-transparent"></div>
+                <img src="images/portfolio/project-restaurant.jpg" alt="飲食店の内装工事" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
               </div>
-              <span class="text-accent-500 text-fluid-xs font-display font-bold uppercase tracking-wider">Restaurant</span>
-              <h3 class="text-fluid-lg font-bold text-white mt-1 mb-1">新宿区 飲食店新装工事</h3>
-              <p class="text-white/50 text-fluid-xs">カウンター造作から厨房設備まで一括施工</p>
+              <span class="text-navy-600 text-fluid-xs font-display font-bold uppercase tracking-wider">Salon</span>
+              <h3 class="text-fluid-lg font-bold text-navy-900 mt-1 mb-1">銀座サロン 内装工事</h3>
+              <p class="text-navy-400 text-fluid-xs">高級感のある内装デザインから施工まで</p>
             </a>
             <a href="pages/works.html" class="reveal group block no-underline">
               <div class="relative rounded-2xl overflow-hidden mb-3">
-                <img src="images/portfolio/project-3.svg" alt="クリニック内装改修" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
-                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/60 to-transparent"></div>
+                <img src="images/portfolio/project-clinic.jpg" alt="クリニック内装改修" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
               </div>
-              <span class="text-accent-500 text-fluid-xs font-display font-bold uppercase tracking-wider">Clinic</span>
-              <h3 class="text-fluid-lg font-bold text-white mt-1 mb-1">港区 クリニック内装改修</h3>
-              <p class="text-white/50 text-fluid-xs">待合室・診察室の全面リニューアル</p>
+              <span class="text-navy-600 text-fluid-xs font-display font-bold uppercase tracking-wider">Clinic</span>
+              <h3 class="text-fluid-lg font-bold text-navy-900 mt-1 mb-1">恵比寿美容歯科クリニック</h3>
+              <p class="text-navy-400 text-fluid-xs">待合室・診察室の全面リニューアル</p>
             </a>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 4: WHY CHOOSE US - 4 Strengths
-         ========================================== -->
-    <section id="strengths" class="noise-texture bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- STRENGTHS -->
+    <section id="strengths" class="bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
-        <!-- Section Header -->
         <div class="reveal text-center mb-16">
-          <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Why Choose Us</p>
-          <h2 class="text-fluid-3xl font-bold text-white">ポラーノプラザが<br class="sm:hidden">選ばれる理由</h2>
+          <p class="text-navy-600 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Why Choose Us</p>
+          <h2 class="text-fluid-3xl font-bold text-navy-900">ポラーノプラザの強み</h2>
         </div>
-
-        <!-- 4 Strengths Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 reveal-stagger">
-
-          <!-- Strength 1 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 reveal-stagger">
           <div class="reveal text-center md:text-left">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">01</span>
-            <h3 class="font-display text-fluid-xl font-bold text-white mb-2">ワンストップ対応</h3>
-            <p class="text-white/50 text-fluid-sm leading-relaxed">見積もり・設計・施工・アフターフォローまで一貫して自社対応。複数業者の調整が不要で、コスト削減と工期短縮を実現します。</p>
+            <span class="text-navy-600 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">01</span>
+            <h3 class="font-display text-fluid-xl font-bold text-navy-900 mb-2">店舗内装に特化</h3>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed">飲食・物販など店舗施工に多数実績。パチンコ楽園（浜友グループ）、病院・クリニック、イタリアン、焼肉屋、BAR等、幅広い業態に対応。</p>
           </div>
-
-          <!-- Strength 2 -->
           <div class="reveal text-center md:text-left">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">02</span>
-            <h3 class="font-display text-fluid-xl font-bold text-white mb-2">24時間緊急対応</h3>
-            <p class="text-white/50 text-fluid-sm leading-relaxed">突然の設備トラブルにも迅速に対応。24時間365日、お電話一本で駆けつけます。ビジネスのダウンタイムを最小限に。</p>
+            <span class="text-navy-600 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">02</span>
+            <h3 class="font-display text-fluid-xl font-bold text-navy-900 mb-2">海外資材の直輸入</h3>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed">海外資材を独自ルートで安定調達。コストダウンとオリジナリティの高いデザインを両立します。</p>
           </div>
-
-          <!-- Strength 3 -->
           <div class="reveal text-center md:text-left">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">03</span>
-            <h3 class="font-display text-fluid-xl font-bold text-white mb-2">資格保有技術者</h3>
-            <p class="text-white/50 text-fluid-sm leading-relaxed">「作業員から技術者へ」── 各分野の国家資格を持つプロが在籍。確かな技術力で安全かつ高品質な施工をお約束します。</p>
+            <span class="text-navy-600 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">03</span>
+            <h3 class="font-display text-fluid-xl font-bold text-navy-900 mb-2">特殊工事にも対応</h3>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed">照明の多い工事や病院のような特殊な要件にも対応。第一種電気工事士、消防設備士甲種など国家資格保有者が在籍。</p>
           </div>
-
-          <!-- Strength 4 -->
-          <div class="reveal text-center md:text-left">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl leading-none block mb-3" style="font-variant-numeric: tabular-nums;">04</span>
-            <h3 class="font-display text-fluid-xl font-bold text-white mb-2">一都三県カバー</h3>
-            <p class="text-white/50 text-fluid-sm leading-relaxed">東京都・神奈川県・埼玉県・千葉県の広域エリアに対応。多拠点展開の企業様にも柔軟にサービスをご提供します。</p>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 5: TESTIMONIALS
-         ========================================== -->
-    <section id="testimonials" class="bg-surface-warm py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- CLIENTS -->
+    <section class="bg-slate-50 py-12 px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
-        <!-- Section Header -->
+        <div class="reveal text-center">
+          <p class="text-navy-400 text-fluid-xs font-display font-bold uppercase tracking-wider mb-6">主要取引先実績</p>
+          <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-navy-300 text-fluid-sm font-medium">
+            <span>セコム</span><span>ダイソー</span><span>アイリスオーヤマ</span><span>中外製薬</span><span>ブックオフ</span><span>東京医科大学</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
+      <div class="mx-auto max-w-6xl">
         <div class="reveal mb-12">
           <p class="text-navy-600 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Voice</p>
-          <h2 class="text-fluid-3xl font-bold text-navy-950">お客様の声</h2>
+          <h2 class="text-fluid-3xl font-bold text-navy-900">お客様の声</h2>
         </div>
 
-        <!-- Testimonial Carousel -->
         <div class="testimonial-scroll flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory" role="list" aria-label="お客様の声一覧">
-
-          <!-- Testimonial 1 -->
-          <blockquote class="testimonial-card snap-start bg-white rounded-2xl p-6 md:p-8 shadow-sm min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
+          <blockquote class="testimonial-card snap-start bg-slate-50 rounded-2xl p-6 md:p-8 min-w-[20rem] max-w-sm flex-shrink-0 border border-slate-100" role="listitem">
             <div class="flex gap-1 mb-4" aria-label="5つ星評価">
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -603,20 +403,17 @@
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             </div>
-            <p class="text-navy-800 text-fluid-sm leading-relaxed mb-6">見積もりから施工完了まで非常にスムーズでした。他社では複数の業者を手配する必要がありましたが、ポラーノプラザさんは全てワンストップ。コストも工期も大幅に削減できました。</p>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案をいただき安心してお任せできました。全工程を自社対応してくれるので、複数業者の調整が不要でスムーズでした。</p>
             <footer class="flex items-center gap-3">
-              <div class="size-10 rounded-full bg-navy-100 flex items-center justify-center">
-                <span class="text-navy-600 font-display font-bold text-sm">T.S</span>
-              </div>
+              <div class="size-10 rounded-full bg-navy-100 flex items-center justify-center"><span class="text-navy-600 font-display font-bold text-sm">T.S</span></div>
               <div>
                 <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">T.S 様</cite>
-                <span class="text-navy-500 text-fluid-xs">飲食チェーン / 経営企画部</span>
+                <span class="text-navy-400 text-fluid-xs">飲食チェーン / 経営企画部</span>
               </div>
             </footer>
           </blockquote>
 
-          <!-- Testimonial 2 -->
-          <blockquote class="testimonial-card snap-start bg-white rounded-2xl p-6 md:p-8 shadow-sm min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
+          <blockquote class="testimonial-card snap-start bg-slate-50 rounded-2xl p-6 md:p-8 min-w-[20rem] max-w-sm flex-shrink-0 border border-slate-100" role="listitem">
             <div class="flex gap-1 mb-4" aria-label="5つ星評価">
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -624,20 +421,17 @@
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             </div>
-            <p class="text-navy-800 text-fluid-sm leading-relaxed mb-6">深夜の空調トラブルで急遽連絡しましたが、2時間以内に技術者の方が到着。翌日の営業に支障なく復旧していただきました。24時間対応は本当に心強いです。</p>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。24時間対応は本当に心強いです。</p>
             <footer class="flex items-center gap-3">
-              <div class="size-10 rounded-full bg-navy-100 flex items-center justify-center">
-                <span class="text-navy-600 font-display font-bold text-sm">M.K</span>
-              </div>
+              <div class="size-10 rounded-full bg-navy-100 flex items-center justify-center"><span class="text-navy-600 font-display font-bold text-sm">M.K</span></div>
               <div>
                 <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">M.K 様</cite>
-                <span class="text-navy-500 text-fluid-xs">IT企業 / 総務部長</span>
+                <span class="text-navy-400 text-fluid-xs">IT企業 / 総務部長</span>
               </div>
             </footer>
           </blockquote>
 
-          <!-- Testimonial 3 -->
-          <blockquote class="testimonial-card snap-start bg-white rounded-2xl p-6 md:p-8 shadow-sm min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
+          <blockquote class="testimonial-card snap-start bg-slate-50 rounded-2xl p-6 md:p-8 min-w-[20rem] max-w-sm flex-shrink-0 border border-slate-100" role="listitem">
             <div class="flex gap-1 mb-4" aria-label="5つ星評価">
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -645,152 +439,102 @@
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
               <svg class="size-4 text-warm-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             </div>
-            <p class="text-navy-800 text-fluid-sm leading-relaxed mb-6">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。一都三県カバーしている強みを実感。次回もお願いする予定です。</p>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
             <footer class="flex items-center gap-3">
-              <div class="size-10 rounded-full bg-navy-100 flex items-center justify-center">
-                <span class="text-navy-600 font-display font-bold text-sm">A.Y</span>
-              </div>
+              <div class="size-10 rounded-full bg-navy-100 flex items-center justify-center"><span class="text-navy-600 font-display font-bold text-sm">A.Y</span></div>
               <div>
                 <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">A.Y 様</cite>
-                <span class="text-navy-500 text-fluid-xs">小売チェーン / 店舗開発部</span>
+                <span class="text-navy-400 text-fluid-xs">小売チェーン / 店舗開発部</span>
               </div>
             </footer>
           </blockquote>
-
         </div>
 
-        <!-- Dot Navigation -->
         <div class="dot-nav flex items-center justify-center gap-3 mt-8" role="tablist" aria-label="お客様の声ナビゲーション">
-          <button type="button" class="is-active" role="tab" aria-selected="true" aria-label="お客様の声 1">
-            <span class="sr-only">1</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" aria-label="お客様の声 2">
-            <span class="sr-only">2</span>
-          </button>
-          <button type="button" role="tab" aria-selected="false" aria-label="お客様の声 3">
-            <span class="sr-only">3</span>
-          </button>
+          <button type="button" class="is-active" role="tab" aria-selected="true" aria-label="お客様の声 1"><span class="sr-only">1</span></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="お客様の声 2"><span class="sr-only">2</span></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="お客様の声 3"><span class="sr-only">3</span></button>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 6: SERVICE AREA
-         ========================================== -->
-    <section id="area" class="noise-texture bg-navy-900 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- AREA -->
+    <section id="area" class="bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal text-center mb-12">
-          <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Area</p>
-          <h2 class="text-fluid-3xl font-bold text-white">対応エリア</h2>
+          <p class="text-navy-600 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Area</p>
+          <h2 class="text-fluid-3xl font-bold text-navy-900">対応エリア</h2>
         </div>
-
         <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          <!-- Tokyo -->
-          <div class="rounded-2xl bg-navy-800/60 border border-white/5 p-6 md:p-8 text-center">
-            <div class="size-14 mx-auto mb-4 rounded-full bg-navy-700 flex items-center justify-center">
-              <svg class="size-7 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
+          <div class="rounded-2xl bg-white border border-slate-100 p-6 md:p-8 text-center shadow-sm">
+            <div class="size-14 mx-auto mb-4 rounded-full bg-navy-50 flex items-center justify-center">
+              <svg class="size-7 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
             </div>
-            <h3 class="font-display text-fluid-lg font-bold text-white mb-1">東京都</h3>
-            <p class="text-white/40 text-fluid-xs">23区・多摩地域</p>
+            <h3 class="font-display text-fluid-lg font-bold text-navy-900 mb-1">東京都</h3>
+            <p class="text-navy-400 text-fluid-xs">23区・多摩地域</p>
           </div>
-          <!-- Kanagawa -->
-          <div class="rounded-2xl bg-navy-800/60 border border-white/5 p-6 md:p-8 text-center">
-            <div class="size-14 mx-auto mb-4 rounded-full bg-navy-700 flex items-center justify-center">
-              <svg class="size-7 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
+          <div class="rounded-2xl bg-white border border-slate-100 p-6 md:p-8 text-center shadow-sm">
+            <div class="size-14 mx-auto mb-4 rounded-full bg-navy-50 flex items-center justify-center">
+              <svg class="size-7 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
             </div>
-            <h3 class="font-display text-fluid-lg font-bold text-white mb-1">神奈川県</h3>
-            <p class="text-white/40 text-fluid-xs">横浜・川崎ほか</p>
+            <h3 class="font-display text-fluid-lg font-bold text-navy-900 mb-1">神奈川県</h3>
+            <p class="text-navy-400 text-fluid-xs">横浜・川崎ほか</p>
           </div>
-          <!-- Saitama -->
-          <div class="rounded-2xl bg-navy-800/60 border border-white/5 p-6 md:p-8 text-center">
-            <div class="size-14 mx-auto mb-4 rounded-full bg-navy-700 flex items-center justify-center">
-              <svg class="size-7 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
+          <div class="rounded-2xl bg-white border border-slate-100 p-6 md:p-8 text-center shadow-sm">
+            <div class="size-14 mx-auto mb-4 rounded-full bg-navy-50 flex items-center justify-center">
+              <svg class="size-7 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
             </div>
-            <h3 class="font-display text-fluid-lg font-bold text-white mb-1">埼玉県</h3>
-            <p class="text-white/40 text-fluid-xs">さいたま・所沢ほか</p>
+            <h3 class="font-display text-fluid-lg font-bold text-navy-900 mb-1">埼玉県</h3>
+            <p class="text-navy-400 text-fluid-xs">さいたま・所沢ほか</p>
           </div>
-          <!-- Chiba -->
-          <div class="rounded-2xl bg-navy-800/60 border border-white/5 p-6 md:p-8 text-center">
-            <div class="size-14 mx-auto mb-4 rounded-full bg-navy-700 flex items-center justify-center">
-              <svg class="size-7 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
+          <div class="rounded-2xl bg-white border border-slate-100 p-6 md:p-8 text-center shadow-sm">
+            <div class="size-14 mx-auto mb-4 rounded-full bg-navy-50 flex items-center justify-center">
+              <svg class="size-7 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
             </div>
-            <h3 class="font-display text-fluid-lg font-bold text-white mb-1">千葉県</h3>
-            <p class="text-white/40 text-fluid-xs">千葉・船橋ほか</p>
+            <h3 class="font-display text-fluid-lg font-bold text-navy-900 mb-1">千葉県</h3>
+            <p class="text-navy-400 text-fluid-xs">千葉・船橋ほか</p>
           </div>
         </div>
-
-        <p class="reveal text-center text-white/40 text-fluid-sm mt-8">上記エリア外でもお気軽にご相談ください。</p>
+        <p class="reveal text-center text-navy-300 text-fluid-sm mt-8">関西支社（兵庫県宝塚市）もあり。上記エリア外もお気軽にご相談ください。</p>
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 7: CTA BANNER
-         ========================================== -->
+    <!-- CTA -->
     <section id="cta" class="bg-navy-600 py-16 md:py-20 px-(--spacing-section-x)">
       <div class="mx-auto max-w-4xl text-center">
         <div class="reveal">
           <h2 class="text-fluid-3xl font-bold text-white mb-3 font-display">まずはお気軽にご相談ください</h2>
-          <p class="text-white/70 text-fluid-base mb-10 max-w-2xl mx-auto">内装工事の規模を問わず、お見積もりは無料です。24時間お電話でも受け付けております。</p>
-
+          <p class="text-white/70 text-fluid-base mb-10 max-w-2xl mx-auto">内装工事の規模を問わず、お見積もりは無料です。お電話でもメールでもお気軽にどうぞ。</p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <!-- Phone CTA -->
-            <a href="tel:0120-000-000" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg shadow-lg hover:shadow-xl transition-shadow duration-150 group">
-              <svg class="size-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-              </svg>
+            <a href="tel:03-6821-1924" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg shadow-lg hover:shadow-xl transition-shadow duration-150">
+              <svg class="size-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
               <span>
-                <span class="block text-sm text-navy-500 font-normal leading-tight">24時間対応</span>
-                <span class="block leading-tight" style="font-variant-numeric: tabular-nums;">0120-000-000</span>
+                <span class="block text-sm text-navy-400 font-normal leading-tight">代表</span>
+                <span class="block leading-tight" style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
               </span>
             </a>
-            <!-- Email CTA -->
             <a href="pages/contact.html" class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/30 hover:bg-white/20 hover:border-white/50 text-white font-display font-bold rounded-xl no-underline text-fluid-base transition-all duration-150">
-              <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-              </svg>
+              <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
               メールで問い合わせ
             </a>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
-  <footer class="noise-texture bg-navy-950 pt-16 pb-8 px-(--spacing-section-x)">
+  <!-- FOOTER (dark) -->
+  <footer class="bg-navy-950 pt-16 pb-8 px-(--spacing-section-x)">
     <div class="mx-auto max-w-6xl">
-      <!-- Footer Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-
-        <!-- Company Info -->
         <div class="sm:col-span-2 lg:col-span-1">
           <a href="/" class="flex items-center gap-3 text-white no-underline mb-4" aria-label="ポラーノプラザ ホーム">
-            <div class="size-10 rounded-lg bg-navy-600 flex items-center justify-center font-display font-bold text-xl">P</div>
+            <img src="images/logo-original.png" alt="" class="h-8 w-auto brightness-200" aria-hidden="true">
             <span class="font-display font-bold text-fluid-lg">ポラーノプラザ</span>
           </a>
-          <p class="text-white/40 text-fluid-sm leading-relaxed mb-4">
-            内装工事のプロフェッショナル集団。<br>
-            見積もりから施工までワンストップ対応。
-          </p>
-          <p class="text-white/30 text-fluid-xs">株式会社ポラーノプラザ</p>
+          <p class="text-white/40 text-fluid-sm leading-relaxed mb-2">内装工事のプロフェッショナル集団。</p>
+          <p class="text-white/30 text-fluid-xs">株式会社ポラーノプラザ<br>〒170-0013 東京都豊島区東池袋1-44-4</p>
         </div>
-
-        <!-- Services -->
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">サービス</h3>
           <ul class="space-y-2.5">
@@ -800,8 +544,6 @@
             <li><a href="pages/services.html#fire" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">消防設備工事</a></li>
           </ul>
         </div>
-
-        <!-- Company -->
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">企業情報</h3>
           <ul class="space-y-2.5">
@@ -810,42 +552,26 @@
             <li><a href="pages/contact.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">お問い合わせ</a></li>
           </ul>
         </div>
-
-        <!-- Contact -->
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">お問い合わせ</h3>
-          <div class="space-y-3">
-            <a href="tel:0120-000-000" class="flex items-center gap-2 text-white/50 hover:text-white no-underline transition-colors duration-150 text-fluid-sm">
-              <svg class="size-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-              </svg>
-              <span style="font-variant-numeric: tabular-nums;">0120-000-000</span>
-            </a>
-            <p class="text-white/30 text-fluid-xs pl-6">24時間受付対応</p>
-            <a href="pages/contact.html" class="flex items-center gap-2 text-white/50 hover:text-white no-underline transition-colors duration-150 text-fluid-sm">
-              <svg class="size-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-              </svg>
-              メールフォーム
-            </a>
-          </div>
+          <a href="tel:03-6821-1924" class="flex items-center gap-2 text-white/50 hover:text-white no-underline transition-colors duration-150 text-fluid-sm">
+            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+            <span style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
+          </a>
+          <p class="text-white/30 text-fluid-xs pl-6 mt-1">24時間受付</p>
+          <a href="mailto:info@poranoplaza.com" class="flex items-center gap-2 text-white/50 hover:text-white no-underline transition-colors duration-150 text-fluid-sm mt-3">
+            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+            info@poranoplaza.com
+          </a>
         </div>
-
       </div>
-
-      <!-- Divider -->
       <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-white/30 text-fluid-xs">
-          &copy; <span id="current-year">2026</span> 株式会社ポラーノプラザ All Rights Reserved.
-        </p>
-        <p class="text-white/20 text-fluid-xs">
-          一都三県対応 / 24時間受付
-        </p>
+        <p class="text-white/30 text-fluid-xs">&copy; <span id="current-year">2026</span> 株式会社ポラーノプラザ All Rights Reserved.</p>
+        <p class="text-white/20 text-fluid-xs">建設業許可 東京都知事許可（般-3）第154705号</p>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="js/comparison-slider.js"></script>
 </body>

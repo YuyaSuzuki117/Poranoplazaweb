@@ -77,51 +77,51 @@
     .reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
     .site-header { transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
-    .site-header.is-scrolled { background-color: rgba(10, 22, 40, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+    .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
     .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
     .mobile-menu.is-open { opacity: 1; visibility: visible; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
   </style>
 </head>
-<body class="bg-surface-dark text-surface-light leading-relaxed overflow-x-hidden">
+<body class="bg-white text-navy-900 leading-relaxed overflow-x-hidden">
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
   <!-- HEADER -->
   <header class="site-header fixed top-0 left-0 right-0" style="z-index: var(--z-sticky);">
     <div class="mx-auto max-w-7xl px-(--spacing-section-x) py-4 flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-3 text-white no-underline" aria-label="ポラーノプラザ ホーム">
-        <div class="size-10 rounded-lg bg-navy-600 flex items-center justify-center font-display font-bold text-xl">P</div>
+      <a href="../index.html" class="flex items-center gap-3 text-navy-900 no-underline" aria-label="ポラーノプラザ ホーム">
+        <img src="../images/logo-original.png" alt="" class="h-9 w-auto" aria-hidden="true">
         <div>
-          <span class="font-display font-bold text-fluid-lg block leading-tight">ポラーノプラザ</span>
-          <span class="text-xs text-white/50 leading-tight block">内装工事のプロフェッショナル</span>
+          <span class="font-display font-bold text-fluid-lg block leading-tight text-navy-900">ポラーノプラザ</span>
+          <span class="text-xs text-navy-400 leading-tight block">内装工事のプロフェッショナル</span>
         </div>
       </a>
       <nav class="hidden md:flex items-center gap-8" aria-label="メインナビゲーション">
-        <a href="../index.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">TOP</a>
-        <a href="services.html" class="text-white/90 hover:text-white text-sm font-medium no-underline transition-colors duration-150" aria-current="page">サービス</a>
-        <a href="works.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">施工実績</a>
-        <a href="company.html" class="text-white/60 hover:text-white text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
+        <a href="../index.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">TOP</a>
+        <a href="services.html" class="text-navy-900 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150" aria-current="page">サービス</a>
+        <a href="works.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">施工実績</a>
+        <a href="company.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
         <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-600 hover:bg-navy-500 text-white text-sm font-bold font-display rounded-lg no-underline transition-colors duration-150">
           <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
           お問い合わせ
         </a>
       </nav>
       <button type="button" id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2 -mr-2" aria-expanded="false" aria-controls="mobile-menu" aria-label="メニューを開く">
-        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
-        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
-        <span class="block w-4 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-navy-800 rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-navy-800 rounded-full"></span>
+        <span class="block w-4 h-0.5 bg-navy-800 rounded-full"></span>
       </button>
     </div>
   </header>
 
-  <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-navy-950/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: var(--z-overlay); backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
-    <button type="button" id="menu-close" class="absolute top-5 right-5 p-2 text-white" aria-label="メニューを閉じる">
+  <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: var(--z-overlay); backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
+    <button type="button" id="menu-close" class="absolute top-5 right-5 p-2 text-navy-900" aria-label="メニューを閉じる">
       <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
     </button>
-    <a href="../index.html" class="font-display text-2xl font-bold text-white no-underline">TOP</a>
+    <a href="../index.html" class="font-display text-2xl font-bold text-navy-900 no-underline">TOP</a>
     <a href="services.html" class="font-display text-2xl font-bold text-accent-500 no-underline">サービス</a>
-    <a href="works.html" class="font-display text-2xl font-bold text-white no-underline">施工実績</a>
-    <a href="company.html" class="font-display text-2xl font-bold text-white no-underline">会社概要</a>
+    <a href="works.html" class="font-display text-2xl font-bold text-navy-900 no-underline">施工実績</a>
+    <a href="company.html" class="font-display text-2xl font-bold text-navy-900 no-underline">会社概要</a>
     <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3 bg-navy-600 text-white font-display font-bold rounded-lg no-underline text-xl">お問い合わせ</a>
   </div>
 
@@ -130,53 +130,58 @@
     <div class="pt-24 pb-4 px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <nav aria-label="パンくずナビ">
-          <ol class="flex items-center gap-2 text-fluid-xs text-white/40">
-            <li><a href="../index.html" class="hover:text-white no-underline transition-colors duration-150">TOP</a></li>
+          <ol class="flex items-center gap-2 text-fluid-xs text-navy-400">
+            <li><a href="../index.html" class="hover:text-navy-900 no-underline transition-colors duration-150">TOP</a></li>
             <li aria-hidden="true">/</li>
-            <li><span class="text-white/70" aria-current="page">サービス</span></li>
+            <li><span class="text-navy-700" aria-current="page">サービス</span></li>
           </ol>
         </nav>
       </div>
     </div>
 
     <!-- Page Hero -->
-    <section class="noise-texture bg-surface-dark pb-(--spacing-section-y) pt-8 px-(--spacing-section-x)">
+    <section class="noise-texture bg-white pb-(--spacing-section-y) pt-8 px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal">
           <p class="text-accent-500 font-display font-bold text-fluid-sm mb-2 uppercase tracking-wider">Services</p>
-          <h1 class="text-fluid-4xl font-bold text-white mb-4">サービス紹介</h1>
-          <p class="text-white/50 text-fluid-lg max-w-2xl">設計・見積もりから施工・アフターサポートまで、4つのサービスをワンストップで提供します。</p>
+          <h1 class="text-fluid-4xl font-bold text-navy-900 mb-4">サービス紹介</h1>
+          <p class="text-navy-400 text-fluid-lg max-w-2xl">設計・見積もりから施工・アフターサポートまで、4つのサービスをワンストップで提供します。</p>
         </div>
       </div>
     </section>
 
     <!-- Interior -->
-    <section id="interior" class="noise-texture bg-navy-900 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section id="interior" class="noise-texture bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="reveal">
-            <img src="../images/services/interior.svg" alt="内装工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <img src="../images/services/interior.jpg" alt="内装工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
           </div>
           <div class="reveal">
             <span class="text-warm-500 font-display font-bold text-fluid-4xl block mb-2" style="font-variant-numeric: tabular-nums;">01</span>
-            <h2 class="text-fluid-3xl font-bold text-white mb-4">内装工事</h2>
-            <p class="text-white/60 text-fluid-base leading-relaxed mb-6">オフィス・店舗・商業施設の内装をデザインから施工まで一貫対応。天井・壁・床の改修、パーテーション設置、造作家具まで幅広く対応します。</p>
+            <h2 class="text-fluid-3xl font-bold text-navy-900 mb-4">内装工事</h2>
+            <p class="text-navy-700 text-fluid-base leading-relaxed mb-4">飲食店を中心に500万〜1億規模の工事をスケルトンから承っております。イメージパース提案、図面作成から店舗デザインまで全工程を自社で行っています。</p>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed mb-6">オフィス・店舗・商業施設の内装をデザインから施工まで一貫対応。天井・壁・床の改修、パーテーション設置、造作家具まで幅広く対応します。</p>
             <ul class="space-y-3">
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
+                <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                飲食店の新装・改装（ガールズバー、寿司屋、ステーキ屋、BAR など）
+              </li>
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
+                <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                ホストクラブ・コンカフェなどナイト業態の店舗デザイン
+              </li>
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 オフィス・事務所のレイアウト変更
               </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                店舗・飲食店の新装・改装工事
+                スケルトンからの全面内装工事
               </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                天井・壁・床のリフォーム
-              </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
-                <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                パーテーション・間仕切り工事
+                イメージパース提案・図面作成・店舗デザイン
               </li>
             </ul>
           </div>
@@ -185,26 +190,26 @@
     </section>
 
     <!-- HVAC -->
-    <section id="aircon" class="noise-texture bg-surface-dark py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section id="aircon" class="noise-texture bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="reveal md:order-2">
-            <img src="../images/services/aircon.svg" alt="空調設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <img src="../images/services/aircon.jpg" alt="空調設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
           </div>
           <div class="reveal md:order-1">
             <span class="text-warm-500 font-display font-bold text-fluid-4xl block mb-2" style="font-variant-numeric: tabular-nums;">02</span>
-            <h2 class="text-fluid-3xl font-bold text-white mb-4">空調設備工事</h2>
-            <p class="text-white/60 text-fluid-base leading-relaxed mb-6">業務用エアコンの設置・交換から定期メンテナンスまで。快適な空間環境を維持するための最適なソリューションをご提案します。</p>
+            <h2 class="text-fluid-3xl font-bold text-navy-900 mb-4">空調設備工事</h2>
+            <p class="text-navy-700 text-fluid-base leading-relaxed mb-6">業務用エアコンの設置・交換から定期メンテナンスまで。快適な空間環境を維持するための最適なソリューションをご提案します。</p>
             <ul class="space-y-3">
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 業務用エアコンの設置・交換
               </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 換気・空調ダクト工事
               </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 定期点検・メンテナンス
               </li>
@@ -215,26 +220,26 @@
     </section>
 
     <!-- Electrical -->
-    <section id="electrical" class="noise-texture bg-navy-900 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section id="electrical" class="noise-texture bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="reveal">
-            <img src="../images/services/electrical.svg" alt="一般電気工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <img src="../images/services/electrical.jpg" alt="一般電気工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
           </div>
           <div class="reveal">
             <span class="text-warm-500 font-display font-bold text-fluid-4xl block mb-2" style="font-variant-numeric: tabular-nums;">03</span>
-            <h2 class="text-fluid-3xl font-bold text-white mb-4">一般電気工事</h2>
-            <p class="text-white/60 text-fluid-base leading-relaxed mb-6">配線工事からLED照明への切替、分電盤の増設まで。安全で効率的な電気設備を構築します。</p>
+            <h2 class="text-fluid-3xl font-bold text-navy-900 mb-4">一般電気工事</h2>
+            <p class="text-navy-700 text-fluid-base leading-relaxed mb-6">配線工事からLED照明への切替、分電盤の増設まで。安全で効率的な電気設備を構築します。</p>
             <ul class="space-y-3">
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 電気配線・コンセント増設
               </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 LED照明工事
               </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 分電盤の新設・増設
               </li>
@@ -245,26 +250,26 @@
     </section>
 
     <!-- Fire Safety -->
-    <section id="fire" class="noise-texture bg-surface-dark py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section id="fire" class="noise-texture bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="reveal md:order-2">
-            <img src="../images/services/fire.svg" alt="消防設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <img src="../images/services/fire.jpg" alt="消防設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
           </div>
           <div class="reveal md:order-1">
             <span class="text-warm-500 font-display font-bold text-fluid-4xl block mb-2" style="font-variant-numeric: tabular-nums;">04</span>
-            <h2 class="text-fluid-3xl font-bold text-white mb-4">消防設備工事</h2>
-            <p class="text-white/60 text-fluid-base leading-relaxed mb-6">消防法に基づく設備の設置・点検・届出を一括対応。法令遵守と安全確保をサポートします。</p>
+            <h2 class="text-fluid-3xl font-bold text-navy-900 mb-4">消防設備工事</h2>
+            <p class="text-navy-700 text-fluid-base leading-relaxed mb-6">消防法に基づく設備の設置・点検・届出を一括対応。法令遵守と安全確保をサポートします。</p>
             <ul class="space-y-3">
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 自動火災報知設備の設置
               </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 消火器・スプリンクラーの設置
               </li>
-              <li class="flex items-start gap-3 text-white/50 text-fluid-sm">
+              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
                 <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                 定期点検・届出代行
               </li>
@@ -280,9 +285,9 @@
         <h2 class="text-fluid-3xl font-bold text-white mb-3 font-display">サービスについてのご相談</h2>
         <p class="text-white/70 text-fluid-base mb-8">どのサービスが最適かわからない場合も、お気軽にご相談ください。最適なプランをご提案します。</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="tel:0120-000-000" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg">
+          <a href="tel:03-6821-1924" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg">
             <svg class="size-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
-            <span style="font-variant-numeric: tabular-nums;">0120-000-000</span>
+            <span style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
           </a>
           <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/30 hover:bg-white/20 text-white font-display font-bold rounded-xl no-underline text-fluid-base transition-all duration-150">メールで問い合わせ</a>
         </div>
@@ -299,7 +304,8 @@
             <div class="size-10 rounded-lg bg-navy-600 flex items-center justify-center font-display font-bold text-xl">P</div>
             <span class="font-display font-bold text-fluid-lg">ポラーノプラザ</span>
           </a>
-          <p class="text-white/40 text-fluid-sm leading-relaxed">内装工事のプロフェッショナル集団。</p>
+          <p class="text-white/40 text-fluid-sm leading-relaxed mb-2">内装工事のプロフェッショナル集団。</p>
+          <p class="text-white/40 text-fluid-xs leading-relaxed">〒170-0013<br>東京都豊島区東池袋1-44-4</p>
         </div>
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">サービス</h3>
@@ -320,15 +326,20 @@
         </div>
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">お問い合わせ</h3>
-          <a href="tel:0120-000-000" class="flex items-center gap-2 text-white/50 hover:text-white no-underline transition-colors duration-150 text-fluid-sm">
+          <a href="tel:03-6821-1924" class="flex items-center gap-2 text-white/50 hover:text-white no-underline transition-colors duration-150 text-fluid-sm">
             <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
-            <span style="font-variant-numeric: tabular-nums;">0120-000-000</span>
+            <span style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
           </a>
           <p class="text-white/30 text-fluid-xs mt-1 pl-6">24時間受付対応</p>
+          <a href="mailto:info@poranoplaza.com" class="flex items-center gap-2 text-white/50 hover:text-white no-underline transition-colors duration-150 text-fluid-sm mt-3">
+            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+            <span>info@poranoplaza.com</span>
+          </a>
         </div>
       </div>
       <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-white/30 text-fluid-xs">&copy; <span id="current-year">2026</span> 株式会社ポラーノプラザ All Rights Reserved.</p>
+        <p class="text-white/30 text-fluid-xs">建設業許可 東京都知事許可（般-3）第154705号</p>
       </div>
     </div>
   </footer>
