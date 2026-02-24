@@ -127,7 +127,7 @@
   /* ========================================
      Scroll Reveal (IntersectionObserver)
      ======================================== */
-  const revealElements = document.querySelectorAll(".reveal");
+  const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-scale");
 
   if (revealElements.length > 0) {
     // Check for reduced motion preference
