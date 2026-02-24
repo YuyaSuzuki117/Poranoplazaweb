@@ -433,8 +433,8 @@
                 イメージパース提案、図面作成、施工まで一気通貫。<br class="hidden md:inline">一都三県、500万〜1億規模の店舗内装を自社で完結。
               </p>
               <div class="flex flex-col sm:flex-row items-start gap-4">
-                <a href="pages/contact.html" class="inline-flex items-center gap-2 px-7 py-3 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-display font-bold rounded-lg no-underline transition-colors duration-150 text-fluid-sm">
-                  お問い合わせ
+                <a href="pages/contact.html" class="inline-flex items-center gap-2 px-7 py-3 bg-accent-500 hover:bg-accent-600 text-white font-display font-bold rounded-lg no-underline transition-colors duration-150 text-fluid-sm">
+                  ご相談・お見積り
                 </a>
                 <a href="pages/works.html" class="group inline-flex items-center gap-2 text-white/50 hover:text-white font-display font-medium no-underline transition-colors duration-150 text-fluid-sm py-3">
                   施工実績を見る
@@ -692,29 +692,53 @@
     <!-- TESTIMONIALS -->
     <section id="testimonials" class="warm-depth bg-surface-warm py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
-        <div class="reveal mb-12">
-          <p class="text-accent-500 font-display text-fluid-xs font-medium tracking-widest uppercase mb-2" aria-hidden="true">Voice</p>
+        <div class="reveal mb-10">
           <h2 class="text-fluid-3xl font-bold text-navy-900">お客様の声</h2>
+          <div class="w-12 h-px bg-accent-500 mt-4" aria-hidden="true"></div>
         </div>
 
-        <div class="testimonial-scroll flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory reveal" role="list" aria-label="お客様の声一覧">
-          <blockquote class="snap-start bg-white rounded-lg border-l-2 border-accent-500 p-6 md:p-8 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
+        <!-- Mobile: horizontal scroll / Desktop: grid -->
+        <div class="md:hidden testimonial-scroll flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory reveal" role="list" aria-label="お客様の声一覧">
+          <blockquote class="snap-start bg-white rounded-lg border-l-2 border-accent-500 p-6 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
             <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; T.S 様</cite>
               <span class="text-navy-400 text-fluid-xs">飲食チェーン / 経営企画部</span>
             </footer>
           </blockquote>
-
-          <blockquote class="snap-start bg-navy-50 rounded-lg border-l-2 border-navy-300 p-6 md:p-8 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
+          <blockquote class="snap-start bg-navy-50 rounded-lg border-l-2 border-navy-300 p-6 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
             <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; M.K 様</cite>
               <span class="text-navy-400 text-fluid-xs">IT企業 / 総務部長</span>
             </footer>
           </blockquote>
+          <blockquote class="snap-start bg-white rounded-lg border-l-2 border-accent-500 p-6 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
+            <footer>
+              <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; A.Y 様</cite>
+              <span class="text-navy-400 text-fluid-xs">小売チェーン / 店舗開発部</span>
+            </footer>
+          </blockquote>
+        </div>
 
-          <blockquote class="snap-start bg-white rounded-lg border-l-2 border-accent-500 p-6 md:p-8 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
+        <!-- Desktop: 3-column grid -->
+        <div class="hidden md:grid md:grid-cols-3 gap-6 reveal-stagger" role="list" aria-label="お客様の声一覧">
+          <blockquote class="reveal bg-white rounded-lg border-l-2 border-accent-500 p-8" role="listitem">
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
+            <footer>
+              <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; T.S 様</cite>
+              <span class="text-navy-400 text-fluid-xs">飲食チェーン / 経営企画部</span>
+            </footer>
+          </blockquote>
+          <blockquote class="reveal bg-navy-50 rounded-lg border-l-2 border-navy-300 p-8" role="listitem">
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
+            <footer>
+              <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; M.K 様</cite>
+              <span class="text-navy-400 text-fluid-xs">IT企業 / 総務部長</span>
+            </footer>
+          </blockquote>
+          <blockquote class="reveal bg-white rounded-lg border-l-2 border-accent-500 p-8" role="listitem">
             <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; A.Y 様</cite>
