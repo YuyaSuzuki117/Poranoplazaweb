@@ -343,6 +343,108 @@
   });
 
   /* ========================================
+     Category Filter (Works page)
+     ======================================== */
+  var filterBtns = document.querySelectorAll("[data-filter]");
+  var filterItems = document.querySelectorAll("[data-category]");
+
+  if (filterBtns.length > 0 && filterItems.length > 0) {
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var cat = btn.getAttribute("data-filter");
+
+        filterBtns.forEach(function (b) {
+          b.classList.remove("is-active");
+          b.setAttribute("aria-selected", "false");
+        });
+        btn.classList.add("is-active");
+        btn.setAttribute("aria-selected", "true");
+
+        filterItems.forEach(function (item) {
+          var itemCat = item.getAttribute("data-category");
+          if (cat === "all" || itemCat === cat) {
+            item.style.display = "";
+            item.removeAttribute("hidden");
+          } else {
+            item.style.display = "none";
+            item.setAttribute("hidden", "");
+          }
+        });
+      });
+    });
+  }
+
+  /* ========================================
+     Lightbox (Works page)
+     ======================================== */
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = lightbox ? lightbox.querySelector("img") : null;
+  var lightboxClose = lightbox ? lightbox.querySelector("[data-lightbox-close]") : null;
+  var previousLightboxFocus = null;
+
+  function openLightbox(src, alt) {
+    if (!lightbox || !lightboxImg) return;
+    previousLightboxFocus = document.activeElement;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightbox.removeAttribute("hidden");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    requestAnimationFrame(function () {
+      lightbox.classList.add("is-active");
+      if (lightboxClose) lightboxClose.focus();
+    });
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove("is-active");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    setTimeout(function () {
+      lightbox.setAttribute("hidden", "");
+      lightboxImg.src = "";
+      if (previousLightboxFocus) previousLightboxFocus.focus();
+    }, 400);
+  }
+
+  if (lightbox) {
+    // Close on backdrop click
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox || e.target.hasAttribute("data-lightbox-close")) {
+        closeLightbox();
+      }
+    });
+
+    // Close on Escape, trap focus
+    lightbox.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { closeLightbox(); return; }
+      if (e.key !== "Tab") return;
+      var focusable = lightbox.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // Open on trigger click
+    document.querySelectorAll("[data-lightbox-src]").forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        openLightbox(trigger.getAttribute("data-lightbox-src"), trigger.getAttribute("alt") || trigger.getAttribute("aria-label") || "");
+      });
+      trigger.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openLightbox(trigger.getAttribute("data-lightbox-src"), trigger.getAttribute("alt") || trigger.getAttribute("aria-label") || "");
+        }
+      });
+    });
+  }
+
+  /* ========================================
      Current Year in Footer
      ======================================== */
   var yearEl = document.getElementById("current-year");

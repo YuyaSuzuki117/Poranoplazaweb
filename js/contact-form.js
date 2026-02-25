@@ -91,17 +91,21 @@
     return true;
   }
 
-  // Live validation on blur
+  // Focus animation: add/remove is-focused class for CSS transitions
   Object.keys(fields).forEach((key) => {
-    if (fields[key].el) {
-      fields[key].el.addEventListener("blur", () => validateField(key));
-      // Clear error on input
-      fields[key].el.addEventListener("input", () => {
-        if (fields[key].el.getAttribute("aria-invalid") === "true") {
-          validateField(key);
-        }
-      });
-    }
+    if (!fields[key].el) return;
+    fields[key].el.addEventListener("focus", function () {
+      this.parentElement.classList.add("is-focused");
+    });
+    fields[key].el.addEventListener("blur", function () {
+      this.parentElement.classList.remove("is-focused");
+      validateField(key);
+    });
+    fields[key].el.addEventListener("input", () => {
+      if (fields[key].el.getAttribute("aria-invalid") === "true") {
+        validateField(key);
+      }
+    });
   });
 
   // Form submission
@@ -168,10 +172,10 @@
       "&body=" +
       encodeURIComponent(bodyParts);
 
-    // Show confirmation message
+    // Show confirmation message with entrance animation
     form.innerHTML = `
-      <div class="text-center py-12">
-        <div class="size-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center">
+      <div class="text-center py-12 success-message" style="opacity:0;transform:translateY(1rem);">
+        <div class="size-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center success-icon" style="opacity:0;transform:scale(0.6);">
           <svg class="size-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
@@ -186,6 +190,24 @@
         </a>
       </div>
     `;
+
+    // Animate success message entrance
+    var successMsg = form.querySelector(".success-message");
+    var successIcon = form.querySelector(".success-icon");
+    if (successMsg) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          successIcon.style.transition = "opacity 0.4s ease-out, transform 0.4s ease-out";
+          successIcon.style.opacity = "1";
+          successIcon.style.transform = "scale(1)";
+          setTimeout(function () {
+            successMsg.style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
+            successMsg.style.opacity = "1";
+            successMsg.style.transform = "translateY(0)";
+          }, 200);
+        });
+      });
+    }
 
     // Open mailto link
     window.location.href = mailtoUrl;

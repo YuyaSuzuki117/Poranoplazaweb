@@ -18,7 +18,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css">
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
@@ -47,6 +47,7 @@
       --color-surface-dark: #0C0A09;
       --font-display: "Zen Kaku Gothic New", sans-serif;
       --font-body: "Noto Sans JP", sans-serif;
+      --font-serif: "Cormorant Garamond", Georgia, serif;
       --text-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
       --text-fluid-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.9375rem);
       --text-fluid-base: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
@@ -55,55 +56,97 @@
       --text-fluid-2xl: clamp(1.25rem, 1rem + 1.25vw, 1.875rem);
       --text-fluid-3xl: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
       --text-fluid-4xl: clamp(1.875rem, 1.3rem + 2.875vw, 3.25rem);
+      --text-fluid-5xl: clamp(2.25rem, 1.5rem + 3.75vw, 4rem);
+      --text-fluid-6xl: clamp(2.75rem, 1.8rem + 4.75vw, 5.5rem);
+      --z-base: 0;
+      --z-dropdown: 100;
       --z-sticky: 200;
       --z-overlay: 300;
+      --z-modal: 400;
       --z-toast: 500;
-      --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
+      --spacing-section-y: clamp(5rem, 3.5rem + 6vw, 10rem);
       --spacing-section-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
       --spacing-bridge-y: clamp(2.5rem, 2rem + 3vw, 5rem);
     }
   </style>
   <style>
     html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
-    body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
-    h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+    body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); text-wrap: balance; }
     p { text-wrap: pretty; }
     ::selection { background-color: var(--color-accent-500); color: white; }
     :focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
+
     .skip-link { position: absolute; top: -100%; left: 1rem; z-index: var(--z-toast); padding: 0.75rem 1.5rem; background: var(--color-navy-600); color: white; border-radius: 0 0 0.5rem 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s ease-out; }
     .skip-link:focus { top: 0; }
-    .noise-texture { position: relative; }
-    .noise-texture::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 256px 256px; pointer-events: none; z-index: 1; }
-    .noise-texture > * { position: relative; z-index: 2; }
-    .reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
-    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 100ms; }
-    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 200ms; }
+
     .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
-    .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
-    .site-header > div { display: flex; align-items: center; justify-content: space-between; padding: 1rem clamp(1rem, 0.5rem + 2.5vw, 2rem); max-width: 80rem; margin: 0 auto; }
+    .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+    .site-header > div { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem clamp(1rem, 0.5rem + 2.5vw, 2rem); max-width: 80rem; margin: 0 auto; }
     .site-header .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .site-header .header-logo img { height: 2.25rem; width: auto; filter: brightness(0); }
     .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
     .mobile-menu.is-open { opacity: 1; visibility: visible; }
-    img-comparison-slider { --divider-width: 3px; --divider-color: white; --default-handle-opacity: 1; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+    /* Scroll Reveal */
+    .reveal { opacity: 0; transform: translateY(2rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-3rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(3rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.92); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-scale.is-visible { opacity: 1; transform: scale(1); }
+    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 120ms; }
+    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 240ms; }
+    .reveal-stagger > .reveal:nth-child(4) { transition-delay: 360ms; }
+    .reveal-stagger > .reveal:nth-child(5) { transition-delay: 480ms; }
+    .reveal-stagger > .reveal:nth-child(6) { transition-delay: 600ms; }
+
+    .section-label { display: inline-flex; align-items: center; gap: 1rem; font-family: var(--font-serif); font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent-500); }
+    .section-label::before { content: ""; display: block; width: 2.5rem; height: 1px; background: var(--color-accent-500); }
+    .section-label-light { color: var(--color-accent-400); }
+    .section-label-light::before { background: var(--color-accent-400); }
+
+    .link-hover { position: relative; display: inline-block; }
+    .link-hover::after { content: ""; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    .link-hover:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .noise-texture { position: relative; }
+    .noise-texture::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 128px 128px; opacity: 0.03; pointer-events: none; z-index: 1; }
+    .noise-texture > * { position: relative; z-index: 2; }
+
     .section-divider-top { position: relative; }
     .section-divider-top::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 15%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.06) 85%, transparent 100%); pointer-events: none; }
     .section-shadow-into-light { box-shadow: inset 0 8px 20px -12px rgba(0,0,0,0.08); }
     .footer-fade { position: relative; }
     .footer-fade::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 80%, transparent 100%); pointer-events: none; }
-    .footer-fade::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, transparent 100%); pointer-events: none; }
-    .gallery-image {
-      box-shadow: 0 4px 16px rgba(28,18,16,0.08);
-      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-    }
-    .gallery-image:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(28,18,16,0.15);
-    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+    img-comparison-slider { --divider-width: 3px; --divider-color: white; --default-handle-opacity: 1; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+
+    /* Gallery image hover */
+    .gallery-image { transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; cursor: pointer; }
+    .gallery-image:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(28,18,16,0.15); }
+
+    /* Category Filter Tabs */
+    .filter-tab { padding: 0.5rem 1.25rem; border-radius: 9999px; font-family: var(--font-display); font-size: var(--text-fluid-sm); font-weight: 500; color: var(--color-navy-400); background: transparent; border: 1.5px solid var(--color-navy-200); cursor: pointer; transition: all 0.2s ease-out; }
+    .filter-tab:hover { color: var(--color-navy-700); border-color: var(--color-navy-400); }
+    .filter-tab.is-active { color: white; background: var(--color-navy-800); border-color: var(--color-navy-800); }
+
+    /* Offset gallery grid */
+    .gallery-offset > *:nth-child(even) { transform: translateY(1.5rem); }
+
+    /* Lightbox */
+    .lightbox-overlay { position: fixed; inset: 0; z-index: 400; background: rgba(12,10,9,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease-out; }
+    .lightbox-overlay.is-active { opacity: 1; }
+    .lightbox-overlay img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 0.5rem; transform: scale(0.92); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .lightbox-overlay.is-active img { transform: scale(1); }
   </style>
 </head>
 <body class="bg-white text-navy-900 leading-relaxed overflow-x-hidden">
@@ -120,11 +163,15 @@
         </div>
       </a>
       <nav class="hidden md:flex items-center gap-8" aria-label="メインナビゲーション">
-        <a href="../index.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">TOP</a>
-        <a href="services.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">サービス</a>
-        <a href="works.html" class="text-navy-900 hover:text-navy-700 text-sm font-bold no-underline transition-colors duration-150" aria-current="page">施工実績</a>
-        <a href="company.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
-        <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-600 hover:bg-navy-500 text-white text-sm font-bold font-display rounded-lg no-underline transition-colors duration-150">
+        <a href="../index.html" class="link-hover text-navy-500 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">TOP</a>
+        <a href="services.html" class="link-hover text-navy-500 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">サービス</a>
+        <a href="works.html" class="link-hover text-navy-900 hover:text-navy-900 text-sm font-bold no-underline transition-colors duration-150" aria-current="page">施工実績</a>
+        <a href="company.html" class="link-hover text-navy-500 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
+        <a href="tel:03-6821-1924" class="hidden lg:flex items-center gap-1.5 text-navy-500 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150" style="font-variant-numeric: tabular-nums;">
+          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+          03-6821-1924
+        </a>
+        <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-800 hover:bg-navy-700 text-white text-sm font-bold font-display rounded-lg no-underline transition-colors duration-150">
           <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
           お問い合わせ
         </a>
@@ -145,7 +192,11 @@
     <a href="services.html" class="font-display text-2xl font-bold text-navy-900 no-underline">サービス</a>
     <a href="works.html" class="font-display text-2xl font-bold text-accent-500 no-underline">施工実績</a>
     <a href="company.html" class="font-display text-2xl font-bold text-navy-900 no-underline">会社概要</a>
-    <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3 bg-navy-600 text-white font-display font-bold rounded-lg no-underline text-xl">お問い合わせ</a>
+    <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3 bg-navy-800 text-white font-display font-bold rounded-lg no-underline text-xl">お問い合わせ</a>
+    <a href="tel:03-6821-1924" class="mt-4 text-navy-400 text-sm no-underline">
+      <span class="block text-center font-display text-xl text-navy-900 font-bold" style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
+      <span class="block text-center text-xs mt-1">24時間受付</span>
+    </a>
   </div>
 
   <main id="main-content">
@@ -154,7 +205,7 @@
       <div class="mx-auto max-w-6xl">
         <nav aria-label="パンくずナビ">
           <ol class="flex items-center gap-2 text-fluid-xs text-white/40">
-            <li><a href="../index.html" class="hover:text-white no-underline transition-colors duration-150">TOP</a></li>
+            <li><a href="../index.html" class="link-hover hover:text-white no-underline transition-colors duration-150">TOP</a></li>
             <li aria-hidden="true">/</li>
             <li><span class="text-white/70" aria-current="page">施工実績</span></li>
           </ol>
@@ -163,35 +214,39 @@
     </div>
 
     <!-- Page Hero -->
-    <section class="noise-texture bg-navy-950 pb-12 pt-8 px-(--spacing-section-x)">
+    <section class="noise-texture bg-navy-950 pb-(--spacing-section-y) pt-8 px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal">
+          <span class="section-label section-label-light mb-4 block">Portfolio</span>
           <h1 class="text-fluid-4xl font-bold text-white mb-4">施工実績</h1>
-          <p class="text-white/60 text-fluid-lg max-w-2xl">ホストクラブ・バー・カフェ・オフィス・パチンコ店舗等、さまざまな施設の内装工事実績をご紹介します。</p>
+          <p class="text-white/50 text-fluid-lg max-w-2xl">ナイトクラブ・バー・カフェ・オフィス等、さまざまな施設の内装工事実績をご紹介します。</p>
         </div>
       </div>
     </section>
 
-    <!-- Portfolio Grid -->
-    <section class="section-divider-top section-shadow-into-light bg-navy-50 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- Category Filter + Portfolio Grid -->
+    <section class="section-divider-top section-shadow-into-light bg-surface-warm py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
 
-        <!-- Project 1: 歌舞伎GLOW ── B/Aスライダー -->
-        <article class="reveal mb-20">
+        <!-- Filter Tabs -->
+        <div class="reveal flex flex-wrap gap-2 mb-12" role="tablist" aria-label="カテゴリフィルター">
+          <button class="filter-tab is-active" data-filter="all" role="tab" aria-selected="true">すべて</button>
+          <button class="filter-tab" data-filter="nightclub" role="tab" aria-selected="false">ナイトクラブ</button>
+          <button class="filter-tab" data-filter="bar" role="tab" aria-selected="false">バー</button>
+          <button class="filter-tab" data-filter="cafe" role="tab" aria-selected="false">カフェ</button>
+          <button class="filter-tab" data-filter="restaurant" role="tab" aria-selected="false">飲食</button>
+          <button class="filter-tab" data-filter="office" role="tab" aria-selected="false">オフィス</button>
+          <button class="filter-tab" data-filter="amusement" role="tab" aria-selected="false">アミューズメント</button>
+        </div>
+
+        <!-- ===== Featured: GLOW ===== -->
+        <article class="reveal mb-20" data-category="nightclub">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div class="relative">
               <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="新宿区ナイトクラブの施工前後比較">
-                <figure slot="first" class="m-0 p-0">
-                  <img src="../images/projects/glow/before.jpg" alt="ナイトクラブ 施工前" width="600" height="400" loading="lazy">
-                </figure>
-                <figure slot="second" class="m-0 p-0">
-                  <img src="../images/projects/glow/after.jpg" alt="ナイトクラブ 施工後" width="600" height="400" loading="lazy">
-                </figure>
-                <div slot="handle">
-                  <div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize">
-                    <svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg>
-                  </div>
-                </div>
+                <figure slot="first" class="m-0 p-0"><img src="../images/projects/glow/before.jpg" alt="ナイトクラブ 施工前" width="600" height="400" loading="lazy"></figure>
+                <figure slot="second" class="m-0 p-0"><img src="../images/projects/glow/after.jpg" alt="ナイトクラブ 施工後" width="600" height="400" loading="lazy"></figure>
+                <div slot="handle"><div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize"><svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg></div></div>
               </img-comparison-slider>
               <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
               <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
@@ -200,130 +255,18 @@
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">ナイトクラブ</span>
               <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">新宿区 ナイトクラブ新装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
-                <div>
-                  <dt class="text-navy-400">工事種別</dt>
-                  <dd class="text-navy-700">内装工事・電気工事・空調設備</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">予算規模</dt>
-                  <dd class="text-navy-700" style="font-variant-numeric: tabular-nums;">3,500万円〜</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工内容</dt>
-                  <dd class="text-navy-700">スケルトンからの新装工事</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">エリア</dt>
-                  <dd class="text-navy-700">東京都新宿区歌舞伎町</dd>
-                </div>
+                <div><dt class="text-navy-400">工事種別</dt><dd class="text-navy-700">内装工事・電気工事・空調設備</dd></div>
+                <div><dt class="text-navy-400">予算規模</dt><dd class="text-navy-700" style="font-variant-numeric: tabular-nums;">3,500万円〜</dd></div>
+                <div><dt class="text-navy-400">施工内容</dt><dd class="text-navy-700">スケルトンからの新装工事</dd></div>
+                <div><dt class="text-navy-400">エリア</dt><dd class="text-navy-700">東京都新宿区歌舞伎町</dd></div>
               </dl>
               <p class="text-navy-400 text-fluid-sm leading-relaxed">新宿区のナイトクラブをスケルトンから新装工事。ラグジュアリーな空間演出のための照明設計、VIPルームの造作、音響設備の設置まで、内装・電気・空調を一括施工。</p>
             </div>
           </div>
         </article>
 
-        <!-- Project 2: 千葉犬カフェ ── B/Aスライダー -->
-        <article class="reveal mb-20">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div class="relative md:order-2">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="千葉県ドッグカフェの施工前後比較">
-                <figure slot="first" class="m-0 p-0">
-                  <img src="../images/projects/dog-cafe/before.jpg" alt="ドッグカフェ 施工前" width="600" height="400" loading="lazy">
-                </figure>
-                <figure slot="second" class="m-0 p-0">
-                  <img src="../images/projects/dog-cafe/after.jpg" alt="ドッグカフェ 施工後" width="600" height="400" loading="lazy">
-                </figure>
-                <div slot="handle">
-                  <div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize">
-                    <svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg>
-                  </div>
-                </div>
-              </img-comparison-slider>
-              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
-              <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
-            </div>
-            <div class="py-2 md:order-1">
-              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">ドッグカフェ</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">千葉県 ドッグカフェ新装工事</h2>
-              <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
-                <div>
-                  <dt class="text-navy-400">工事種別</dt>
-                  <dd class="text-navy-700">内装工事・電気工事</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工タイプ</dt>
-                  <dd class="text-navy-700">スケルトンからの新装</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工内容</dt>
-                  <dd class="text-navy-700">ペット対応の店舗内装</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">エリア</dt>
-                  <dd class="text-navy-700">千葉県</dd>
-                </div>
-              </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">千葉県のドッグカフェをスケルトンから新装。ペットと人が快適に過ごせる耐久性のある床材選定、動線設計、照明計画まで一貫対応しました。</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-3 mt-6">
-            <img src="../images/projects/dog-cafe/gallery1.jpg" alt="ドッグカフェ 店内の様子" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-            <img src="../images/projects/dog-cafe/gallery2.jpg" alt="ドッグカフェ カウンター周り" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-          </div>
-        </article>
-
-        <!-- Project 3: 赤坂フレンズバーハウス ── B/Aスライダー -->
-        <article class="reveal mb-20">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div class="relative">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="港区赤坂バーの施工前後比較">
-                <figure slot="first" class="m-0 p-0">
-                  <img src="../images/projects/friends-bar/before.jpg" alt="バー 施工前" width="600" height="400" loading="lazy">
-                </figure>
-                <figure slot="second" class="m-0 p-0">
-                  <img src="../images/projects/friends-bar/after.jpg" alt="バー 施工後" width="600" height="400" loading="lazy">
-                </figure>
-                <div slot="handle">
-                  <div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize">
-                    <svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg>
-                  </div>
-                </div>
-              </img-comparison-slider>
-              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
-              <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
-            </div>
-            <div class="py-2">
-              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">バー</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">港区赤坂 バー改装工事</h2>
-              <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
-                <div>
-                  <dt class="text-navy-400">工事種別</dt>
-                  <dd class="text-navy-700">内装工事・電気工事</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工タイプ</dt>
-                  <dd class="text-navy-700">改装工事</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工内容</dt>
-                  <dd class="text-navy-700">バー内装の全面リニューアル</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">エリア</dt>
-                  <dd class="text-navy-700">東京都港区赤坂</dd>
-                </div>
-              </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">港区赤坂のバーを全面改装。カウンター造作、照明のリデザイン、壁面・床の仕上げまで、居心地のよい空間に一新しました。</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-3 mt-6">
-            <img src="../images/projects/friends-bar/after.jpg" alt="バー 完成した店内全景" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-            <img src="../images/projects/friends-bar/gallery2.jpg" alt="バー 客席エリア" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-          </div>
-        </article>
-
-        <!-- Project 4: 歌舞伎SERENE ── フォトギャラリー（プロ撮影） -->
-        <article class="reveal mb-20">
+        <!-- ===== Featured: SERENE ===== -->
+        <article class="reveal mb-20" data-category="nightclub">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div class="md:order-2">
               <img src="../images/projects/serene/photo1.jpg" alt="プレミアムクラブ メインフロア" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
@@ -332,148 +275,120 @@
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">プレミアムクラブ</span>
               <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">新宿区 プレミアムクラブ新装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
-                <div>
-                  <dt class="text-navy-400">工事種別</dt>
-                  <dd class="text-navy-700">内装工事・電気工事・空調設備</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工タイプ</dt>
-                  <dd class="text-navy-700">スケルトンからの新装</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工内容</dt>
-                  <dd class="text-navy-700">プレミアムクラブの空間デザイン</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">エリア</dt>
-                  <dd class="text-navy-700">東京都新宿区歌舞伎町</dd>
-                </div>
+                <div><dt class="text-navy-400">工事種別</dt><dd class="text-navy-700">内装工事・電気工事・空調設備</dd></div>
+                <div><dt class="text-navy-400">施工タイプ</dt><dd class="text-navy-700">スケルトンからの新装</dd></div>
+                <div><dt class="text-navy-400">施工内容</dt><dd class="text-navy-700">プレミアムクラブの空間デザイン</dd></div>
+                <div><dt class="text-navy-400">エリア</dt><dd class="text-navy-700">東京都新宿区歌舞伎町</dd></div>
               </dl>
               <p class="text-navy-400 text-fluid-sm leading-relaxed">新宿区のプレミアムクラブをスケルトンから新装。高級感のあるマテリアル選定、間接照明による演出、VIPエリアの造作まで一貫施工。</p>
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-3 mt-6">
-            <img src="../images/projects/serene/photo2.jpg" alt="プレミアムクラブ VIPエリア" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
-            <img src="../images/projects/serene/photo3.jpg" alt="プレミアムクラブ 照明デザイン" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
-            <img src="../images/projects/serene/photo4.jpg" alt="プレミアムクラブ バーカウンター" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
+          <div class="grid grid-cols-3 gap-3 mt-6 reveal-stagger">
+            <img src="../images/projects/serene/photo2.jpg" alt="プレミアムクラブ VIPエリア" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267" data-lightbox-src="../images/projects/serene/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: プレミアムクラブ VIPエリア">
+            <img src="../images/projects/serene/photo3.jpg" alt="プレミアムクラブ 照明デザイン" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267" data-lightbox-src="../images/projects/serene/photo3.jpg" tabindex="0" role="button" aria-label="写真を拡大: プレミアムクラブ 照明デザイン">
+            <img src="../images/projects/serene/photo4.jpg" alt="プレミアムクラブ バーカウンター" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267" data-lightbox-src="../images/projects/serene/photo4.jpg" tabindex="0" role="button" aria-label="写真を拡大: プレミアムクラブ バーカウンター">
           </div>
         </article>
 
-        <!-- Project 5: 御成門レンタルオフィス ── フォトギャラリー -->
-        <article class="reveal mb-20">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div>
-              <img src="../images/projects/office/photo1.jpg" alt="レンタルオフィス エントランス" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
-            </div>
-            <div class="py-2">
-              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">オフィス</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">港区御成門 オフィス内装工事</h2>
-              <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
-                <div>
-                  <dt class="text-navy-400">工事種別</dt>
-                  <dd class="text-navy-700">内装工事・電気工事・空調設備</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工タイプ</dt>
-                  <dd class="text-navy-700">新装工事</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工内容</dt>
-                  <dd class="text-navy-700">レンタルオフィスの内装</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">エリア</dt>
-                  <dd class="text-navy-700">東京都港区御成門</dd>
-                </div>
-              </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">港区御成門のレンタルオフィス内装をパーテーション、天井・壁・床仕上げ、照明・空調設備まで一括施工。効率的なワークスペースを実現しました。</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-3 mt-6">
-            <img src="../images/projects/office/photo2.jpg" alt="オフィス ワークスペース" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-            <img src="../images/projects/office/photo3.jpg" alt="オフィス 会議室" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-          </div>
-        </article>
+        <!-- ===== Offset Grid: Remaining Projects ===== -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 gallery-offset">
 
-        <!-- Project 6: 楽園池袋GS ── フォトギャラリー -->
-        <article class="reveal mb-20">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div class="md:order-2">
-              <img src="../images/projects/rakuen/photo1.jpg" alt="アミューズメント施設 店内" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
+          <!-- Dog Cafe -->
+          <article class="reveal" data-category="cafe">
+            <div class="relative mb-4">
+              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="千葉県ドッグカフェの施工前後比較">
+                <figure slot="first" class="m-0 p-0"><img src="../images/projects/dog-cafe/before.jpg" alt="ドッグカフェ 施工前" width="600" height="400" loading="lazy"></figure>
+                <figure slot="second" class="m-0 p-0"><img src="../images/projects/dog-cafe/after.jpg" alt="ドッグカフェ 施工後" width="600" height="400" loading="lazy"></figure>
+                <div slot="handle"><div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize"><svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg></div></div>
+              </img-comparison-slider>
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
+              <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
             </div>
-            <div class="py-2 md:order-1">
-              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">アミューズメント</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">豊島区池袋 アミューズメント施設内装工事</h2>
-              <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
-                <div>
-                  <dt class="text-navy-400">工事種別</dt>
-                  <dd class="text-navy-700">内装工事・電気工事・空調設備</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">予算規模</dt>
-                  <dd class="text-navy-700" style="font-variant-numeric: tabular-nums;">1,600万円</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">クライアント</dt>
-                  <dd class="text-navy-700">大手アミューズメント企業</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">エリア</dt>
-                  <dd class="text-navy-700">東京都豊島区池袋</dd>
-                </div>
-              </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">大手アミューズメント企業様の店舗内装工事。大型アミューズメント施設に求められる遊技台の配置設計、照明計画、空調・換気システムの設置まで一括対応しました。</p>
+            <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">ドッグカフェ</span>
+            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">千葉県 ドッグカフェ新装工事</h3>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed">ペットと人が快適に過ごせる耐久性のある床材選定、動線設計、照明計画まで一貫対応。</p>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+              <img src="../images/projects/dog-cafe/gallery1.jpg" alt="ドッグカフェ 店内" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/dog-cafe/gallery1.jpg" tabindex="0" role="button" aria-label="写真を拡大: ドッグカフェ 店内">
+              <img src="../images/projects/dog-cafe/gallery2.jpg" alt="ドッグカフェ カウンター" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/dog-cafe/gallery2.jpg" tabindex="0" role="button" aria-label="写真を拡大: ドッグカフェ カウンター">
             </div>
-          </div>
-          <div class="grid grid-cols-2 gap-3 mt-6">
-            <img src="../images/projects/rakuen/photo2.jpg" alt="アミューズメント施設 フロア全体" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-            <img src="../images/projects/rakuen/photo3.jpg" alt="アミューズメント施設 エントランス" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-          </div>
-        </article>
+          </article>
 
-        <!-- Project 7: 越谷焼肉屋 ── フォトギャラリー -->
-        <article class="reveal mb-16">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div>
-              <img src="../images/projects/yakiniku/photo1.jpg" alt="焼肉店 店内" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
+          <!-- Friends Bar -->
+          <article class="reveal" data-category="bar">
+            <div class="relative mb-4">
+              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="港区赤坂バーの施工前後比較">
+                <figure slot="first" class="m-0 p-0"><img src="../images/projects/friends-bar/before.jpg" alt="バー 施工前" width="600" height="400" loading="lazy"></figure>
+                <figure slot="second" class="m-0 p-0"><img src="../images/projects/friends-bar/after.jpg" alt="バー 施工後" width="600" height="400" loading="lazy"></figure>
+                <div slot="handle"><div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize"><svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg></div></div>
+              </img-comparison-slider>
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
+              <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
             </div>
-            <div class="py-2">
-              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">飲食店</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">越谷市 焼肉店内装工事</h2>
-              <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
-                <div>
-                  <dt class="text-navy-400">工事種別</dt>
-                  <dd class="text-navy-700">内装工事・電気工事・空調設備</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工タイプ</dt>
-                  <dd class="text-navy-700">新装工事</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">施工内容</dt>
-                  <dd class="text-navy-700">焼肉店の内装一式</dd>
-                </div>
-                <div>
-                  <dt class="text-navy-400">エリア</dt>
-                  <dd class="text-navy-700">埼玉県越谷市</dd>
-                </div>
-              </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">越谷市の焼肉店の内装を新装。排煙ダクト設計、客席レイアウト、カウンター造作、照明計画まで飲食店特有の要件に対応した施工を行いました。</p>
+            <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">バー</span>
+            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">港区赤坂 バー改装工事</h3>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed">カウンター造作、照明のリデザイン、壁面・床の仕上げまで、居心地のよい空間に一新。</p>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+              <img src="../images/projects/friends-bar/after.jpg" alt="バー 完成した店内" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/friends-bar/after.jpg" tabindex="0" role="button" aria-label="写真を拡大: バー 完成した店内">
+              <img src="../images/projects/friends-bar/gallery2.jpg" alt="バー 客席エリア" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/friends-bar/gallery2.jpg" tabindex="0" role="button" aria-label="写真を拡大: バー 客席エリア">
             </div>
-          </div>
-          <div class="mt-6">
-            <img src="../images/projects/yakiniku/photo2.jpg" alt="焼肉店 客席エリア" class="gallery-image w-full rounded-xl aspect-[21/9] object-cover" loading="lazy" width="1200" height="514">
-          </div>
-        </article>
+          </article>
 
+          <!-- Office -->
+          <article class="reveal" data-category="office">
+            <div class="mb-4">
+              <img src="../images/projects/office/photo1.jpg" alt="レンタルオフィス エントランス" class="gallery-image w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400" data-lightbox-src="../images/projects/office/photo1.jpg" tabindex="0" role="button" aria-label="写真を拡大: レンタルオフィス">
+            </div>
+            <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">オフィス</span>
+            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">港区御成門 オフィス内装工事</h3>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed">パーテーション、天井・壁・床仕上げ、照明・空調設備まで一括施工。</p>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+              <img src="../images/projects/office/photo2.jpg" alt="オフィス ワークスペース" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/office/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: オフィス ワークスペース">
+              <img src="../images/projects/office/photo3.jpg" alt="オフィス 会議室" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/office/photo3.jpg" tabindex="0" role="button" aria-label="写真を拡大: オフィス 会議室">
+            </div>
+          </article>
+
+          <!-- Rakuen -->
+          <article class="reveal" data-category="amusement">
+            <div class="mb-4">
+              <img src="../images/projects/rakuen/photo1.jpg" alt="アミューズメント施設 店内" class="gallery-image w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400" data-lightbox-src="../images/projects/rakuen/photo1.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設">
+            </div>
+            <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">アミューズメント</span>
+            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">豊島区池袋 アミューズメント施設内装工事</h3>
+            <dl class="flex gap-4 mb-2 text-fluid-xs text-navy-400">
+              <div><dt class="inline">予算:</dt> <dd class="inline text-navy-600" style="font-variant-numeric: tabular-nums;">1,600万円</dd></div>
+            </dl>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed">大型アミューズメント施設の遊技台配置設計、照明計画、空調・換気システムまで一括対応。</p>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+              <img src="../images/projects/rakuen/photo2.jpg" alt="アミューズメント施設 フロア" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/rakuen/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設 フロア">
+              <img src="../images/projects/rakuen/photo3.jpg" alt="アミューズメント施設 エントランス" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/rakuen/photo3.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設 エントランス">
+            </div>
+          </article>
+
+          <!-- Yakiniku -->
+          <article class="reveal md:col-span-2" data-category="restaurant">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+              <div>
+                <img src="../images/projects/yakiniku/photo1.jpg" alt="焼肉店 店内" class="gallery-image w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400" data-lightbox-src="../images/projects/yakiniku/photo1.jpg" tabindex="0" role="button" aria-label="写真を拡大: 焼肉店 店内">
+              </div>
+              <div class="py-2">
+                <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">飲食店</span>
+                <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">越谷市 焼肉店内装工事</h3>
+                <p class="text-navy-400 text-fluid-sm leading-relaxed mb-4">排煙ダクト設計、客席レイアウト、カウンター造作、照明計画まで飲食店特有の要件に対応した施工。</p>
+                <img src="../images/projects/yakiniku/photo2.jpg" alt="焼肉店 客席エリア" class="gallery-image w-full rounded-xl aspect-[21/9] object-cover" loading="lazy" width="600" height="257" data-lightbox-src="../images/projects/yakiniku/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: 焼肉店 客席エリア">
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="bg-navy-600 py-(--spacing-bridge-y) px-(--spacing-section-x)" style="box-shadow: inset 0 20px 40px -20px rgba(28,18,16,0.15);">
+    <section class="noise-texture bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-4xl text-center reveal">
+        <span class="section-label section-label-light mb-6 block mx-auto justify-center">Contact</span>
         <h2 class="text-fluid-3xl font-bold text-white mb-3 font-display">施工のご相談はこちら</h2>
-        <p class="text-white/70 text-fluid-base mb-8">類似の施工についてもお問い合わせください。</p>
+        <p class="text-white/50 text-fluid-base mb-8">類似の施工についてもお問い合わせください。</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a href="tel:03-6821-1924" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg shadow-lg hover:shadow-xl transition-shadow duration-150">
             <svg class="size-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
@@ -483,7 +398,30 @@
         </div>
       </div>
     </section>
+
+    <!-- Phone Bar -->
+    <section class="bg-navy-800 py-6 px-(--spacing-section-x)">
+      <div class="mx-auto max-w-4xl flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+        <div class="flex items-center gap-3">
+          <div class="size-10 rounded-full bg-white/10 flex items-center justify-center">
+            <svg class="size-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+          </div>
+          <a href="tel:03-6821-1924" class="text-white font-display font-bold text-fluid-xl no-underline" style="font-variant-numeric: tabular-nums;">03-6821-1924</a>
+          <span class="text-white/40 text-fluid-xs">24時間受付</span>
+        </div>
+        <div class="hidden sm:block w-px h-6 bg-white/20" aria-hidden="true"></div>
+        <a href="mailto:info@poranoplaza.com" class="text-white/60 hover:text-white text-fluid-sm no-underline transition-colors duration-150">info@poranoplaza.com</a>
+      </div>
+    </section>
   </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox-overlay" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="写真拡大表示">
+    <button data-lightbox-close class="absolute top-6 right-6 p-2 text-white/60 hover:text-white transition-colors duration-150" aria-label="閉じる">
+      <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+    </button>
+    <img src="" alt="" class="pointer-events-none">
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer-fade noise-texture bg-navy-950 pt-16 pb-8 px-(--spacing-section-x)">
@@ -500,18 +438,18 @@
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">サービス</h3>
           <ul class="space-y-2.5">
-            <li><a href="services.html#interior" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">内装工事</a></li>
-            <li><a href="services.html#aircon" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">空調設備工事</a></li>
-            <li><a href="services.html#electrical" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">一般電気工事</a></li>
-            <li><a href="services.html#fire" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">消防設備工事</a></li>
+            <li><a href="services.html#interior" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">内装工事</a></li>
+            <li><a href="services.html#aircon" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">空調設備工事</a></li>
+            <li><a href="services.html#electrical" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">一般電気工事</a></li>
+            <li><a href="services.html#fire" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">消防設備工事</a></li>
           </ul>
         </div>
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">企業情報</h3>
           <ul class="space-y-2.5">
-            <li><a href="company.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">会社概要</a></li>
-            <li><a href="works.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">施工実績</a></li>
-            <li><a href="contact.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">お問い合わせ</a></li>
+            <li><a href="company.html" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">会社概要</a></li>
+            <li><a href="works.html" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">施工実績</a></li>
+            <li><a href="contact.html" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">お問い合わせ</a></li>
           </ul>
         </div>
         <div>
@@ -533,6 +471,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- Sticky Mobile CTA -->
+  <div id="sticky-cta" class="fixed bottom-6 right-6 md:hidden" style="z-index: 200; opacity: 0; pointer-events: none; transform: translateY(1rem); transition: opacity 0.3s ease-out, transform 0.3s ease-out;">
+    <a href="tel:03-6821-1924" class="flex items-center justify-center size-14 rounded-full bg-accent-500 text-white shadow-lg no-underline" aria-label="電話で問い合わせ（24時間受付）">
+      <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+    </a>
+  </div>
 
   <script src="../js/main.js"></script>
   <script src="../js/comparison-slider.js"></script>

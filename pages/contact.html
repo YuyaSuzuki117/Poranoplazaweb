@@ -18,7 +18,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <style type="text/tailwindcss">
@@ -45,6 +45,7 @@
       --color-surface-dark: #0C0A09;
       --font-display: "Zen Kaku Gothic New", sans-serif;
       --font-body: "Noto Sans JP", sans-serif;
+      --font-serif: "Cormorant Garamond", Georgia, serif;
       --text-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
       --text-fluid-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.9375rem);
       --text-fluid-base: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
@@ -53,61 +54,74 @@
       --text-fluid-2xl: clamp(1.25rem, 1rem + 1.25vw, 1.875rem);
       --text-fluid-3xl: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
       --text-fluid-4xl: clamp(1.875rem, 1.3rem + 2.875vw, 3.25rem);
+      --z-base: 0;
       --z-sticky: 200;
       --z-overlay: 300;
+      --z-modal: 400;
       --z-toast: 500;
-      --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
+      --spacing-section-y: clamp(5rem, 3.5rem + 6vw, 10rem);
       --spacing-section-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
       --spacing-bridge-y: clamp(2.5rem, 2rem + 3vw, 5rem);
     }
   </style>
   <style>
     html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
     body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); text-wrap: balance; }
     p { text-wrap: pretty; }
     ::selection { background-color: var(--color-accent-500); color: white; }
     :focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
+
     .skip-link { position: absolute; top: -100%; left: 1rem; z-index: var(--z-toast); padding: 0.75rem 1.5rem; background: var(--color-navy-600); color: white; border-radius: 0 0 0.5rem 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s ease-out; }
     .skip-link:focus { top: 0; }
-    .noise-texture { position: relative; }
-    .noise-texture::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 256px 256px; pointer-events: none; z-index: 1; }
-    .noise-texture > * { position: relative; z-index: 2; }
-    .reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-    /* Header */
     .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
-    .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
-    .site-header > div { display: flex; align-items: center; justify-content: space-between; padding: 1rem clamp(1rem, 0.5rem + 2.5vw, 2rem); max-width: 80rem; margin: 0 auto; }
+    .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+    .site-header > div { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem clamp(1rem, 0.5rem + 2.5vw, 2rem); max-width: 80rem; margin: 0 auto; }
     .site-header .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .site-header .header-logo img { height: 2.25rem; width: auto; filter: brightness(0); }
-
     .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
     .mobile-menu.is-open { opacity: 1; visibility: visible; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+    .reveal { opacity: 0; transform: translateY(2rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    .section-label { display: inline-flex; align-items: center; gap: 1rem; font-family: var(--font-serif); font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent-500); }
+    .section-label::before { content: ""; display: block; width: 2.5rem; height: 1px; background: var(--color-accent-500); }
+    .section-label-light { color: var(--color-accent-400); }
+    .section-label-light::before { background: var(--color-accent-400); }
+
+    .link-hover { position: relative; display: inline-block; }
+    .link-hover::after { content: ""; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    .link-hover:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .noise-texture { position: relative; }
+    .noise-texture::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 128px 128px; opacity: 0.03; pointer-events: none; z-index: 1; }
+    .noise-texture > * { position: relative; z-index: 2; }
+
     .section-shadow-into-light { box-shadow: inset 0 8px 20px -12px rgba(0,0,0,0.08); }
     .footer-fade { position: relative; }
     .footer-fade::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 80%, transparent 100%); pointer-events: none; }
-    .footer-fade::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, transparent 100%); pointer-events: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
 
-    /* Form field styles - light theme */
+    /* Contact card hover */
+    .contact-card { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease-out, border-color 0.3s ease-out; }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(28,18,16,0.12); border-color: var(--color-accent-500); }
+
+    /* Form field styles */
     .form-input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      background: white;
-      border: 1px solid #E2E8F0;
-      border-radius: 0.5rem;
-      color: var(--color-navy-900);
-      font-family: var(--font-body);
-      font-size: var(--text-fluid-base);
-      transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+      width: 100%; padding: 0.75rem 1rem; background: white;
+      border: 1.5px solid var(--color-navy-200);
+      border-radius: 0.5rem; color: var(--color-navy-900);
+      font-family: var(--font-body); font-size: var(--text-fluid-base);
+      transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.2s ease-out;
     }
     .form-input::placeholder { color: #94A3B8; }
     .form-input:focus {
       border-color: var(--color-accent-500);
-      box-shadow: 0 0 0 3px rgba(37, 137, 208, 0.15);
+      box-shadow: 0 0 0 3px rgba(212, 164, 58, 0.15);
+      transform: translateY(-1px);
       outline: none;
     }
     .form-input[aria-invalid="true"] {
@@ -118,12 +132,15 @@
     .form-error { color: #DC2626; font-size: var(--text-fluid-xs); margin-top: 0.375rem; }
     .form-label { display: block; color: var(--color-navy-700); font-size: var(--text-fluid-sm); font-weight: 500; margin-bottom: 0.5rem; }
     .form-required { color: #EF4444; margin-left: 0.25rem; }
+
+    /* Submit button focus */
+    .submit-btn:focus-visible { box-shadow: 0 0 0 3px rgba(212, 164, 58, 0.4); }
   </style>
 </head>
 <body class="bg-white text-navy-900 leading-relaxed overflow-x-hidden">
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
-  <!-- HEADER (Light) -->
+  <!-- HEADER -->
   <header class="site-header">
     <div>
       <a href="../index.html" class="header-logo" aria-label="ポラーノプラザ ホーム">
@@ -134,11 +151,11 @@
         </div>
       </a>
       <nav class="hidden md:flex items-center gap-8" aria-label="メインナビゲーション">
-        <a href="../index.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">TOP</a>
-        <a href="services.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">サービス</a>
-        <a href="works.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">施工実績</a>
-        <a href="company.html" class="text-navy-400 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
-        <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-600 hover:bg-navy-500 text-white text-sm font-bold font-display rounded-lg no-underline transition-colors duration-150" aria-current="page">
+        <a href="../index.html" class="link-hover text-navy-500 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">TOP</a>
+        <a href="services.html" class="link-hover text-navy-500 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">サービス</a>
+        <a href="works.html" class="link-hover text-navy-500 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">施工実績</a>
+        <a href="company.html" class="link-hover text-navy-500 hover:text-navy-900 text-sm font-medium no-underline transition-colors duration-150">会社概要</a>
+        <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-800 hover:bg-navy-700 text-white text-sm font-bold font-display rounded-lg no-underline transition-colors duration-150" aria-current="page">
           <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
           お問い合わせ
         </a>
@@ -151,7 +168,6 @@
     </div>
   </header>
 
-  <!-- Mobile Menu (Light) -->
   <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white/[0.98] flex flex-col items-center justify-center gap-8" style="z-index: 300; backdrop-filter: blur(12px);" role="dialog" aria-modal="true" aria-label="モバイルメニュー">
     <button type="button" id="menu-close" class="absolute top-5 right-5 p-2 text-navy-800" aria-label="メニューを閉じる">
       <svg class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -160,7 +176,7 @@
     <a href="services.html" class="font-display text-2xl font-bold text-navy-900 no-underline">サービス</a>
     <a href="works.html" class="font-display text-2xl font-bold text-navy-900 no-underline">施工実績</a>
     <a href="company.html" class="font-display text-2xl font-bold text-navy-900 no-underline">会社概要</a>
-    <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3 bg-navy-600 text-white font-display font-bold rounded-lg no-underline text-xl">お問い合わせ</a>
+    <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-3 bg-navy-800 text-white font-display font-bold rounded-lg no-underline text-xl">お問い合わせ</a>
     <a href="tel:03-6821-1924" class="mt-4 text-navy-400 text-sm no-underline">
       <span class="block text-center font-display text-xl text-navy-900 font-bold" style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
       <span class="block text-center text-xs mt-1">24時間受付</span>
@@ -173,7 +189,7 @@
       <div class="mx-auto max-w-6xl">
         <nav aria-label="パンくずナビ">
           <ol class="flex items-center gap-2 text-fluid-xs text-white/40">
-            <li><a href="../index.html" class="hover:text-white no-underline transition-colors duration-150">TOP</a></li>
+            <li><a href="../index.html" class="link-hover hover:text-white no-underline transition-colors duration-150">TOP</a></li>
             <li aria-hidden="true">/</li>
             <li><span class="text-white/70" aria-current="page">お問い合わせ</span></li>
           </ol>
@@ -182,28 +198,43 @@
     </div>
 
     <!-- Page Hero -->
-    <section class="noise-texture bg-navy-950 pb-12 pt-8 px-(--spacing-section-x)">
+    <section class="noise-texture bg-navy-950 pb-(--spacing-section-y) pt-8 px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="reveal">
+          <span class="section-label section-label-light mb-4 block">Contact</span>
           <h1 class="text-fluid-4xl font-bold text-white mb-4">お問い合わせ</h1>
-          <p class="text-white/60 text-fluid-lg max-w-2xl">ご相談・お見積りはこちら。内装工事に関するお見積もりは無料です。</p>
+          <p class="text-white/50 text-fluid-lg max-w-2xl">ご相談・お見積りはこちら。内装工事に関するお見積もりは無料です。</p>
+        </div>
+        <!-- Trust Badges -->
+        <div class="reveal flex flex-wrap gap-4 mt-8">
+          <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2">
+            <svg class="size-4 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            <span class="text-white/70 text-fluid-xs">お見積もり無料</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2">
+            <svg class="size-4 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span class="text-white/70 text-fluid-xs">24時間受付</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2">
+            <svg class="size-4 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+            <span class="text-white/70 text-fluid-xs">2営業日以内返信</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="section-shadow-into-light bg-navy-50 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section class="section-shadow-into-light bg-surface-warm py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           <!-- Phone & Info -->
           <div class="lg:col-span-1">
             <div class="reveal">
-              <!-- Phone -->
-              <div class="rounded-2xl bg-white border border-slate-200 p-6 mb-6">
+              <div class="contact-card rounded-2xl bg-white border border-navy-200/60 p-6 mb-6">
                 <h2 class="font-display text-fluid-lg font-bold text-navy-900 mb-3">お電話でのお問い合わせ</h2>
                 <a href="tel:03-6821-1924" class="flex items-center gap-3 text-navy-700 no-underline group">
-                  <div class="size-12 rounded-full bg-navy-600 flex items-center justify-center flex-shrink-0">
+                  <div class="size-12 rounded-full bg-navy-800 flex items-center justify-center flex-shrink-0">
                     <svg class="size-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
                   </div>
                   <div>
@@ -213,8 +244,7 @@
                 </a>
               </div>
 
-              <!-- Email -->
-              <div class="rounded-2xl bg-white border border-slate-200 p-6 mb-6">
+              <div class="contact-card rounded-2xl bg-white border border-navy-200/60 p-6 mb-6">
                 <h2 class="font-display text-fluid-lg font-bold text-navy-900 mb-3">メールでのお問い合わせ</h2>
                 <a href="mailto:info@poranoplaza.com" class="flex items-center gap-3 text-navy-700 no-underline group">
                   <div class="size-12 rounded-full bg-accent-500 flex items-center justify-center flex-shrink-0">
@@ -227,8 +257,7 @@
                 </a>
               </div>
 
-              <!-- Address & Info -->
-              <div class="rounded-2xl bg-white border border-slate-200 p-6">
+              <div class="contact-card rounded-2xl bg-white border border-navy-200/60 p-6">
                 <h2 class="font-display text-fluid-lg font-bold text-navy-900 mb-3">所在地</h2>
                 <div class="flex items-start gap-3 text-navy-700 mb-5">
                   <div class="size-12 rounded-full bg-navy-100 flex items-center justify-center flex-shrink-0">
@@ -251,10 +280,6 @@
                   </li>
                   <li class="flex items-start gap-2">
                     <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                    一都三県対応
-                  </li>
-                  <li class="flex items-start gap-2">
-                    <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                     24時間緊急対応可能
                   </li>
                 </ul>
@@ -265,96 +290,38 @@
           <!-- Contact Form -->
           <div class="lg:col-span-2">
             <div class="reveal">
-              <form id="contact-form" class="rounded-2xl bg-white border border-slate-200 p-6 md:p-8" novalidate>
+              <form id="contact-form" class="rounded-2xl bg-white border border-navy-200/60 p-6 md:p-8" novalidate>
                 <h2 class="font-display text-fluid-xl font-bold text-navy-900 mb-6">メールフォーム</h2>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                  <!-- Name -->
                   <div>
-                    <label for="field-name" class="form-label">
-                      お名前<span class="form-required" aria-label="必須">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="field-name"
-                      name="name"
-                      class="form-input"
-                      placeholder="山田 太郎"
-                      required
-                      autocomplete="name"
-                      aria-describedby="error-name"
-                    >
+                    <label for="field-name" class="form-label">お名前<span class="form-required" aria-label="必須">*</span></label>
+                    <input type="text" id="field-name" name="name" class="form-input" placeholder="山田 太郎" required autocomplete="name" aria-describedby="error-name">
                     <p id="error-name" class="form-error" hidden aria-live="polite"></p>
                   </div>
-
-                  <!-- Company -->
                   <div>
-                    <label for="field-company" class="form-label">
-                      会社名<span class="form-required" aria-label="必須">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="field-company"
-                      name="company"
-                      class="form-input"
-                      placeholder="株式会社○○"
-                      required
-                      autocomplete="organization"
-                      aria-describedby="error-company"
-                    >
+                    <label for="field-company" class="form-label">会社名<span class="form-required" aria-label="必須">*</span></label>
+                    <input type="text" id="field-company" name="company" class="form-input" placeholder="株式会社○○" required autocomplete="organization" aria-describedby="error-company">
                     <p id="error-company" class="form-error" hidden aria-live="polite"></p>
                   </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                  <!-- Email -->
                   <div>
-                    <label for="field-email" class="form-label">
-                      メールアドレス<span class="form-required" aria-label="必須">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="field-email"
-                      name="email"
-                      class="form-input"
-                      placeholder="info@example.com"
-                      required
-                      autocomplete="email"
-                      aria-describedby="error-email"
-                    >
+                    <label for="field-email" class="form-label">メールアドレス<span class="form-required" aria-label="必須">*</span></label>
+                    <input type="email" id="field-email" name="email" class="form-input" placeholder="info@example.com" required autocomplete="email" aria-describedby="error-email">
                     <p id="error-email" class="form-error" hidden aria-live="polite"></p>
                   </div>
-
-                  <!-- Phone -->
                   <div>
-                    <label for="field-phone" class="form-label">
-                      電話番号
-                    </label>
-                    <input
-                      type="tel"
-                      id="field-phone"
-                      name="phone"
-                      class="form-input"
-                      placeholder="03-0000-0000"
-                      autocomplete="tel"
-                      aria-describedby="error-phone"
-                    >
+                    <label for="field-phone" class="form-label">電話番号</label>
+                    <input type="tel" id="field-phone" name="phone" class="form-input" placeholder="03-0000-0000" autocomplete="tel" aria-describedby="error-phone">
                     <p id="error-phone" class="form-error" hidden aria-live="polite"></p>
                   </div>
                 </div>
 
-                <!-- Service Type -->
                 <div class="mb-5">
-                  <label for="field-service" class="form-label">
-                    ご相談内容<span class="form-required" aria-label="必須">*</span>
-                  </label>
-                  <select
-                    id="field-service"
-                    name="service"
-                    class="form-input"
-                    required
-                    aria-describedby="error-service"
-                  >
+                  <label for="field-service" class="form-label">ご相談内容<span class="form-required" aria-label="必須">*</span></label>
+                  <select id="field-service" name="service" class="form-input" required aria-describedby="error-service">
                     <option value="">選択してください</option>
                     <option value="interior">内装工事</option>
                     <option value="aircon">空調設備工事</option>
@@ -366,31 +333,14 @@
                   <p id="error-service" class="form-error" hidden aria-live="polite"></p>
                 </div>
 
-                <!-- Message -->
                 <div class="mb-6">
-                  <label for="field-message" class="form-label">
-                    お問い合わせ内容<span class="form-required" aria-label="必須">*</span>
-                  </label>
-                  <textarea
-                    id="field-message"
-                    name="message"
-                    class="form-input"
-                    rows="6"
-                    placeholder="工事内容やご要望をお知らせください"
-                    required
-                    aria-describedby="error-message"
-                  ></textarea>
+                  <label for="field-message" class="form-label">お問い合わせ内容<span class="form-required" aria-label="必須">*</span></label>
+                  <textarea id="field-message" name="message" class="form-input" rows="6" placeholder="工事内容やご要望をお知らせください" required aria-describedby="error-message"></textarea>
                   <p id="error-message" class="form-error" hidden aria-live="polite"></p>
                 </div>
 
-                <!-- Submit -->
-                <button
-                  type="submit"
-                  class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-3.5 bg-navy-600 hover:bg-navy-500 text-white font-display font-bold rounded-lg transition-colors duration-150 text-fluid-base"
-                >
-                  <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                  </svg>
+                <button type="submit" class="submit-btn inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-3.5 bg-navy-800 hover:bg-navy-700 text-white font-display font-bold rounded-lg transition-colors duration-150 text-fluid-base">
+                  <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
                   送信する
                 </button>
               </form>
@@ -398,6 +348,21 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- Phone Bar -->
+    <section class="bg-navy-800 py-6 px-(--spacing-section-x)">
+      <div class="mx-auto max-w-4xl flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+        <div class="flex items-center gap-3">
+          <div class="size-10 rounded-full bg-white/10 flex items-center justify-center">
+            <svg class="size-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+          </div>
+          <a href="tel:03-6821-1924" class="text-white font-display font-bold text-fluid-xl no-underline" style="font-variant-numeric: tabular-nums;">03-6821-1924</a>
+          <span class="text-white/40 text-fluid-xs">24時間受付</span>
+        </div>
+        <div class="hidden sm:block w-px h-6 bg-white/20" aria-hidden="true"></div>
+        <a href="mailto:info@poranoplaza.com" class="text-white/60 hover:text-white text-fluid-sm no-underline transition-colors duration-150">info@poranoplaza.com</a>
       </div>
     </section>
   </main>
@@ -416,18 +381,18 @@
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">サービス</h3>
           <ul class="space-y-2.5">
-            <li><a href="services.html#interior" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">内装工事</a></li>
-            <li><a href="services.html#aircon" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">空調設備工事</a></li>
-            <li><a href="services.html#electrical" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">一般電気工事</a></li>
-            <li><a href="services.html#fire" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">消防設備工事</a></li>
+            <li><a href="services.html#interior" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">内装工事</a></li>
+            <li><a href="services.html#aircon" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">空調設備工事</a></li>
+            <li><a href="services.html#electrical" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">一般電気工事</a></li>
+            <li><a href="services.html#fire" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">消防設備工事</a></li>
           </ul>
         </div>
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">企業情報</h3>
           <ul class="space-y-2.5">
-            <li><a href="company.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">会社概要</a></li>
-            <li><a href="works.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">施工実績</a></li>
-            <li><a href="contact.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">お問い合わせ</a></li>
+            <li><a href="company.html" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">会社概要</a></li>
+            <li><a href="works.html" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">施工実績</a></li>
+            <li><a href="contact.html" class="link-hover text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">お問い合わせ</a></li>
           </ul>
         </div>
         <div>
@@ -449,6 +414,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- Sticky Mobile CTA -->
+  <div id="sticky-cta" class="fixed bottom-6 right-6 md:hidden" style="z-index: 200; opacity: 0; pointer-events: none; transform: translateY(1rem); transition: opacity 0.3s ease-out, transform 0.3s ease-out;">
+    <a href="tel:03-6821-1924" class="flex items-center justify-center size-14 rounded-full bg-accent-500 text-white shadow-lg no-underline" aria-label="電話で問い合わせ（24時間受付）">
+      <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+    </a>
+  </div>
 
   <script src="../js/main.js"></script>
   <script src="../js/contact-form.js"></script>
