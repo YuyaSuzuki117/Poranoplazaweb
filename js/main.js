@@ -196,7 +196,6 @@
       var allDots = heroEl.querySelectorAll(".hero-dot");
       var counterEl = heroEl.querySelector("[data-counter]");
       var fillEl = heroEl.querySelector(".hero-counter-fill");
-      var textReveals = heroEl.querySelectorAll(".hero-text-reveal");
       var DURATION = 5500;
       var TICK = 40;
       var current = 0;
@@ -223,21 +222,6 @@
         // Dot fills
         for (var d = 0; d < allDots.length; d++) {
           var after = allDots[d].querySelector("::after"); // can't target pseudo, use transition in CSS
-        }
-      }
-
-      // Text stagger reveal
-      function revealTexts() {
-        for (var t = 0; t < textReveals.length; t++) {
-          textReveals[t].classList.remove("is-shown");
-          textReveals[t].style.transition = "none";
-        }
-        // Force reflow
-        heroEl.offsetHeight;
-        for (var t2 = 0; t2 < textReveals.length; t2++) {
-          var delay = parseInt(textReveals[t2].getAttribute("data-delay") || "0", 10);
-          textReveals[t2].style.transition = "opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1) " + delay + "ms, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) " + delay + "ms";
-          textReveals[t2].classList.add("is-shown");
         }
       }
 
@@ -297,7 +281,6 @@
         updateDots(current);
         updateCounter(current);
         startProgress();
-        revealTexts();
 
         setTimeout(function () {
           leaving.classList.remove("is-leaving");
@@ -305,12 +288,19 @@
         }, FADE_IN);
       }
 
-      function tick() {
-        if (paused || transitioning) return;
-        elapsed += TICK;
-        if (elapsed >= DURATION) {
-          goTo((current + 1) % slides.length);
+      var lastTime = 0;
+      function tick(timestamp) {
+        if (!lastTime) lastTime = timestamp;
+        var delta = timestamp - lastTime;
+        lastTime = timestamp;
+
+        if (!paused && !transitioning) {
+          elapsed += delta;
+          if (elapsed >= DURATION) {
+            goTo((current + 1) % slides.length);
+          }
         }
+        requestAnimationFrame(tick);
       }
 
       // Dot click handlers
@@ -339,11 +329,10 @@
       applyTransitions();
       updateDots(0);
       updateCounter(0);
-      revealTexts();
       startProgress();
 
       if (!prefersRM) {
-        setInterval(tick, TICK);
+        requestAnimationFrame(tick);
       }
     })();
   }
