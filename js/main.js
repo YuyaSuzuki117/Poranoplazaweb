@@ -190,150 +190,94 @@
      ======================================== */
   var heroEl = document.querySelector(".hero-slideshow");
   if (heroEl) {
-    (function initHeroSlideshow() {
+    (function () {
       var slides = heroEl.querySelectorAll(".hero-slide");
-      // Collect ALL dots (desktop + mobile)
       var allDots = heroEl.querySelectorAll(".hero-dot");
       var counterEl = heroEl.querySelector("[data-counter]");
       var fillEl = heroEl.querySelector(".hero-counter-fill");
       var DURATION = 5500;
-      var TICK = 40;
+      var FADE = 1400;
       var current = 0;
-      var elapsed = 0;
-      var paused = false;
-      var transitioning = false;
+      var offscreen = false;
       var prefersRM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      // Transition durations (CSS)
-      var FADE_IN = 1200;
-      var FADE_OUT = 800;
-      var KEN_BURNS = 6000;
-
-      // Apply CSS transitions dynamically (so first paint is instant)
-      function applyTransitions() {
-        if (prefersRM) return;
-        for (var i = 0; i < slides.length; i++) {
-          slides[i].style.transition = "opacity " + FADE_IN + "ms cubic-bezier(0.4, 0, 0.2, 1)";
-          var img = slides[i].querySelector(".hero-slide-img");
-          if (img) img.style.transition = "transform " + KEN_BURNS + "ms cubic-bezier(0.25, 0, 0.3, 1)";
+      function updateUI(index) {
+        // Counter
+        if (counterEl) counterEl.textContent = String(index + 1).padStart(2, "0");
+        // Dots
+        for (var d = 0; d < allDots.length; d++) {
+          var di = d % slides.length;
+          allDots[d].classList.toggle("is-active", di === index);
+          allDots[d].setAttribute("aria-selected", di === index ? "true" : "false");
         }
         // Progress fill
-        if (fillEl) fillEl.style.transition = "transform " + DURATION + "ms linear";
-        // Dot fills
-        for (var d = 0; d < allDots.length; d++) {
-          var after = allDots[d].querySelector("::after"); // can't target pseudo, use transition in CSS
-        }
-      }
-
-      function updateDots(index) {
-        for (var d = 0; d < allDots.length; d++) {
-          var dotIndex = d % slides.length;
-          if (dotIndex === index) {
-            allDots[d].classList.add("is-active");
-            allDots[d].setAttribute("aria-selected", "true");
-          } else {
-            allDots[d].classList.remove("is-active");
-            allDots[d].setAttribute("aria-selected", "false");
-          }
-        }
-      }
-
-      function updateCounter(index) {
-        if (counterEl) {
-          counterEl.textContent = String(index + 1).padStart(2, "0");
-        }
-      }
-
-      function startProgress() {
         if (fillEl) {
           fillEl.style.transition = "none";
           fillEl.style.transform = "scaleX(0)";
-          // Force reflow
-          fillEl.offsetWidth;
+          fillEl.offsetWidth; // reflow
           fillEl.style.transition = "transform " + DURATION + "ms linear";
           fillEl.style.transform = "scaleX(1)";
         }
-        // Active dot fill animation via CSS transition
-        for (var d = 0; d < allDots.length; d++) {
-          var style = allDots[d].style;
-          // Reset all dot ::after via class toggle is in CSS, no JS needed
-        }
       }
 
-      function goTo(index) {
-        if (transitioning || index === current) return;
-        transitioning = true;
+      function goTo(next) {
+        if (next === current) return;
+        var prev = current;
+        current = next;
 
-        var leaving = slides[current];
-        var entering = slides[index];
+        // New slide fades in ON TOP of current (no gap)
+        slides[next].classList.add("is-entering");
 
-        // Leaving slide: fade out with slight scale
-        leaving.classList.remove("is-active");
-        leaving.classList.add("is-leaving");
-        leaving.style.transition = "opacity " + FADE_OUT + "ms cubic-bezier(0.4, 0, 0.2, 1)";
+        updateUI(next);
 
-        // Entering slide: fade in
-        entering.classList.add("is-active");
-        entering.style.transition = "opacity " + FADE_IN + "ms cubic-bezier(0.4, 0, 0.2, 1)";
-
-        current = index;
-        elapsed = 0;
-        updateDots(current);
-        updateCounter(current);
-        startProgress();
-
+        // After fade completes, swap classes
         setTimeout(function () {
-          leaving.classList.remove("is-leaving");
-          transitioning = false;
-        }, FADE_IN);
+          slides[prev].classList.remove("is-active");
+          slides[next].classList.remove("is-entering");
+          slides[next].classList.add("is-active");
+        }, FADE);
       }
 
-      var lastTime = 0;
-      function tick(timestamp) {
-        if (!lastTime) lastTime = timestamp;
-        var delta = timestamp - lastTime;
-        lastTime = timestamp;
+      // Auto-advance with rAF
+      var elapsed = 0;
+      var lastTS = 0;
+      function loop(ts) {
+        if (!lastTS) lastTS = ts;
+        var dt = ts - lastTS;
+        lastTS = ts;
 
-        if (!paused && !transitioning) {
-          elapsed += delta;
-          if (elapsed >= DURATION) {
+        if (!offscreen && dt < 200) { // skip large gaps (tab switch etc)
+          elapsed += dt;
+          if (elapsed >= DURATION + FADE) {
+            elapsed = 0;
             goTo((current + 1) % slides.length);
           }
         }
-        requestAnimationFrame(tick);
+        requestAnimationFrame(loop);
       }
 
-      // Dot click handlers
+      // Dot clicks
       for (var d = 0; d < allDots.length; d++) {
-        (function (idx) {
-          allDots[idx].addEventListener("click", function () {
-            var targetSlide = idx % slides.length;
-            if (targetSlide !== current) goTo(targetSlide);
+        (function (i) {
+          allDots[i].addEventListener("click", function () {
+            var target = i % slides.length;
+            if (target !== current) {
+              elapsed = 0;
+              goTo(target);
+            }
           });
         })(d);
       }
 
-      // Pause on hover/focus
-      heroEl.addEventListener("mouseenter", function () { paused = true; });
-      heroEl.addEventListener("mouseleave", function () { paused = false; });
-      heroEl.addEventListener("focusin", function () { paused = true; });
-      heroEl.addEventListener("focusout", function () { paused = false; });
-
-      // Pause when off-screen
-      var heroObserver = new IntersectionObserver(function (entries) {
-        paused = !entries[0].isIntersecting;
-      }, { threshold: 0.15 });
-      heroObserver.observe(heroEl);
+      // Only pause when completely off-screen (not on hover)
+      var obs = new IntersectionObserver(function (entries) {
+        offscreen = !entries[0].isIntersecting;
+      }, { threshold: 0.01 });
+      obs.observe(heroEl);
 
       // Init
-      applyTransitions();
-      updateDots(0);
-      updateCounter(0);
-      startProgress();
-
-      if (!prefersRM) {
-        requestAnimationFrame(tick);
-      }
+      updateUI(0);
+      if (!prefersRM) requestAnimationFrame(loop);
     })();
   }
 

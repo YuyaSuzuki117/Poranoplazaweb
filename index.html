@@ -117,14 +117,18 @@
       inset: 0;
       opacity: 0;
       z-index: 1;
+      transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: opacity;
     }
-    .hero-slide.is-active { opacity: 1; z-index: 2; will-change: opacity; }
-    .hero-slide.is-leaving { opacity: 0; z-index: 3; will-change: opacity; }
+    .hero-slide.is-active { opacity: 1; z-index: 2; }
+    .hero-slide.is-entering { opacity: 1; z-index: 3; }
 
     .hero-slide-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 7s cubic-bezier(0.25, 0, 0.3, 1);
+      will-change: transform;
     }
 
     /* Ken Burns: each slide drifts a different direction */
