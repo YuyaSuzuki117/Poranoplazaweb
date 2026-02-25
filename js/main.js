@@ -1,34 +1,37 @@
 /**
  * Poranoplaza - Main JavaScript
- * Navigation, scroll reveal, header behavior
+ * Navigation, scroll reveal, hero slideshow, counters, marquee
  */
 
 (function () {
   "use strict";
 
+  var prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
   /* ========================================
-     Sticky Header
+     Sticky Header (transparent → solid)
      ======================================== */
-  const header = document.querySelector(".site-header");
-  let lastScroll = 0;
-  const SCROLL_THRESHOLD = 50;
+  var header = document.querySelector(".site-header");
+  var SCROLL_THRESHOLD = 80;
 
   function handleHeaderScroll() {
-    const currentScroll = window.scrollY;
-    if (currentScroll > SCROLL_THRESHOLD) {
+    if (window.scrollY > SCROLL_THRESHOLD) {
       header.classList.add("is-scrolled");
     } else {
       header.classList.remove("is-scrolled");
     }
-    lastScroll = currentScroll;
   }
 
   window.addEventListener("scroll", handleHeaderScroll, { passive: true });
+  // Run once on load
+  handleHeaderScroll();
 
   /* ========================================
      Sticky Phone CTA
      ======================================== */
-  const stickyCta = document.getElementById("sticky-cta");
+  var stickyCta = document.getElementById("sticky-cta");
   if (stickyCta) {
     function handleStickyCta() {
       if (window.scrollY > window.innerHeight * 0.8) {
@@ -47,26 +50,20 @@
   /* ========================================
      Mobile Menu
      ======================================== */
-  const menuToggle = document.getElementById("menu-toggle");
-  const menuClose = document.getElementById("menu-close");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuLinks = mobileMenu
-    ? mobileMenu.querySelectorAll("a")
-    : [];
-  let previousFocus = null;
+  var menuToggle = document.getElementById("menu-toggle");
+  var menuClose = document.getElementById("menu-close");
+  var mobileMenu = document.getElementById("mobile-menu");
+  var menuLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+  var previousFocus = null;
 
   function openMenu() {
     previousFocus = document.activeElement;
     mobileMenu.classList.add("is-open");
     menuToggle.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
-
-    // Focus the close button
-    requestAnimationFrame(() => {
+    requestAnimationFrame(function () {
       menuClose.focus();
     });
-
-    // Add focus trap
     document.addEventListener("keydown", trapFocus);
   }
 
@@ -74,90 +71,66 @@
     mobileMenu.classList.remove("is-open");
     menuToggle.setAttribute("aria-expanded", "false");
     document.body.style.overflow = "";
-
-    // Restore focus
-    if (previousFocus) {
-      previousFocus.focus();
-    }
-
-    // Remove focus trap
+    if (previousFocus) previousFocus.focus();
     document.removeEventListener("keydown", trapFocus);
   }
 
   function trapFocus(e) {
-    if (e.key === "Escape") {
-      closeMenu();
-      return;
-    }
-
+    if (e.key === "Escape") { closeMenu(); return; }
     if (e.key !== "Tab") return;
-
-    const focusable = mobileMenu.querySelectorAll(
-      'a, button, [tabindex]:not([tabindex="-1"])'
-    );
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-
+    var focusable = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
     if (e.shiftKey) {
-      if (document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      }
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
     } else {
-      if (document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   }
 
-  if (menuToggle) {
-    menuToggle.addEventListener("click", openMenu);
-  }
-
-  if (menuClose) {
-    menuClose.addEventListener("click", closeMenu);
-  }
-
-  // Close menu on link click
-  menuLinks.forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
+  if (menuToggle) menuToggle.addEventListener("click", openMenu);
+  if (menuClose) menuClose.addEventListener("click", closeMenu);
+  menuLinks.forEach(function (link) { link.addEventListener("click", closeMenu); });
 
   /* ========================================
      Scroll Reveal (IntersectionObserver)
      ======================================== */
-  const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-scale");
+  var revealElements = document.querySelectorAll(
+    ".reveal, .reveal-left, .reveal-right, .reveal-scale"
+  );
 
   if (revealElements.length > 0) {
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
     if (prefersReducedMotion) {
-      // Show all elements immediately
-      revealElements.forEach((el) => {
-        el.classList.add("is-visible");
-      });
+      revealElements.forEach(function (el) { el.classList.add("is-visible"); });
     } else {
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
+      var revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               entry.target.classList.add("is-visible");
               revealObserver.unobserve(entry.target);
             }
           });
         },
-        {
-          threshold: 0.15,
-          rootMargin: "0px 0px -40px 0px",
-        }
+        { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
       );
+      revealElements.forEach(function (el) { revealObserver.observe(el); });
+    }
+  }
 
-      revealElements.forEach((el) => {
-        revealObserver.observe(el);
+  /* ========================================
+     Hero Text Entrance Animation
+     ======================================== */
+  var heroSlideshow = document.querySelector(".hero-slideshow");
+  if (heroSlideshow) {
+    // Trigger hero text animation after a brief delay
+    if (prefersReducedMotion) {
+      heroSlideshow.classList.add("hero-loaded");
+    } else {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          heroSlideshow.classList.add("hero-loaded");
+        });
       });
     }
   }
@@ -165,22 +138,16 @@
   /* ========================================
      Smooth Scroll for Anchor Links
      ======================================== */
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener("click", function (e) {
-      const targetId = this.getAttribute("href");
+      var targetId = this.getAttribute("href");
       if (targetId === "#") return;
-
-      const target = document.querySelector(targetId);
+      var target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
-        const headerHeight = header ? header.offsetHeight : 0;
-        const targetPosition =
-          target.getBoundingClientRect().top + window.scrollY - headerHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
+        var headerHeight = header ? header.offsetHeight : 0;
+        var targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top: targetPosition, behavior: "smooth" });
       }
     });
   });
@@ -199,24 +166,18 @@
       var FADE = 1400;
       var current = 0;
       var offscreen = false;
-      var prefersRM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       function updateUI(index) {
-        // Counter
         if (counterEl) counterEl.textContent = String(index + 1).padStart(2, "0");
-        // Dots: remove all first, then activate after reflow
         for (var d = 0; d < allDots.length; d++) {
           allDots[d].classList.remove("is-active");
           allDots[d].setAttribute("aria-selected", "false");
         }
-        // Reset fill
         if (fillEl) {
           fillEl.style.transition = "none";
           fillEl.style.transform = "scaleX(0)";
         }
-        // Force reflow so browsers see the reset
         var reflow = fillEl ? fillEl.offsetWidth : document.body.offsetWidth;
-        // Activate correct dots
         for (var d = 0; d < allDots.length; d++) {
           var di = d % slides.length;
           if (di === index) {
@@ -224,7 +185,6 @@
             allDots[d].setAttribute("aria-selected", "true");
           }
         }
-        // Start fill animation
         if (fillEl) {
           fillEl.style.transition = "transform " + DURATION + "ms linear";
           fillEl.style.transform = "scaleX(1)";
@@ -235,13 +195,8 @@
         if (next === current) return;
         var prev = current;
         current = next;
-
-        // New slide fades in ON TOP of current (no gap)
         slides[next].classList.add("is-entering");
-
         updateUI(next);
-
-        // After fade completes, swap classes
         setTimeout(function () {
           slides[prev].classList.remove("is-active");
           slides[next].classList.remove("is-entering");
@@ -249,15 +204,13 @@
         }, FADE);
       }
 
-      // Auto-advance with rAF
       var elapsed = 0;
       var lastTS = 0;
       function loop(ts) {
         if (!lastTS) lastTS = ts;
         var dt = ts - lastTS;
         lastTS = ts;
-
-        if (!offscreen && dt < 200) { // skip large gaps (tab switch etc)
+        if (!offscreen && dt < 200) {
           elapsed += dt;
           if (elapsed >= DURATION + FADE) {
             elapsed = 0;
@@ -267,33 +220,107 @@
         requestAnimationFrame(loop);
       }
 
-      // Dot clicks
       for (var d = 0; d < allDots.length; d++) {
         (function (i) {
           allDots[i].addEventListener("click", function () {
             var target = i % slides.length;
-            if (target !== current) {
-              elapsed = 0;
-              goTo(target);
-            }
+            if (target !== current) { elapsed = 0; goTo(target); }
           });
         })(d);
       }
 
-      // Only pause when completely off-screen (not on hover)
       var obs = new IntersectionObserver(function (entries) {
         offscreen = !entries[0].isIntersecting;
       }, { threshold: 0.01 });
       obs.observe(heroEl);
 
-      // Init: double rAF ensures browser has painted before starting animations
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           updateUI(0);
-          if (!prefersRM) requestAnimationFrame(loop);
+          if (!prefersReducedMotion) requestAnimationFrame(loop);
         });
       });
     })();
+  }
+
+  /* ========================================
+     Counter Animation
+     ======================================== */
+  var counterItems = document.querySelectorAll("[data-counter-target]");
+  if (counterItems.length > 0) {
+    var countersAnimated = false;
+
+    function animateCounters() {
+      if (countersAnimated) return;
+      countersAnimated = true;
+
+      counterItems.forEach(function (item) {
+        var target = parseInt(item.getAttribute("data-counter-target"), 10);
+        var valueEl = item.querySelector(".counter-value");
+        if (!valueEl) return;
+
+        var startTime = null;
+        var duration = 1600;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          // Ease out cubic
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var currentVal = Math.round(eased * target);
+          valueEl.textContent = currentVal.toLocaleString();
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
+        }
+
+        if (prefersReducedMotion) {
+          valueEl.textContent = target.toLocaleString();
+        } else {
+          requestAnimationFrame(step);
+        }
+      });
+    }
+
+    var counterObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCounters();
+            counterObserver.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    counterItems.forEach(function (item) {
+      counterObserver.observe(item);
+    });
+  }
+
+  /* ========================================
+     Photo Marquee (pause when off-screen)
+     ======================================== */
+  var marqueeInner = document.querySelector(".marquee-inner");
+  if (marqueeInner && !prefersReducedMotion) {
+    var marqueeObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            marqueeInner.classList.remove("is-paused");
+          } else {
+            marqueeInner.classList.add("is-paused");
+          }
+        });
+      },
+      { threshold: 0.01 }
+    );
+    marqueeObserver.observe(marqueeInner);
+  }
+  // If reduced motion, pause marquee
+  if (marqueeInner && prefersReducedMotion) {
+    marqueeInner.classList.add("is-paused");
   }
 
   /* ========================================
@@ -310,19 +337,15 @@
     }
     var btn = el.querySelector(".ba-btn");
     if (btn) btn.addEventListener("click", toggle);
-    // Keyboard support
     el.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggle();
-      }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
     });
   });
 
   /* ========================================
      Current Year in Footer
      ======================================== */
-  const yearEl = document.getElementById("current-year");
+  var yearEl = document.getElementById("current-year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
