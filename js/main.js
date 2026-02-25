@@ -188,68 +188,164 @@
   /* ========================================
      Hero Cinematic Slideshow
      ======================================== */
-  const slideshow = document.querySelector(".hero-slideshow");
-  if (slideshow) {
-    const slides = slideshow.querySelectorAll(".hero-slide");
-    const dots = slideshow.querySelectorAll(".hero-dot");
-    const progressBar = slideshow.querySelector(".hero-progress");
-    const INTERVAL = 5000; // 5s per slide
-    const TICK = 50;
-    let current = 0;
-    let elapsed = 0;
-    let timer = null;
-    let paused = false;
+  var heroEl = document.querySelector(".hero-slideshow");
+  if (heroEl) {
+    (function initHeroSlideshow() {
+      var slides = heroEl.querySelectorAll(".hero-slide");
+      // Collect ALL dots (desktop + mobile)
+      var allDots = heroEl.querySelectorAll(".hero-dot");
+      var counterEl = heroEl.querySelector("[data-counter]");
+      var fillEl = heroEl.querySelector(".hero-counter-fill");
+      var textReveals = heroEl.querySelectorAll(".hero-text-reveal");
+      var DURATION = 5500;
+      var TICK = 40;
+      var current = 0;
+      var elapsed = 0;
+      var paused = false;
+      var transitioning = false;
+      var prefersRM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function goTo(index) {
-      slides[current].classList.remove("is-active");
-      dots[current].classList.remove("is-active");
-      dots[current].setAttribute("aria-selected", "false");
+      // Transition durations (CSS)
+      var FADE_IN = 1200;
+      var FADE_OUT = 800;
+      var KEN_BURNS = 6000;
 
-      current = index;
-      elapsed = 0;
-
-      slides[current].classList.add("is-active");
-      dots[current].classList.add("is-active");
-      dots[current].setAttribute("aria-selected", "true");
-
-      if (progressBar) progressBar.style.width = "0%";
-    }
-
-    function tick() {
-      if (paused) return;
-      elapsed += TICK;
-      if (progressBar) {
-        progressBar.style.width = (elapsed / INTERVAL * 100) + "%";
+      // Apply CSS transitions dynamically (so first paint is instant)
+      function applyTransitions() {
+        if (prefersRM) return;
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].style.transition = "opacity " + FADE_IN + "ms cubic-bezier(0.4, 0, 0.2, 1)";
+          var img = slides[i].querySelector(".hero-slide-img");
+          if (img) img.style.transition = "transform " + KEN_BURNS + "ms cubic-bezier(0.25, 0, 0.3, 1)";
+        }
+        // Progress fill
+        if (fillEl) fillEl.style.transition = "transform " + DURATION + "ms linear";
+        // Dot fills
+        for (var d = 0; d < allDots.length; d++) {
+          var after = allDots[d].querySelector("::after"); // can't target pseudo, use transition in CSS
+        }
       }
-      if (elapsed >= INTERVAL) {
-        goTo((current + 1) % slides.length);
+
+      // Text stagger reveal
+      function revealTexts() {
+        for (var t = 0; t < textReveals.length; t++) {
+          textReveals[t].classList.remove("is-shown");
+          textReveals[t].style.transition = "none";
+        }
+        // Force reflow
+        heroEl.offsetHeight;
+        for (var t2 = 0; t2 < textReveals.length; t2++) {
+          var delay = parseInt(textReveals[t2].getAttribute("data-delay") || "0", 10);
+          textReveals[t2].style.transition = "opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1) " + delay + "ms, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) " + delay + "ms";
+          textReveals[t2].classList.add("is-shown");
+        }
       }
-    }
 
-    // Dot clicks
-    dots.forEach(function (dot, i) {
-      dot.addEventListener("click", function () {
-        if (i !== current) goTo(i);
-      });
-    });
+      function updateDots(index) {
+        for (var d = 0; d < allDots.length; d++) {
+          var dotIndex = d % slides.length;
+          if (dotIndex === index) {
+            allDots[d].classList.add("is-active");
+            allDots[d].setAttribute("aria-selected", "true");
+          } else {
+            allDots[d].classList.remove("is-active");
+            allDots[d].setAttribute("aria-selected", "false");
+          }
+        }
+      }
 
-    // Pause on hover / focus
-    slideshow.addEventListener("mouseenter", function () { paused = true; });
-    slideshow.addEventListener("mouseleave", function () { paused = false; });
-    slideshow.addEventListener("focusin", function () { paused = true; });
-    slideshow.addEventListener("focusout", function () { paused = false; });
+      function updateCounter(index) {
+        if (counterEl) {
+          counterEl.textContent = String(index + 1).padStart(2, "0");
+        }
+      }
 
-    // Pause when off-screen
-    var slideshowObserver = new IntersectionObserver(function (entries) {
-      paused = !entries[0].isIntersecting;
-    }, { threshold: 0.2 });
-    slideshowObserver.observe(slideshow);
+      function startProgress() {
+        if (fillEl) {
+          fillEl.style.transition = "none";
+          fillEl.style.transform = "scaleX(0)";
+          // Force reflow
+          fillEl.offsetWidth;
+          fillEl.style.transition = "transform " + DURATION + "ms linear";
+          fillEl.style.transform = "scaleX(1)";
+        }
+        // Active dot fill animation via CSS transition
+        for (var d = 0; d < allDots.length; d++) {
+          var style = allDots[d].style;
+          // Reset all dot ::after via class toggle is in CSS, no JS needed
+        }
+      }
 
-    // Respect reduced motion
-    var prefersRM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!prefersRM) {
-      timer = setInterval(tick, TICK);
-    }
+      function goTo(index) {
+        if (transitioning || index === current) return;
+        transitioning = true;
+
+        var leaving = slides[current];
+        var entering = slides[index];
+
+        // Leaving slide: fade out with slight scale
+        leaving.classList.remove("is-active");
+        leaving.classList.add("is-leaving");
+        leaving.style.transition = "opacity " + FADE_OUT + "ms cubic-bezier(0.4, 0, 0.2, 1)";
+
+        // Entering slide: fade in
+        entering.classList.add("is-active");
+        entering.style.transition = "opacity " + FADE_IN + "ms cubic-bezier(0.4, 0, 0.2, 1)";
+
+        current = index;
+        elapsed = 0;
+        updateDots(current);
+        updateCounter(current);
+        startProgress();
+        revealTexts();
+
+        setTimeout(function () {
+          leaving.classList.remove("is-leaving");
+          transitioning = false;
+        }, FADE_IN);
+      }
+
+      function tick() {
+        if (paused || transitioning) return;
+        elapsed += TICK;
+        if (elapsed >= DURATION) {
+          goTo((current + 1) % slides.length);
+        }
+      }
+
+      // Dot click handlers
+      for (var d = 0; d < allDots.length; d++) {
+        (function (idx) {
+          allDots[idx].addEventListener("click", function () {
+            var targetSlide = idx % slides.length;
+            if (targetSlide !== current) goTo(targetSlide);
+          });
+        })(d);
+      }
+
+      // Pause on hover/focus
+      heroEl.addEventListener("mouseenter", function () { paused = true; });
+      heroEl.addEventListener("mouseleave", function () { paused = false; });
+      heroEl.addEventListener("focusin", function () { paused = true; });
+      heroEl.addEventListener("focusout", function () { paused = false; });
+
+      // Pause when off-screen
+      var heroObserver = new IntersectionObserver(function (entries) {
+        paused = !entries[0].isIntersecting;
+      }, { threshold: 0.15 });
+      heroObserver.observe(heroEl);
+
+      // Init
+      applyTransitions();
+      updateDots(0);
+      updateCounter(0);
+      revealTexts();
+      startProgress();
+
+      if (!prefersRM) {
+        setInterval(tick, TICK);
+      }
+    })();
   }
 
   /* ========================================
