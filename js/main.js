@@ -338,6 +338,29 @@
   }
 
   /* ========================================
+     Before/After Toggle (Portfolio)
+     ======================================== */
+  var baToggles = document.querySelectorAll(".ba-toggle");
+  baToggles.forEach(function (el) {
+    function toggle() {
+      var state = el.getAttribute("data-state");
+      var next = state === "after" ? "before" : "after";
+      el.setAttribute("data-state", next);
+      var label = el.querySelector("[data-ba-label]");
+      if (label) label.textContent = next === "after" ? "Before" : "After";
+    }
+    var btn = el.querySelector(".ba-btn");
+    if (btn) btn.addEventListener("click", toggle);
+    // Keyboard support
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+
+  /* ========================================
      Current Year in Footer
      ======================================== */
   const yearEl = document.getElementById("current-year");
