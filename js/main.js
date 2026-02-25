@@ -204,17 +204,28 @@
       function updateUI(index) {
         // Counter
         if (counterEl) counterEl.textContent = String(index + 1).padStart(2, "0");
-        // Dots
+        // Dots: remove all first, then activate after reflow
         for (var d = 0; d < allDots.length; d++) {
-          var di = d % slides.length;
-          allDots[d].classList.toggle("is-active", di === index);
-          allDots[d].setAttribute("aria-selected", di === index ? "true" : "false");
+          allDots[d].classList.remove("is-active");
+          allDots[d].setAttribute("aria-selected", "false");
         }
-        // Progress fill
+        // Reset fill
         if (fillEl) {
           fillEl.style.transition = "none";
           fillEl.style.transform = "scaleX(0)";
-          fillEl.offsetWidth; // reflow
+        }
+        // Force reflow so browsers see the reset
+        var reflow = fillEl ? fillEl.offsetWidth : document.body.offsetWidth;
+        // Activate correct dots
+        for (var d = 0; d < allDots.length; d++) {
+          var di = d % slides.length;
+          if (di === index) {
+            allDots[d].classList.add("is-active");
+            allDots[d].setAttribute("aria-selected", "true");
+          }
+        }
+        // Start fill animation
+        if (fillEl) {
           fillEl.style.transition = "transform " + DURATION + "ms linear";
           fillEl.style.transform = "scaleX(1)";
         }
@@ -275,9 +286,13 @@
       }, { threshold: 0.01 });
       obs.observe(heroEl);
 
-      // Init
-      updateUI(0);
-      if (!prefersRM) requestAnimationFrame(loop);
+      // Init: double rAF ensures browser has painted before starting animations
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          updateUI(0);
+          if (!prefersRM) requestAnimationFrame(loop);
+        });
+      });
     })();
   }
 
