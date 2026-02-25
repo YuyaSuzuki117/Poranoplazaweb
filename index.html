@@ -26,10 +26,6 @@
   <!-- Tailwind CSS v4 (CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- img-comparison-slider -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
-
   <style type="text/tailwindcss">
     @theme {
       --color-navy-50: #FAFAF9;
@@ -108,8 +104,6 @@
     .reveal-stagger > .reveal:nth-child(4) { transition-delay: 300ms; }
     .reveal-stagger > .reveal:nth-child(5) { transition-delay: 400ms; }
     .reveal-stagger > .reveal:nth-child(6) { transition-delay: 500ms; }
-
-    img-comparison-slider { --divider-width: 3px; --divider-color: white; --default-handle-opacity: 1; --default-handle-shadow: 0 4px 12px rgba(0,0,0,0.4); border-radius: 0.75rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
 
     .bento-card { transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; }
     .bento-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(28,18,16,0.18); }
@@ -313,15 +307,6 @@
     }
     .photo-overlay:hover::after { opacity: 1; }
 
-    .dark-vignette { position: relative; }
-    .dark-vignette::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.15) 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
   </style>
 
   <script type="application/ld+json">
@@ -396,31 +381,35 @@
   <main id="main-content">
 
     <!-- HERO -->
-    <section class="noise-texture dark-vignette relative bg-navy-950 pt-24 pb-12 md:pt-28 md:pb-16">
+    <section class="noise-texture relative bg-navy-950 pt-24 pb-12 md:pt-28 md:pb-16">
       <div class="mx-auto w-full max-w-7xl px-(--spacing-section-x)">
 
-        <!-- Slider: dominant, near full-width -->
-        <div class="reveal-scale relative">
-          <img-comparison-slider class="w-full aspect-[4/3] md:aspect-[21/9]" tabindex="0" aria-label="施工前と施工後の比較スライダー">
-            <figure slot="first" class="m-0 p-0">
-              <img src="images/hero/before.jpg" alt="内装工事施工前 ── スケルトン状態の店舗" width="1200" height="514" loading="eager">
-            </figure>
-            <figure slot="second" class="m-0 p-0">
-              <img src="images/hero/after.jpg" alt="内装工事施工後 ── 完成した飲食店内装" width="1200" height="514" loading="eager">
-            </figure>
-            <div slot="handle">
-              <div class="flex items-center justify-center size-12 rounded-full bg-white shadow-lg cursor-ew-resize">
-                <svg class="size-5 text-navy-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg>
-              </div>
-            </div>
-          </img-comparison-slider>
-          <span class="absolute top-4 left-4 px-3 py-1 bg-navy-900/70 text-white text-xs font-display font-bold rounded uppercase tracking-wide pointer-events-none" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
-          <span class="absolute top-4 right-4 px-3 py-1 bg-navy-900/70 text-white text-xs font-display font-bold rounded uppercase tracking-wide pointer-events-none" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
-          <!-- Drag hint -->
-          <p class="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-navy-900/60 text-white/80 text-fluid-xs font-display font-medium rounded-full pointer-events-none" style="z-index: 10; backdrop-filter: blur(4px);" aria-hidden="true">← ドラッグで比較 →</p>
+        <!-- Photo Grid -->
+        <div class="reveal-scale grid grid-cols-2 md:grid-cols-12 gap-1.5 md:gap-2">
+          <!-- Main photo -->
+          <div class="col-span-2 md:col-span-8 md:row-span-2 relative overflow-hidden rounded-2xl">
+            <img src="images/projects/serene/photo1.jpg"
+                 alt="ゴールドと黒を基調としたプレミアムクラブの内装施工事例"
+                 class="w-full h-full object-cover aspect-[4/3] md:aspect-auto md:absolute md:inset-0"
+                 loading="eager" width="1200" height="800">
+          </div>
+          <!-- Top right -->
+          <div class="col-span-1 md:col-span-4 relative overflow-hidden rounded-xl">
+            <img src="images/projects/serene/photo2.jpg"
+                 alt="クリスタルシャンデリアが輝く回廊の内装施工事例"
+                 class="w-full h-full object-cover aspect-square md:aspect-[4/3]"
+                 loading="eager" width="600" height="450">
+          </div>
+          <!-- Bottom right -->
+          <div class="col-span-1 md:col-span-4 relative overflow-hidden rounded-xl">
+            <img src="images/projects/glow/after.jpg"
+                 alt="ネオン照明が映えるナイトクラブVIPエリアの内装施工事例"
+                 class="w-full h-full object-cover aspect-square md:aspect-[4/3]"
+                 loading="eager" width="600" height="450">
+          </div>
         </div>
 
-        <!-- Text content: below slider -->
+        <!-- Text content: below grid -->
         <div class="reveal relative mt-8 md:mt-12">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-end">
 
@@ -521,8 +510,7 @@
       <div class="mx-auto max-w-6xl">
         <div class="reveal mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <span class="section-label mb-3">Works</span>
-            <h2 class="text-fluid-3xl font-bold text-navy-900">施工実績</h2>
+            <h2 class="heading-accent text-fluid-3xl font-bold text-navy-900">施工実績</h2>
           </div>
           <a href="pages/works.html" class="inline-flex items-center gap-2 text-navy-900 hover:text-accent-600 text-fluid-sm font-display font-bold no-underline transition-colors duration-150 group border-b-2 border-navy-900 hover:border-accent-600 pb-1">
             すべての実績を見る
@@ -531,19 +519,19 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 reveal-stagger">
+          <!-- Large photo card (replaces B/A slider) -->
           <div class="reveal md:col-span-7">
-            <div class="relative rounded-2xl overflow-hidden mb-4">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="店舗内装の施工前後比較">
-                <figure slot="first" class="m-0 p-0"><img src="images/hero/before.jpg" alt="施工前" width="600" height="400" loading="lazy"></figure>
-                <figure slot="second" class="m-0 p-0"><img src="images/hero/after.jpg" alt="施工後" width="600" height="400" loading="lazy"></figure>
-                <div slot="handle"><div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize"><svg class="size-4 text-navy-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg></div></div>
-              </img-comparison-slider>
-              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-900/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
-              <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-900/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
-            </div>
-            <span class="text-accent-500 text-fluid-xs font-display font-bold">ナイトクラブ</span>
-            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-1">新宿区 ナイトクラブ新装工事</h3>
-            <p class="text-navy-400 text-fluid-sm">スケルトンから照明設計、VIPルーム造作、音響・空調まで一括施工。</p>
+            <a href="pages/works.html" class="group block no-underline">
+              <div class="photo-overlay relative rounded-2xl overflow-hidden mb-4 shadow-md">
+                <img src="images/projects/friends-bar/after.jpg"
+                     alt="渋谷区 カフェ＆バーの完成した店内"
+                     class="w-full aspect-[4/3] object-cover transition-transform duration-400 group-hover:scale-[1.03]"
+                     loading="lazy" width="600" height="400">
+              </div>
+              <span class="text-accent-500 text-fluid-xs font-display font-bold">カフェ＆バー</span>
+              <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-1">渋谷区 カフェ＆バー改装工事</h3>
+              <p class="text-navy-400 text-fluid-sm">スケルトンからの店舗内装を木の温もりを活かしてデザイン・施工。</p>
+            </a>
           </div>
 
           <div class="md:col-span-5 flex flex-col gap-4 md:gap-6">
@@ -557,16 +545,25 @@
             </a>
             <a href="pages/works.html" class="reveal group block no-underline">
               <div class="photo-overlay relative rounded-2xl overflow-hidden mb-3 shadow-md">
-                <img src="images/projects/serene/photo1.jpg" alt="新宿区 プレミアムクラブの内装" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
+                <img src="images/projects/yakiniku/photo1.jpg" alt="埼玉県 焼肉店の完成した店内" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
               </div>
-              <span class="text-accent-500 text-fluid-xs font-display font-bold">ナイトクラブ</span>
-              <h3 class="text-fluid-lg font-bold text-navy-900 mt-1 mb-1">新宿区 プレミアムクラブ新装工事</h3>
-              <p class="text-navy-400 text-fluid-xs">プレミアムクラブの空間デザイン・施工</p>
+              <span class="text-accent-500 text-fluid-xs font-display font-bold">焼肉店</span>
+              <h3 class="text-fluid-lg font-bold text-navy-900 mt-1 mb-1">埼玉県 焼肉店新装工事</h3>
+              <p class="text-navy-400 text-fluid-xs">焼肉店の空間デザイン・施工</p>
             </a>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- PHOTO STRIP (rhythm break) -->
+    <div class="w-full overflow-hidden" aria-hidden="true">
+      <div class="flex gap-1">
+        <img src="images/projects/serene/photo4.jpg" class="w-1/3 h-24 md:h-32 object-cover" alt="" loading="lazy">
+        <img src="images/projects/rakuen/photo1.jpg" class="w-1/3 h-24 md:h-32 object-cover" alt="" loading="lazy">
+        <img src="images/projects/office/photo1.jpg" class="w-1/3 h-24 md:h-32 object-cover" alt="" loading="lazy">
+      </div>
+    </div>
 
     <!-- STRENGTHS (Dark accent section) -->
     <section id="strengths" class="diagonal-texture section-shadow-into-dark section-divider-dark-top bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x)">
@@ -598,12 +595,10 @@
     <!-- PROCESS FLOW -->
     <section class="section-shadow-into-light section-divider-top bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-5xl">
-        <div class="reveal mb-16 flex flex-col md:flex-row md:items-end gap-3 md:gap-8">
-          <div>
-            <span class="section-label mb-3">Process</span>
-            <h2 class="text-fluid-3xl font-bold text-navy-900">ご相談から完了まで</h2>
-          </div>
-          <p class="text-navy-400 text-fluid-sm md:pb-1">お問い合わせから最短翌日で動き出します。</p>
+        <div class="reveal mb-16">
+          <p class="text-accent-500/50 font-display font-bold text-fluid-5xl leading-none mb-3" style="font-variant-numeric: tabular-nums;" aria-hidden="true">4 Steps</p>
+          <h2 class="text-fluid-3xl font-bold text-navy-900 mb-2">ご相談から完了まで</h2>
+          <p class="text-navy-400 text-fluid-sm">お問い合わせから最短翌日で動き出します。</p>
         </div>
 
         <!-- Desktop: horizontal timeline -->
@@ -674,42 +669,32 @@
       </div>
     </section>
 
-    <!-- CLIENTS / TRUST BANNER -->
-    <section class="warm-depth bg-surface-warm py-(--spacing-bridge-y) px-(--spacing-section-x) border-y border-navy-100">
-      <div class="mx-auto max-w-5xl">
-        <div class="reveal">
-          <!-- Stats row -->
-          <div class="flex flex-wrap items-baseline gap-x-8 md:gap-x-14 gap-y-4 mb-8">
+    <!-- TESTIMONIALS + TRUST -->
+    <section id="testimonials" class="warm-depth bg-surface-warm py-(--spacing-section-y) px-(--spacing-section-x) border-t border-navy-100">
+      <div class="mx-auto max-w-6xl">
+        <!-- Header: heading + trust stats side by side -->
+        <div class="reveal mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div class="md:text-right">
+            <span class="section-label mb-3 md:flex-row-reverse">Voice</span>
+            <h2 class="text-fluid-3xl font-bold text-navy-900">お客様の声</h2>
+          </div>
+          <!-- Trust numbers inline -->
+          <div class="flex flex-wrap items-baseline gap-x-6 gap-y-3">
             <div>
-              <p class="text-accent-500 font-display font-bold text-fluid-3xl leading-none mb-1" style="font-variant-numeric: tabular-nums;">183<span class="text-fluid-lg">件</span></p>
-              <p class="text-navy-400 text-fluid-xs">延べ施工実績</p>
+              <p class="text-accent-500 font-display font-bold text-fluid-2xl leading-none mb-0.5" style="font-variant-numeric: tabular-nums;">183<span class="text-fluid-sm">件</span></p>
+              <p class="text-navy-400 text-fluid-xs">施工実績</p>
             </div>
-            <div class="h-10 w-px bg-navy-200 hidden md:block" aria-hidden="true"></div>
+            <div class="h-8 w-px bg-navy-200 hidden md:block" aria-hidden="true"></div>
             <div>
-              <p class="text-accent-500 font-display font-bold text-fluid-3xl leading-none mb-1" style="font-variant-numeric: tabular-nums;">34<span class="text-fluid-lg">社</span></p>
-              <p class="text-navy-400 text-fluid-xs">取引先企業</p>
+              <p class="text-accent-500 font-display font-bold text-fluid-2xl leading-none mb-0.5" style="font-variant-numeric: tabular-nums;">34<span class="text-fluid-sm">社</span></p>
+              <p class="text-navy-400 text-fluid-xs">取引先</p>
             </div>
-            <div class="h-10 w-px bg-navy-200 hidden md:block" aria-hidden="true"></div>
+            <div class="h-8 w-px bg-navy-200 hidden md:block" aria-hidden="true"></div>
             <div>
-              <p class="text-accent-500 font-display font-bold text-fluid-3xl leading-none mb-1" style="font-variant-numeric: tabular-nums;">82<span class="text-fluid-lg">%以上</span></p>
+              <p class="text-accent-500 font-display font-bold text-fluid-2xl leading-none mb-0.5" style="font-variant-numeric: tabular-nums;">82<span class="text-fluid-sm">%</span></p>
               <p class="text-navy-400 text-fluid-xs">リピート率</p>
             </div>
           </div>
-          <!-- Client names -->
-          <div class="text-center border-t border-navy-100 pt-6">
-            <p class="text-navy-300 text-fluid-xs font-display font-medium mb-3">主要取引先実績</p>
-            <p class="text-navy-400 text-fluid-xs tracking-wide">セコム / ダイソー / アイリスオーヤマ / 中外製薬 / ブックオフ / 東京医科大学</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="warm-depth bg-surface-warm py-(--spacing-section-y) px-(--spacing-section-x)">
-      <div class="mx-auto max-w-6xl">
-        <div class="reveal mb-10">
-          <span class="section-label mb-3">Voice</span>
-          <h2 class="text-fluid-3xl font-bold text-navy-900">お客様の声</h2>
         </div>
 
         <!-- Mobile: horizontal scroll / Desktop: grid -->
@@ -773,24 +758,11 @@
             </footer>
           </blockquote>
         </div>
-      </div>
-    </section>
 
-    <!-- AREA -->
-    <section id="area" class="bg-white py-(--spacing-bridge-y) px-(--spacing-section-x) border-t border-navy-100">
-      <div class="mx-auto max-w-5xl">
-        <div class="reveal flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-          <!-- Heading with icon -->
-          <div class="flex items-center gap-2 shrink-0">
-            <svg class="size-5 text-navy-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-            <h2 class="font-display font-bold text-navy-900 text-fluid-lg">対応エリア</h2>
-          </div>
-          <!-- Divider (desktop) -->
-          <div class="hidden md:block w-px h-8 bg-navy-200" aria-hidden="true"></div>
-          <!-- Prefectures -->
-          <p class="text-navy-600 text-fluid-base font-medium">東京都 <span class="text-navy-200 mx-1">/</span> 神奈川県 <span class="text-navy-200 mx-1">/</span> 埼玉県 <span class="text-navy-200 mx-1">/</span> 千葉県</p>
-          <!-- Note -->
-          <p class="text-navy-400 text-fluid-xs">関西支社（兵庫県）もあり。エリア外の案件もご相談承ります。</p>
+        <!-- Client names -->
+        <div class="reveal text-center mt-10 pt-6 border-t border-navy-100">
+          <p class="text-navy-300 text-fluid-xs font-display font-medium mb-2">主要取引先</p>
+          <p class="text-navy-400 text-fluid-xs tracking-wide">セコム / ダイソー / アイリスオーヤマ / 中外製薬 / ブックオフ / 東京医科大学</p>
         </div>
       </div>
     </section>
@@ -823,6 +795,15 @@
   <!-- FOOTER (dark) -->
   <footer class="footer-fade bg-navy-950 pt-16 pb-8 px-(--spacing-section-x)">
     <div class="mx-auto max-w-6xl">
+      <!-- Area info -->
+      <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 mb-10 pb-10 border-b border-white/10">
+        <div class="flex items-center gap-2 shrink-0">
+          <svg class="size-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+          <span class="font-display font-bold text-white/70 text-fluid-sm">対応エリア</span>
+        </div>
+        <p class="text-white/50 text-fluid-sm font-medium">東京都 <span class="text-white/20 mx-1">/</span> 神奈川県 <span class="text-white/20 mx-1">/</span> 埼玉県 <span class="text-white/20 mx-1">/</span> 千葉県</p>
+        <p class="text-white/30 text-fluid-xs">関西支社（兵庫県）もあり。エリア外もご相談承ります。</p>
+      </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div class="sm:col-span-2 lg:col-span-1">
           <a href="index.html" class="flex items-center gap-3 text-white no-underline mb-4" aria-label="ポラーノプラザ ホーム">
@@ -875,6 +856,5 @@
   </a>
 
   <script src="js/main.js"></script>
-  <script src="js/comparison-slider.js"></script>
 </body>
 </html>
