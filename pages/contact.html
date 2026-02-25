@@ -23,25 +23,26 @@
 
   <style type="text/tailwindcss">
     @theme {
-      --color-navy-50: #F7F3EE;
-      --color-navy-100: #EDE5DA;
-      --color-navy-200: #DDD0C2;
-      --color-navy-300: #C4AD96;
-      --color-navy-400: #A68B72;
-      --color-navy-500: #8A6B52;
-      --color-navy-600: #6B4C35;
-      --color-navy-700: #523A28;
-      --color-navy-800: #3D2B1E;
-      --color-navy-900: #2A1D15;
-      --color-navy-950: #1C1210;
-      --color-accent-400: #D9A04E;
-      --color-accent-500: #C4883A;
-      --color-accent-600: #A87030;
+      --color-navy-50: #FAFAF9;
+      --color-navy-100: #F5F5F4;
+      --color-navy-200: #E7E5E4;
+      --color-navy-300: #D6D3D1;
+      --color-navy-400: #A8A29E;
+      --color-navy-500: #78716C;
+      --color-navy-600: #57534E;
+      --color-navy-700: #44403C;
+      --color-navy-800: #292524;
+      --color-navy-900: #1C1917;
+      --color-navy-950: #0C0A09;
+      --color-accent-400: #E5B84A;
+      --color-accent-500: #D4A43A;
+      --color-accent-600: #B58A2C;
       --color-warm-400: #D97706;
       --color-warm-500: #B45309;
-      --color-surface-light: #F7F3EE;
-      --color-surface-warm: #FBF7F2;
-      --color-surface-dark: #1C1210;
+      --color-warm-600: #92400E;
+      --color-surface-light: #FAFAF9;
+      --color-surface-warm: #F7F7F5;
+      --color-surface-dark: #0C0A09;
       --font-display: "Zen Kaku Gothic New", sans-serif;
       --font-body: "Noto Sans JP", sans-serif;
       --text-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
@@ -66,7 +67,7 @@
     body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); text-wrap: balance; }
     p { text-wrap: pretty; }
-    ::selection { background-color: var(--color-navy-600); color: white; }
+    ::selection { background-color: var(--color-accent-500); color: white; }
     :focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
     .skip-link { position: absolute; top: -100%; left: 1rem; z-index: var(--z-toast); padding: 0.75rem 1.5rem; background: var(--color-navy-600); color: white; border-radius: 0 0 0.5rem 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s ease-out; }
     .skip-link:focus { top: 0; }
@@ -191,7 +192,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section-shadow-into-light bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section class="section-shadow-into-light bg-navy-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 

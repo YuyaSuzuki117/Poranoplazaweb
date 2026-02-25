@@ -25,26 +25,26 @@
 
   <style type="text/tailwindcss">
     @theme {
-      --color-navy-50: #F7F3EE;
-      --color-navy-100: #EDE5DA;
-      --color-navy-200: #DDD0C2;
-      --color-navy-300: #C4AD96;
-      --color-navy-400: #A68B72;
-      --color-navy-500: #8A6B52;
-      --color-navy-600: #6B4C35;
-      --color-navy-700: #523A28;
-      --color-navy-800: #3D2B1E;
-      --color-navy-900: #2A1D15;
-      --color-navy-950: #1C1210;
-      --color-accent-400: #D9A04E;
-      --color-accent-500: #C4883A;
-      --color-accent-600: #A87030;
+      --color-navy-50: #FAFAF9;
+      --color-navy-100: #F5F5F4;
+      --color-navy-200: #E7E5E4;
+      --color-navy-300: #D6D3D1;
+      --color-navy-400: #A8A29E;
+      --color-navy-500: #78716C;
+      --color-navy-600: #57534E;
+      --color-navy-700: #44403C;
+      --color-navy-800: #292524;
+      --color-navy-900: #1C1917;
+      --color-navy-950: #0C0A09;
+      --color-accent-400: #E5B84A;
+      --color-accent-500: #D4A43A;
+      --color-accent-600: #B58A2C;
       --color-warm-400: #D97706;
       --color-warm-500: #B45309;
       --color-warm-600: #92400E;
-      --color-surface-light: #F7F3EE;
-      --color-surface-warm: #FBF7F2;
-      --color-surface-dark: #1C1210;
+      --color-surface-light: #FAFAF9;
+      --color-surface-warm: #F7F7F5;
+      --color-surface-dark: #0C0A09;
       --font-display: "Zen Kaku Gothic New", sans-serif;
       --font-body: "Noto Sans JP", sans-serif;
       --text-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
@@ -69,7 +69,7 @@
     body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
     h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; }
     p { text-wrap: pretty; }
-    ::selection { background-color: var(--color-navy-600); color: white; }
+    ::selection { background-color: var(--color-accent-500); color: white; }
     :focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
     .skip-link { position: absolute; top: -100%; left: 1rem; z-index: var(--z-toast); padding: 0.75rem 1.5rem; background: var(--color-navy-600); color: white; border-radius: 0 0 0.5rem 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s ease-out; }
     .skip-link:focus { top: 0; }
@@ -173,19 +173,19 @@
     </section>
 
     <!-- Portfolio Grid -->
-    <section class="section-divider-top section-shadow-into-light bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section class="section-divider-top section-shadow-into-light bg-navy-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
 
         <!-- Project 1: 歌舞伎GLOW ── B/Aスライダー -->
         <article class="reveal mb-20">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div class="relative">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="歌舞伎町GLOWの施工前後比較">
+              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="新宿区ナイトクラブの施工前後比較">
                 <figure slot="first" class="m-0 p-0">
-                  <img src="../images/projects/glow/before.jpg" alt="GLOW 施工前" width="600" height="400" loading="lazy">
+                  <img src="../images/projects/glow/before.jpg" alt="ナイトクラブ 施工前" width="600" height="400" loading="lazy">
                 </figure>
                 <figure slot="second" class="m-0 p-0">
-                  <img src="../images/projects/glow/after.jpg" alt="GLOW 施工後" width="600" height="400" loading="lazy">
+                  <img src="../images/projects/glow/after.jpg" alt="ナイトクラブ 施工後" width="600" height="400" loading="lazy">
                 </figure>
                 <div slot="handle">
                   <div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize">
@@ -198,7 +198,7 @@
             </div>
             <div class="py-2">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">ナイトクラブ</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">歌舞伎町GLOW ホストクラブ新装工事</h2>
+              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">新宿区 ナイトクラブ新装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
                 <div>
                   <dt class="text-navy-400">工事種別</dt>
@@ -217,7 +217,7 @@
                   <dd class="text-navy-700">東京都新宿区歌舞伎町</dd>
                 </div>
               </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">歌舞伎町のホストクラブをスケルトンから新装工事。ラグジュアリーな空間演出のための照明設計、VIPルームの造作、音響設備の設置まで、内装・電気・空調を一括施工。</p>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">新宿区のナイトクラブをスケルトンから新装工事。ラグジュアリーな空間演出のための照明設計、VIPルームの造作、音響設備の設置まで、内装・電気・空調を一括施工。</p>
             </div>
           </div>
         </article>
@@ -226,12 +226,12 @@
         <article class="reveal mb-20">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div class="relative md:order-2">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="千葉犬カフェの施工前後比較">
+              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="千葉県ドッグカフェの施工前後比較">
                 <figure slot="first" class="m-0 p-0">
-                  <img src="../images/projects/dog-cafe/before.jpg" alt="千葉犬カフェ 施工前" width="600" height="400" loading="lazy">
+                  <img src="../images/projects/dog-cafe/before.jpg" alt="ドッグカフェ 施工前" width="600" height="400" loading="lazy">
                 </figure>
                 <figure slot="second" class="m-0 p-0">
-                  <img src="../images/projects/dog-cafe/after.jpg" alt="千葉犬カフェ 施工後" width="600" height="400" loading="lazy">
+                  <img src="../images/projects/dog-cafe/after.jpg" alt="ドッグカフェ 施工後" width="600" height="400" loading="lazy">
                 </figure>
                 <div slot="handle">
                   <div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize">
@@ -244,7 +244,7 @@
             </div>
             <div class="py-2 md:order-1">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">ドッグカフェ</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">千葉犬カフェ 新装工事</h2>
+              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">千葉県 ドッグカフェ新装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
                 <div>
                   <dt class="text-navy-400">工事種別</dt>
@@ -263,12 +263,12 @@
                   <dd class="text-navy-700">千葉県</dd>
                 </div>
               </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">ドッグカフェをスケルトンから新装。ペットと人が快適に過ごせる耐久性のある床材選定、動線設計、照明計画まで一貫対応しました。</p>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">千葉県のドッグカフェをスケルトンから新装。ペットと人が快適に過ごせる耐久性のある床材選定、動線設計、照明計画まで一貫対応しました。</p>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-3 mt-6">
-            <img src="../images/projects/dog-cafe/gallery1.jpg" alt="千葉犬カフェ 店内の様子" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-            <img src="../images/projects/dog-cafe/gallery2.jpg" alt="千葉犬カフェ カウンター周り" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
+            <img src="../images/projects/dog-cafe/gallery1.jpg" alt="ドッグカフェ 店内の様子" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
+            <img src="../images/projects/dog-cafe/gallery2.jpg" alt="ドッグカフェ カウンター周り" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
           </div>
         </article>
 
@@ -276,12 +276,12 @@
         <article class="reveal mb-20">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div class="relative">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="赤坂フレンズバーハウスの施工前後比較">
+              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="港区赤坂バーの施工前後比較">
                 <figure slot="first" class="m-0 p-0">
-                  <img src="../images/projects/friends-bar/before.jpg" alt="フレンズバーハウス 施工前" width="600" height="400" loading="lazy">
+                  <img src="../images/projects/friends-bar/before.jpg" alt="バー 施工前" width="600" height="400" loading="lazy">
                 </figure>
                 <figure slot="second" class="m-0 p-0">
-                  <img src="../images/projects/friends-bar/after.jpg" alt="フレンズバーハウス 施工後" width="600" height="400" loading="lazy">
+                  <img src="../images/projects/friends-bar/after.jpg" alt="バー 施工後" width="600" height="400" loading="lazy">
                 </figure>
                 <div slot="handle">
                   <div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize">
@@ -294,7 +294,7 @@
             </div>
             <div class="py-2">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">バー</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">赤坂フレンズバーハウス 改装工事</h2>
+              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">港区赤坂 バー改装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
                 <div>
                   <dt class="text-navy-400">工事種別</dt>
@@ -313,12 +313,12 @@
                   <dd class="text-navy-700">東京都港区赤坂</dd>
                 </div>
               </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">赤坂のバーを全面改装。カウンター造作、照明のリデザイン、壁面・床の仕上げまで、居心地のよい空間に一新しました。</p>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">港区赤坂のバーを全面改装。カウンター造作、照明のリデザイン、壁面・床の仕上げまで、居心地のよい空間に一新しました。</p>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-3 mt-6">
-            <img src="../images/projects/friends-bar/gallery1.jpg" alt="フレンズバーハウス カウンター" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-            <img src="../images/projects/friends-bar/gallery2.jpg" alt="フレンズバーハウス 客席エリア" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
+            <img src="../images/projects/friends-bar/gallery1.jpg" alt="バー カウンター" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
+            <img src="../images/projects/friends-bar/gallery2.jpg" alt="バー 客席エリア" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
           </div>
         </article>
 
@@ -326,11 +326,11 @@
         <article class="reveal mb-20">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div class="md:order-2">
-              <img src="../images/projects/serene/photo1.jpg" alt="歌舞伎SERENE メインフロア" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
+              <img src="../images/projects/serene/photo1.jpg" alt="プレミアムクラブ メインフロア" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
             </div>
             <div class="py-2 md:order-1">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">プレミアムクラブ</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">歌舞伎町SERENE 新装工事</h2>
+              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">新宿区 プレミアムクラブ新装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
                 <div>
                   <dt class="text-navy-400">工事種別</dt>
@@ -349,13 +349,13 @@
                   <dd class="text-navy-700">東京都新宿区歌舞伎町</dd>
                 </div>
               </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">歌舞伎町のプレミアムクラブをスケルトンから新装。高級感のあるマテリアル選定、間接照明による演出、VIPエリアの造作まで一貫施工。プロカメラマンによる撮影で完成度を記録。</p>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">新宿区のプレミアムクラブをスケルトンから新装。高級感のあるマテリアル選定、間接照明による演出、VIPエリアの造作まで一貫施工。</p>
             </div>
           </div>
           <div class="grid grid-cols-3 gap-3 mt-6">
-            <img src="../images/projects/serene/photo2.jpg" alt="SERENE VIPエリア" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
-            <img src="../images/projects/serene/photo3.jpg" alt="SERENE 照明デザイン" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
-            <img src="../images/projects/serene/photo4.jpg" alt="SERENE バーカウンター" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
+            <img src="../images/projects/serene/photo2.jpg" alt="プレミアムクラブ VIPエリア" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
+            <img src="../images/projects/serene/photo3.jpg" alt="プレミアムクラブ 照明デザイン" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
+            <img src="../images/projects/serene/photo4.jpg" alt="プレミアムクラブ バーカウンター" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267">
           </div>
         </article>
 
@@ -363,11 +363,11 @@
         <article class="reveal mb-20">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div>
-              <img src="../images/projects/office/photo1.jpg" alt="御成門レンタルオフィス エントランス" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
+              <img src="../images/projects/office/photo1.jpg" alt="レンタルオフィス エントランス" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
             </div>
             <div class="py-2">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">オフィス</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">御成門レンタルオフィス 内装工事</h2>
+              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">港区御成門 オフィス内装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
                 <div>
                   <dt class="text-navy-400">工事種別</dt>
@@ -386,12 +386,12 @@
                   <dd class="text-navy-700">東京都港区御成門</dd>
                 </div>
               </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">レンタルオフィスの内装をパーテーション、天井・壁・床仕上げ、照明・空調設備まで一括施工。効率的なワークスペースを実現しました。</p>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">港区御成門のレンタルオフィス内装をパーテーション、天井・壁・床仕上げ、照明・空調設備まで一括施工。効率的なワークスペースを実現しました。</p>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-3 mt-6">
-            <img src="../images/projects/office/photo2.jpg" alt="御成門オフィス ワークスペース" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-            <img src="../images/projects/office/photo3.jpg" alt="御成門オフィス 会議室" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
+            <img src="../images/projects/office/photo2.jpg" alt="オフィス ワークスペース" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
+            <img src="../images/projects/office/photo3.jpg" alt="オフィス 会議室" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
           </div>
         </article>
 
@@ -399,11 +399,11 @@
         <article class="reveal mb-20">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div class="md:order-2">
-              <img src="../images/projects/rakuen/photo1.jpg" alt="楽園池袋GS 店内" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
+              <img src="../images/projects/rakuen/photo1.jpg" alt="アミューズメント施設 店内" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
             </div>
             <div class="py-2 md:order-1">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">アミューズメント</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">楽園池袋GS 内装工事</h2>
+              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">豊島区池袋 アミューズメント施設内装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
                 <div>
                   <dt class="text-navy-400">工事種別</dt>
@@ -415,19 +415,19 @@
                 </div>
                 <div>
                   <dt class="text-navy-400">クライアント</dt>
-                  <dd class="text-navy-700">パチンコ楽園（浜友グループ）</dd>
+                  <dd class="text-navy-700">大手アミューズメント企業</dd>
                 </div>
                 <div>
                   <dt class="text-navy-400">エリア</dt>
                   <dd class="text-navy-700">東京都豊島区池袋</dd>
                 </div>
               </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">パチンコ楽園（浜友グループ）様の店舗内装工事。大型アミューズメント施設に求められる遊技台の配置設計、照明計画、空調・換気システムの設置まで一括対応しました。</p>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">大手アミューズメント企業様の店舗内装工事。大型アミューズメント施設に求められる遊技台の配置設計、照明計画、空調・換気システムの設置まで一括対応しました。</p>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-3 mt-6">
-            <img src="../images/projects/rakuen/photo2.jpg" alt="楽園池袋GS フロア全体" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
-            <img src="../images/projects/rakuen/photo3.jpg" alt="楽園池袋GS エントランス" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
+            <img src="../images/projects/rakuen/photo2.jpg" alt="アミューズメント施設 フロア全体" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
+            <img src="../images/projects/rakuen/photo3.jpg" alt="アミューズメント施設 エントランス" class="gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="600" height="400">
           </div>
         </article>
 
@@ -435,11 +435,11 @@
         <article class="reveal mb-16">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div>
-              <img src="../images/projects/yakiniku/photo1.jpg" alt="越谷焼肉屋 店内" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
+              <img src="../images/projects/yakiniku/photo1.jpg" alt="焼肉店 店内" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
             </div>
             <div class="py-2">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">飲食店</span>
-              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">越谷焼肉屋 内装工事</h2>
+              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">越谷市 焼肉店内装工事</h2>
               <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
                 <div>
                   <dt class="text-navy-400">工事種別</dt>
@@ -458,11 +458,11 @@
                   <dd class="text-navy-700">埼玉県越谷市</dd>
                 </div>
               </dl>
-              <p class="text-navy-400 text-fluid-sm leading-relaxed">焼肉店の内装を新装。排煙ダクト設計、客席レイアウト、カウンター造作、照明計画まで飲食店特有の要件に対応した施工を行いました。</p>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">越谷市の焼肉店の内装を新装。排煙ダクト設計、客席レイアウト、カウンター造作、照明計画まで飲食店特有の要件に対応した施工を行いました。</p>
             </div>
           </div>
           <div class="mt-6">
-            <img src="../images/projects/yakiniku/photo2.jpg" alt="越谷焼肉屋 客席エリア" class="gallery-image w-full rounded-xl aspect-[21/9] object-cover" loading="lazy" width="1200" height="514">
+            <img src="../images/projects/yakiniku/photo2.jpg" alt="焼肉店 客席エリア" class="gallery-image w-full rounded-xl aspect-[21/9] object-cover" loading="lazy" width="1200" height="514">
           </div>
         </article>
 
