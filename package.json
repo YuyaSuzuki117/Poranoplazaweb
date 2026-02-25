@@ -1,0 +1,26 @@
+{
+  "name": "poranoplazaweb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuyaSuzuki117/Poranoplazaweb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuyaSuzuki117/Poranoplazaweb/issues"
+  },
+  "homepage": "https://github.com/YuyaSuzuki117/Poranoplazaweb#readme",
+  "description": "",
+  "dependencies": {
+    "googleapis": "^171.4.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

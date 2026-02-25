@@ -13,8 +13,8 @@
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
-  <meta property="og:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/after.jpg">
-  <meta name="twitter:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/after.jpg">
+  <meta property="og:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
+  <meta name="twitter:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,6 +59,7 @@
       --z-toast: 500;
       --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
       --spacing-section-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+      --spacing-bridge-y: clamp(2.5rem, 2rem + 3vw, 5rem);
     }
   </style>
   <style>
@@ -87,6 +88,12 @@
     .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
     .mobile-menu.is-open { opacity: 1; visibility: visible; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+    .section-divider-top { position: relative; }
+    .section-divider-top::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 15%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.06) 85%, transparent 100%); pointer-events: none; }
+    .section-shadow-into-light { box-shadow: inset 0 8px 20px -12px rgba(0,0,0,0.08); }
+    .footer-fade { position: relative; }
+    .footer-fade::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 80%, transparent 100%); pointer-events: none; }
+    .footer-fade::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, transparent 100%); pointer-events: none; }
   </style>
 </head>
 <body class="bg-white text-navy-900 leading-relaxed overflow-x-hidden">
@@ -155,54 +162,61 @@
       </div>
     </section>
 
-    <!-- Interior -->
-    <section id="interior" class="noise-texture bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <!-- Interior (Main Service - Full-width Hero) -->
+    <section id="interior" class="section-divider-top section-shadow-into-light bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div class="reveal">
-            <img src="../images/services/interior.jpg" alt="内装工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+        <!-- Full-width image with overlay -->
+        <div class="reveal relative rounded-2xl overflow-hidden mb-8">
+          <img src="../images/services/interior.jpg" alt="内装工事の施工イメージ" class="w-full aspect-[4/3] md:aspect-[21/9] object-cover" loading="lazy" width="1200" height="514">
+          <div class="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-navy-950/40 to-transparent flex items-end p-6 md:p-10">
+            <div>
+              <span class="text-accent-400 font-display font-bold text-fluid-5xl block mb-1" style="font-variant-numeric: tabular-nums; opacity: 0.6;">01</span>
+              <h2 class="text-fluid-4xl font-bold text-white mb-2">内装工事</h2>
+              <p class="text-white/70 text-fluid-base max-w-lg">飲食店を中心に500万〜1億規模の工事をスケルトンから。イメージパース提案から店舗デザインまで全工程を自社で。</p>
+            </div>
           </div>
-          <div class="reveal">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl block mb-2" style="font-variant-numeric: tabular-nums;">01</span>
-            <h2 class="text-fluid-3xl font-bold text-navy-900 mb-4">内装工事</h2>
+        </div>
+        <!-- Detail 2-column -->
+        <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div>
             <p class="text-navy-700 text-fluid-base leading-relaxed mb-4">飲食店を中心に500万〜1億規模の工事をスケルトンから承っております。イメージパース提案、図面作成から店舗デザインまで全工程を自社で行っています。</p>
-            <p class="text-navy-400 text-fluid-sm leading-relaxed mb-6">オフィス・店舗・商業施設の内装をデザインから施工まで一貫対応。天井・壁・床の改修、パーテーション設置、造作家具まで幅広く対応します。</p>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
-                <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                飲食店の新装・改装（ガールズバー、寿司屋、ステーキ屋、BAR など）
-              </li>
-              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
-                <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                ホストクラブ・コンカフェなどナイト業態の店舗デザイン
-              </li>
-              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
-                <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                オフィス・事務所のレイアウト変更
-              </li>
-              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
-                <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                スケルトンからの全面内装工事
-              </li>
-              <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
-                <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                イメージパース提案・図面作成・店舗デザイン
-              </li>
-            </ul>
+            <p class="text-navy-400 text-fluid-sm leading-relaxed">オフィス・店舗・商業施設の内装をデザインから施工まで一貫対応。天井・壁・床の改修、パーテーション設置、造作家具まで幅広く対応します。</p>
           </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
+              <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              飲食店の新装・改装（ガールズバー、寿司屋、ステーキ屋、BAR など）
+            </li>
+            <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
+              <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              ホストクラブ・コンカフェなどナイト業態の店舗デザイン
+            </li>
+            <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
+              <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              オフィス・事務所のレイアウト変更
+            </li>
+            <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
+              <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              スケルトンからの全面内装工事
+            </li>
+            <li class="flex items-start gap-3 text-navy-700 text-fluid-sm">
+              <svg class="size-5 text-accent-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              イメージパース提案・図面作成・店舗デザイン
+            </li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- HVAC -->
-    <section id="aircon" class="noise-texture bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section id="aircon" class="noise-texture section-divider-top bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div class="reveal md:order-2">
+          <div class="reveal md:order-2 relative">
             <img src="../images/services/aircon.jpg" alt="空調設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <span class="absolute top-4 left-4 text-white/20 font-display font-bold text-fluid-5xl leading-none" style="font-variant-numeric: tabular-nums;" aria-hidden="true">02</span>
           </div>
           <div class="reveal md:order-1">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl block mb-2" style="font-variant-numeric: tabular-nums;">02</span>
             <h2 class="text-fluid-3xl font-bold text-navy-900 mb-4">空調設備工事</h2>
             <p class="text-navy-700 text-fluid-base leading-relaxed mb-6">業務用エアコンの設置・交換から定期メンテナンスまで。快適な空間環境を維持するための最適なソリューションをご提案します。</p>
             <ul class="space-y-3">
@@ -225,14 +239,14 @@
     </section>
 
     <!-- Electrical -->
-    <section id="electrical" class="noise-texture bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section id="electrical" class="noise-texture section-divider-top bg-slate-50 py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div class="reveal">
+          <div class="reveal relative">
             <img src="../images/services/electrical.jpg" alt="一般電気工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <span class="absolute top-4 left-4 text-white/20 font-display font-bold text-fluid-5xl leading-none" style="font-variant-numeric: tabular-nums;" aria-hidden="true">03</span>
           </div>
           <div class="reveal">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl block mb-2" style="font-variant-numeric: tabular-nums;">03</span>
             <h2 class="text-fluid-3xl font-bold text-navy-900 mb-4">一般電気工事</h2>
             <p class="text-navy-700 text-fluid-base leading-relaxed mb-6">配線工事からLED照明への切替、分電盤の増設まで。安全で効率的な電気設備を構築します。</p>
             <ul class="space-y-3">
@@ -255,14 +269,14 @@
     </section>
 
     <!-- Fire Safety -->
-    <section id="fire" class="noise-texture bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
+    <section id="fire" class="noise-texture section-divider-top bg-white py-(--spacing-section-y) px-(--spacing-section-x)">
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div class="reveal md:order-2">
+          <div class="reveal md:order-2 relative">
             <img src="../images/services/fire.jpg" alt="消防設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <span class="absolute top-4 left-4 text-white/20 font-display font-bold text-fluid-5xl leading-none" style="font-variant-numeric: tabular-nums;" aria-hidden="true">04</span>
           </div>
           <div class="reveal md:order-1">
-            <span class="text-warm-500 font-display font-bold text-fluid-4xl block mb-2" style="font-variant-numeric: tabular-nums;">04</span>
             <h2 class="text-fluid-3xl font-bold text-navy-900 mb-4">消防設備工事</h2>
             <p class="text-navy-700 text-fluid-base leading-relaxed mb-6">消防法に基づく設備の設置・点検・届出を一括対応。法令遵守と安全確保をサポートします。</p>
             <ul class="space-y-3">
@@ -285,23 +299,23 @@
     </section>
 
     <!-- CTA -->
-    <section class="bg-navy-600 py-16 md:py-20 px-(--spacing-section-x)">
+    <section class="bg-navy-600 py-(--spacing-bridge-y) px-(--spacing-section-x)" style="box-shadow: inset 0 20px 40px -20px rgba(28,18,16,0.15);">
       <div class="mx-auto max-w-4xl text-center reveal">
         <h2 class="text-fluid-3xl font-bold text-white mb-3 font-display">サービスについてのご相談</h2>
         <p class="text-white/70 text-fluid-base mb-8">どのサービスが最適かわからない場合もご相談ください。最適なプランをご提案します。</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="tel:03-6821-1924" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg">
+          <a href="tel:03-6821-1924" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg shadow-lg hover:shadow-xl transition-shadow duration-150">
             <svg class="size-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
             <span style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
           </a>
-          <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/30 hover:bg-white/20 text-white font-display font-bold rounded-xl no-underline text-fluid-base transition-all duration-150">メールで問い合わせ</a>
+          <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/30 hover:bg-white/20 hover:border-white/60 text-white font-display font-bold rounded-xl no-underline text-fluid-base transition-all duration-150">メールで問い合わせ</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="noise-texture bg-navy-950 pt-16 pb-8 px-(--spacing-section-x)">
+  <footer class="footer-fade noise-texture bg-navy-950 pt-16 pb-8 px-(--spacing-section-x)">
     <div class="mx-auto max-w-6xl">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
         <div class="sm:col-span-2 lg:col-span-1">

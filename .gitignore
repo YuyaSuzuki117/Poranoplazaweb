@@ -3,3 +3,6 @@ Thumbs.db
 node_modules/
 .claude/
 *.log
+.env*
+package-lock.json
+images/raw/

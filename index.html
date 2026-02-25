@@ -15,8 +15,8 @@
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-  <meta property="og:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/after.jpg">
-  <meta name="twitter:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/after.jpg">
+  <meta property="og:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
+  <meta name="twitter:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,6 +71,7 @@
       --z-toast: 500;
       --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
       --spacing-section-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+      --spacing-bridge-y: clamp(2.5rem, 2rem + 3vw, 5rem);
     }
   </style>
 
@@ -110,10 +111,10 @@
 
     img-comparison-slider { --divider-width: 3px; --divider-color: white; --default-handle-opacity: 1; --default-handle-shadow: 0 4px 12px rgba(0,0,0,0.4); border-radius: 0.75rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
 
-    .bento-card { transition: transform 0.2s ease-out; }
-    .bento-card:hover { transform: translateY(-2px); }
+    .bento-card { transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; }
+    .bento-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(28,18,16,0.18); }
     .bento-card img { transition: transform 0.4s ease-out; }
-    .bento-card:hover img { transform: scale(1.03); }
+    .bento-card:hover img { transform: scale(1.05); }
 
     .testimonial-scroll { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .testimonial-scroll::-webkit-scrollbar { display: none; }
@@ -303,11 +304,14 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(196,136,58,0.06) 0%, rgba(28,18,16,0.08) 100%);
+      background: linear-gradient(135deg, rgba(196,136,58,0.08) 0%, rgba(28,18,16,0.10) 100%);
       mix-blend-mode: multiply;
       pointer-events: none;
       border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.25s ease-out;
     }
+    .photo-overlay:hover::after { opacity: 1; }
 
     .dark-vignette { position: relative; }
     .dark-vignette::after {
@@ -499,7 +503,7 @@
             </div>
           </a>
 
-          <div class="reveal bento-card relative overflow-hidden rounded-2xl bg-navy-600 flex flex-col items-center justify-center p-5 text-center">
+          <div class="reveal bento-card diagonal-texture relative overflow-hidden rounded-2xl bg-navy-600 border border-navy-500/30 flex flex-col items-center justify-center p-5 text-center">
             <span class="text-white font-display font-bold text-fluid-4xl leading-none" style="font-variant-numeric: tabular-nums;">24</span>
             <span class="text-white/90 font-display font-bold text-fluid-sm mt-1">時間受付</span>
             <span class="text-white/60 text-fluid-xs mt-2">緊急時の<br>即時対応体制</span>
@@ -533,27 +537,27 @@
               <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-900/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
               <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-900/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
             </div>
-            <span class="text-navy-600 text-fluid-xs font-display font-bold">飲食店</span>
-            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-1">飲食店 スケルトン内装工事</h3>
-            <p class="text-navy-400 text-fluid-sm">スケルトンからカウンター造作、厨房設備、天井・壁・床、LED照明まで全工程を自社施工。</p>
+            <span class="text-accent-500 text-fluid-xs font-display font-bold">ナイトクラブ</span>
+            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-1">歌舞伎町GLOW ホストクラブ新装工事</h3>
+            <p class="text-navy-400 text-fluid-sm">スケルトンから照明設計、VIPルーム造作、音響・空調まで一括施工。</p>
           </div>
 
           <div class="md:col-span-5 flex flex-col gap-4 md:gap-6">
             <a href="pages/works.html" class="reveal group block no-underline">
-              <div class="photo-overlay relative rounded-2xl overflow-hidden mb-3">
-                <img src="images/portfolio/project-restaurant.jpg" alt="飲食店の内装工事" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
+              <div class="photo-overlay relative rounded-2xl overflow-hidden mb-3 shadow-md">
+                <img src="images/projects/dog-cafe/after.jpg" alt="千葉犬カフェの完成した店内" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
               </div>
-              <span class="text-navy-600 text-fluid-xs font-display font-bold">サロン</span>
-              <h3 class="text-fluid-lg font-bold text-navy-900 mt-1 mb-1">銀座サロン 内装工事</h3>
-              <p class="text-navy-400 text-fluid-xs">高級感のある内装デザインから施工まで</p>
+              <span class="text-accent-500 text-fluid-xs font-display font-bold">ドッグカフェ</span>
+              <h3 class="text-fluid-lg font-bold text-navy-900 mt-1 mb-1">千葉犬カフェ 新装工事</h3>
+              <p class="text-navy-400 text-fluid-xs">スケルトンからペット対応の店舗内装を施工</p>
             </a>
             <a href="pages/works.html" class="reveal group block no-underline">
-              <div class="photo-overlay relative rounded-2xl overflow-hidden mb-3">
-                <img src="images/portfolio/project-clinic.jpg" alt="クリニック内装改修" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
+              <div class="photo-overlay relative rounded-2xl overflow-hidden mb-3 shadow-md">
+                <img src="images/projects/serene/photo1.jpg" alt="歌舞伎町SERENE プレミアムクラブの内装" class="w-full aspect-[3/2] object-cover transition-transform duration-400 group-hover:scale-[1.03]" loading="lazy" width="600" height="400">
               </div>
-              <span class="text-navy-600 text-fluid-xs font-display font-bold">クリニック</span>
-              <h3 class="text-fluid-lg font-bold text-navy-900 mt-1 mb-1">恵比寿美容歯科クリニック</h3>
-              <p class="text-navy-400 text-fluid-xs">待合室・診察室の全面リニューアル</p>
+              <span class="text-accent-500 text-fluid-xs font-display font-bold">ナイトクラブ</span>
+              <h3 class="text-fluid-lg font-bold text-navy-900 mt-1 mb-1">歌舞伎町SERENE 新装工事</h3>
+              <p class="text-navy-400 text-fluid-xs">プレミアムクラブの空間デザイン・施工</p>
             </a>
           </div>
         </div>
@@ -568,14 +572,23 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-8 reveal-stagger">
           <div class="reveal">
+            <div class="size-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-5">
+              <svg class="size-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .415.336.75.75.75z" /></svg>
+            </div>
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">店舗内装に特化</h3>
             <p class="text-white/50 text-fluid-sm leading-relaxed">飲食・物販など店舗施工に多数実績。パチンコ楽園（浜友グループ）、病院・クリニック、イタリアン、焼肉屋、BAR等、幅広い業態に対応。</p>
           </div>
           <div class="reveal">
+            <div class="size-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-5">
+              <svg class="size-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+            </div>
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">海外資材の直輸入</h3>
             <p class="text-white/50 text-fluid-sm leading-relaxed">海外資材を独自ルートで安定調達。コストダウンとオリジナリティの高いデザインを両立します。</p>
           </div>
           <div class="reveal">
+            <div class="size-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-5">
+              <svg class="size-6 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.867 1.71-6.137L2.25 8.75h6.3L11.42 2.75l2.87 6h6.3l-5.497 4.15 1.71 6.137L11.42 15.17z" /></svg>
+            </div>
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">特殊工事にも対応</h3>
             <p class="text-white/50 text-fluid-sm leading-relaxed">照明の多い工事や病院のような特殊な要件にも対応。第一種電気工事士、消防設備士甲種など国家資格保有者が在籍。</p>
           </div>
@@ -660,7 +673,7 @@
     </section>
 
     <!-- CLIENTS / TRUST BANNER -->
-    <section class="warm-depth bg-surface-warm py-12 md:py-16 px-(--spacing-section-x) border-y border-navy-100">
+    <section class="warm-depth bg-surface-warm py-(--spacing-bridge-y) px-(--spacing-section-x) border-y border-navy-100">
       <div class="mx-auto max-w-5xl">
         <div class="reveal">
           <!-- Stats row -->
@@ -700,21 +713,27 @@
         <!-- Mobile: horizontal scroll / Desktop: grid -->
         <div class="md:hidden testimonial-scroll flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory reveal" role="list" aria-label="お客様の声一覧">
           <blockquote class="snap-start bg-white rounded-lg border-l-2 border-accent-500 p-6 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
-            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
+            <span class="quote-mark block -mb-4" aria-hidden="true">&ldquo;</span>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-4">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
+            <div class="flex gap-1 mb-4" aria-label="満足度5" role="img"><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span></div>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; T.S 様</cite>
               <span class="text-navy-400 text-fluid-xs">飲食チェーン / 経営企画部</span>
             </footer>
           </blockquote>
           <blockquote class="snap-start bg-navy-50 rounded-lg border-l-2 border-navy-300 p-6 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
-            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
+            <span class="quote-mark block -mb-4" aria-hidden="true">&ldquo;</span>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-4">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
+            <div class="flex gap-1 mb-4" aria-label="満足度5" role="img"><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span></div>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; M.K 様</cite>
               <span class="text-navy-400 text-fluid-xs">IT企業 / 総務部長</span>
             </footer>
           </blockquote>
           <blockquote class="snap-start bg-white rounded-lg border-l-2 border-accent-500 p-6 min-w-[20rem] max-w-sm flex-shrink-0" role="listitem">
-            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
+            <span class="quote-mark block -mb-4" aria-hidden="true">&ldquo;</span>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-4">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
+            <div class="flex gap-1 mb-4" aria-label="満足度5" role="img"><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span></div>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; A.Y 様</cite>
               <span class="text-navy-400 text-fluid-xs">小売チェーン / 店舗開発部</span>
@@ -725,21 +744,27 @@
         <!-- Desktop: 3-column grid -->
         <div class="hidden md:grid md:grid-cols-3 gap-6 reveal-stagger" role="list" aria-label="お客様の声一覧">
           <blockquote class="reveal bg-white rounded-lg border-l-2 border-accent-500 p-8" role="listitem">
-            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
+            <span class="quote-mark block -mb-6" aria-hidden="true">&ldquo;</span>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-4">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
+            <div class="flex gap-1 mb-4" aria-label="満足度5" role="img"><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span></div>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; T.S 様</cite>
               <span class="text-navy-400 text-fluid-xs">飲食チェーン / 経営企画部</span>
             </footer>
           </blockquote>
           <blockquote class="reveal bg-navy-50 rounded-lg border-l-2 border-navy-300 p-8" role="listitem">
-            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
+            <span class="quote-mark block -mb-6" aria-hidden="true">&ldquo;</span>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-4">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
+            <div class="flex gap-1 mb-4" aria-label="満足度5" role="img"><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span></div>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; M.K 様</cite>
               <span class="text-navy-400 text-fluid-xs">IT企業 / 総務部長</span>
             </footer>
           </blockquote>
           <blockquote class="reveal bg-white rounded-lg border-l-2 border-accent-500 p-8" role="listitem">
-            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-6">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
+            <span class="quote-mark block -mb-6" aria-hidden="true">&ldquo;</span>
+            <p class="text-navy-700 text-fluid-sm leading-relaxed mb-4">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
+            <div class="flex gap-1 mb-4" aria-label="満足度5" role="img"><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span><span class="size-1.5 rounded-full bg-accent-500"></span></div>
             <footer>
               <cite class="not-italic text-navy-900 font-bold text-fluid-sm block">&mdash; A.Y 様</cite>
               <span class="text-navy-400 text-fluid-xs">小売チェーン / 店舗開発部</span>
@@ -750,7 +775,7 @@
     </section>
 
     <!-- AREA -->
-    <section id="area" class="bg-white py-12 md:py-16 px-(--spacing-section-x) border-t border-navy-100">
+    <section id="area" class="bg-white py-(--spacing-bridge-y) px-(--spacing-section-x) border-t border-navy-100">
       <div class="mx-auto max-w-5xl">
         <div class="reveal flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
           <!-- Heading with icon -->
@@ -769,7 +794,7 @@
     </section>
 
     <!-- CTA -->
-    <section id="cta" class="bg-navy-600 py-16 md:py-20 px-(--spacing-section-x)">
+    <section id="cta" class="bg-navy-600 py-(--spacing-bridge-y) px-(--spacing-section-x)" style="box-shadow: inset 0 20px 40px -20px rgba(28,18,16,0.15);">
       <div class="mx-auto max-w-4xl text-center">
         <div class="reveal">
           <h2 class="text-fluid-3xl font-bold text-white mb-3 font-display">内装の図面、描きます。</h2>
@@ -782,7 +807,7 @@
                 <span class="block leading-tight" style="font-variant-numeric: tabular-nums;">03-6821-1924</span>
               </span>
             </a>
-            <a href="pages/contact.html" class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/30 hover:bg-white/20 hover:border-white/50 text-white font-display font-bold rounded-xl no-underline text-fluid-base transition-all duration-150">
+            <a href="pages/contact.html" class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/30 hover:bg-white/20 hover:border-white/60 text-white font-display font-bold rounded-xl no-underline text-fluid-base transition-all duration-150">
               <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
               メールで問い合わせ
             </a>
