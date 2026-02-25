@@ -153,6 +153,13 @@
       transform: scale(1.08) translate(0.5%, -1.5%);
       will-change: transform;
     }
+    .hero-slide[data-drift="down"] .hero-slide-img {
+      transform: scale(1.0) translate(0, 0);
+    }
+    .hero-slide[data-drift="down"].is-active .hero-slide-img {
+      transform: scale(1.08) translate(-0.5%, 1.5%);
+      will-change: transform;
+    }
 
     /* Gradient scrim */
     .hero-slide::after {
@@ -576,20 +583,30 @@
       <!-- Cinematic Slideshow — full-bleed -->
       <div class="hero-slideshow overflow-hidden aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9]" aria-roledescription="carousel" aria-label="施工事例スライドショー">
         <!-- Slides -->
-        <div class="hero-slide is-active" data-drift="right" role="group" aria-roledescription="slide" aria-label="施工事例 1 / 3">
+        <div class="hero-slide is-active" data-drift="right" role="group" aria-roledescription="slide" aria-label="施工事例 1 / 5">
           <img src="images/projects/serene/photo1.jpg"
                alt="ゴールドと黒を基調としたプレミアムクラブの内装施工事例"
                class="hero-slide-img" loading="eager" width="1200" height="800">
         </div>
-        <div class="hero-slide" data-drift="left" role="group" aria-roledescription="slide" aria-label="施工事例 2 / 3">
+        <div class="hero-slide" data-drift="left" role="group" aria-roledescription="slide" aria-label="施工事例 2 / 5">
           <img src="images/projects/serene/photo2.jpg"
                alt="クリスタルシャンデリアが輝く回廊の内装施工事例"
                class="hero-slide-img" loading="eager" width="600" height="450">
         </div>
-        <div class="hero-slide" data-drift="up" role="group" aria-roledescription="slide" aria-label="施工事例 3 / 3">
+        <div class="hero-slide" data-drift="up" role="group" aria-roledescription="slide" aria-label="施工事例 3 / 5">
           <img src="images/projects/glow/after.jpg"
                alt="ネオン照明が映えるナイトクラブVIPエリアの内装施工事例"
                class="hero-slide-img" loading="eager" width="600" height="450">
+        </div>
+        <div class="hero-slide" data-drift="down" role="group" aria-roledescription="slide" aria-label="施工事例 4 / 5">
+          <img src="images/projects/serene/photo4.jpg"
+               alt="ゴールドタイルとLEDディスプレイが映えるクラブエントランスの施工事例"
+               class="hero-slide-img" loading="lazy" width="600" height="450">
+        </div>
+        <div class="hero-slide" data-drift="right" role="group" aria-roledescription="slide" aria-label="施工事例 5 / 5">
+          <img src="images/projects/friends-bar/after.jpg"
+               alt="木の温もりを活かしたカフェ＆バーの内装施工事例"
+               class="hero-slide-img" loading="lazy" width="600" height="450">
         </div>
 
         <!-- Branding overlay on photos -->
@@ -608,12 +625,14 @@
               <div class="hero-counter">
                 <span class="hero-counter-current" data-counter>01</span>
                 <span class="hero-counter-line"><span class="hero-counter-fill"></span></span>
-                <span>03</span>
+                <span>05</span>
               </div>
               <div class="flex gap-1.5" role="tablist" aria-label="スライド切り替え">
                 <button type="button" class="hero-dot is-active" role="tab" aria-selected="true" aria-label="スライド1を表示"></button>
                 <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド2を表示"></button>
                 <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド3を表示"></button>
+                <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド4を表示"></button>
+                <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド5を表示"></button>
               </div>
             </div>
           </div>
@@ -624,6 +643,8 @@
           <button type="button" class="hero-dot is-active" role="tab" aria-selected="true" aria-label="スライド1を表示"></button>
           <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド2を表示"></button>
           <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド3を表示"></button>
+          <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド4を表示"></button>
+          <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド5を表示"></button>
         </div>
       </div>
 
