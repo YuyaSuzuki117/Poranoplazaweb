@@ -105,6 +105,85 @@
     .reveal-stagger > .reveal:nth-child(5) { transition-delay: 400ms; }
     .reveal-stagger > .reveal:nth-child(6) { transition-delay: 500ms; }
 
+    /* Hero Cinematic Slideshow */
+    .hero-slideshow { background: var(--color-navy-950); }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 1.2s ease-out;
+    }
+    .hero-slide.is-active {
+      opacity: 1;
+      z-index: 2;
+    }
+    .hero-slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1);
+      transition: transform 6s ease-out;
+    }
+    .hero-slide.is-active .hero-slide-img {
+      transform: scale(1.06);
+    }
+    .hero-slide-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(0.75rem);
+      transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s;
+    }
+    .hero-slide.is-active .hero-slide-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (min-width: 768px) {
+      .hero-slide-caption { bottom: 2rem; left: 2rem; }
+    }
+    /* Gradient scrim for text readability */
+    .hero-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,10,9,0.6) 0%, rgba(12,10,9,0.1) 40%, transparent 70%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.3s ease-out, transform 0.3s ease-out;
+    }
+    .hero-dot.is-active {
+      background: var(--color-accent-400);
+      transform: scale(1.5);
+    }
+
+    .hero-progress {
+      transition: width 0.1s linear;
+    }
+
+    /* prefers-reduced-motion: disable Ken Burns + crossfade */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { transition: none; }
+      .hero-slide-img { transition: none; transform: none !important; }
+      .hero-slide-caption { transition: none; opacity: 1; transform: none; }
+      .hero-progress { transition: none; }
+    }
+
     .bento-card { transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; }
     .bento-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(28,18,16,0.18); }
     .bento-card img { transition: transform 0.4s ease-out; }
@@ -384,32 +463,51 @@
     <section class="noise-texture relative bg-navy-950 pt-24 pb-12 md:pt-28 md:pb-16">
       <div class="mx-auto w-full max-w-7xl px-(--spacing-section-x)">
 
-        <!-- Photo Grid -->
-        <div class="reveal-scale grid grid-cols-2 md:grid-cols-12 gap-1.5 md:gap-2">
-          <!-- Main photo -->
-          <div class="col-span-2 md:col-span-8 md:row-span-2 relative overflow-hidden rounded-2xl">
+        <!-- Cinematic Slideshow -->
+        <div class="hero-slideshow reveal-scale relative overflow-hidden rounded-2xl aspect-[4/3] md:aspect-[21/9]" aria-roledescription="carousel" aria-label="施工事例スライドショー">
+          <!-- Slides -->
+          <div class="hero-slide is-active" role="group" aria-roledescription="slide" aria-label="1 / 3: 代官山SERENE VIPルーム">
             <img src="images/projects/serene/photo1.jpg"
-                 alt="ゴールドと黒を基調としたプレミアムクラブの内装施工事例"
-                 class="w-full h-full object-cover aspect-[4/3] md:aspect-auto md:absolute md:inset-0"
-                 loading="eager" width="1200" height="800">
+                 alt="ゴールドと黒を基調としたプレミアムクラブのVIPルーム施工事例"
+                 class="hero-slide-img" loading="eager" width="1200" height="800">
+            <div class="hero-slide-caption">
+              <span class="text-accent-400 font-display font-bold text-fluid-xs tracking-wide uppercase">Nightclub</span>
+              <span class="text-white font-display font-bold text-fluid-lg">代官山 SERENE</span>
+            </div>
           </div>
-          <!-- Top right -->
-          <div class="col-span-1 md:col-span-4 relative overflow-hidden rounded-xl">
+          <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 / 3: 代官山SERENE 回廊">
             <img src="images/projects/serene/photo2.jpg"
                  alt="クリスタルシャンデリアが輝く回廊の内装施工事例"
-                 class="w-full h-full object-cover aspect-square md:aspect-[4/3]"
-                 loading="eager" width="600" height="450">
+                 class="hero-slide-img" loading="eager" width="600" height="450">
+            <div class="hero-slide-caption">
+              <span class="text-accent-400 font-display font-bold text-fluid-xs tracking-wide uppercase">Nightclub</span>
+              <span class="text-white font-display font-bold text-fluid-lg">代官山 SERENE</span>
+            </div>
           </div>
-          <!-- Bottom right -->
-          <div class="col-span-1 md:col-span-4 relative overflow-hidden rounded-xl">
+          <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 / 3: 歌舞伎町GLOW VIPエリア">
             <img src="images/projects/glow/after.jpg"
                  alt="ネオン照明が映えるナイトクラブVIPエリアの内装施工事例"
-                 class="w-full h-full object-cover aspect-square md:aspect-[4/3]"
-                 loading="eager" width="600" height="450">
+                 class="hero-slide-img" loading="eager" width="600" height="450">
+            <div class="hero-slide-caption">
+              <span class="text-accent-400 font-display font-bold text-fluid-xs tracking-wide uppercase">Nightclub</span>
+              <span class="text-white font-display font-bold text-fluid-lg">歌舞伎町 GLOW</span>
+            </div>
+          </div>
+
+          <!-- Progress bar -->
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10" style="z-index: 4;" aria-hidden="true">
+            <div class="hero-progress h-full bg-accent-400/80 w-0"></div>
+          </div>
+
+          <!-- Dot nav -->
+          <div class="absolute bottom-4 right-4 md:bottom-6 md:right-6 flex gap-2" style="z-index: 4;" role="tablist" aria-label="スライド切り替え">
+            <button type="button" class="hero-dot is-active" role="tab" aria-selected="true" aria-label="スライド1を表示"></button>
+            <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド2を表示"></button>
+            <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド3を表示"></button>
           </div>
         </div>
 
-        <!-- Text content: below grid -->
+        <!-- Text content: below slideshow -->
         <div class="reveal relative mt-8 md:mt-12">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-end">
 

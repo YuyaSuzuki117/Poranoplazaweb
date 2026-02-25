@@ -186,6 +186,73 @@
   });
 
   /* ========================================
+     Hero Cinematic Slideshow
+     ======================================== */
+  const slideshow = document.querySelector(".hero-slideshow");
+  if (slideshow) {
+    const slides = slideshow.querySelectorAll(".hero-slide");
+    const dots = slideshow.querySelectorAll(".hero-dot");
+    const progressBar = slideshow.querySelector(".hero-progress");
+    const INTERVAL = 5000; // 5s per slide
+    const TICK = 50;
+    let current = 0;
+    let elapsed = 0;
+    let timer = null;
+    let paused = false;
+
+    function goTo(index) {
+      slides[current].classList.remove("is-active");
+      dots[current].classList.remove("is-active");
+      dots[current].setAttribute("aria-selected", "false");
+
+      current = index;
+      elapsed = 0;
+
+      slides[current].classList.add("is-active");
+      dots[current].classList.add("is-active");
+      dots[current].setAttribute("aria-selected", "true");
+
+      if (progressBar) progressBar.style.width = "0%";
+    }
+
+    function tick() {
+      if (paused) return;
+      elapsed += TICK;
+      if (progressBar) {
+        progressBar.style.width = (elapsed / INTERVAL * 100) + "%";
+      }
+      if (elapsed >= INTERVAL) {
+        goTo((current + 1) % slides.length);
+      }
+    }
+
+    // Dot clicks
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () {
+        if (i !== current) goTo(i);
+      });
+    });
+
+    // Pause on hover / focus
+    slideshow.addEventListener("mouseenter", function () { paused = true; });
+    slideshow.addEventListener("mouseleave", function () { paused = false; });
+    slideshow.addEventListener("focusin", function () { paused = true; });
+    slideshow.addEventListener("focusout", function () { paused = false; });
+
+    // Pause when off-screen
+    var slideshowObserver = new IntersectionObserver(function (entries) {
+      paused = !entries[0].isIntersecting;
+    }, { threshold: 0.2 });
+    slideshowObserver.observe(slideshow);
+
+    // Respect reduced motion
+    var prefersRM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersRM) {
+      timer = setInterval(tick, TICK);
+    }
+  }
+
+  /* ========================================
      Current Year in Footer
      ======================================== */
   const yearEl = document.getElementById("current-year");
