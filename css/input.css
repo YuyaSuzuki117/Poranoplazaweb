@@ -372,6 +372,64 @@
     color: var(--color-accent-500);
   }
 
+  /* Project card (AK-style floating card) */
+  .project-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(28, 18, 16, 0.08);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease-out;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(28, 18, 16, 0.14);
+  }
+
+  .project-card-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+
+  /* Photo frame (AK-style white padding + shadow) */
+  .photo-frame {
+    padding: 0.75rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(28, 18, 16, 0.08);
+  }
+
+  .photo-frame img,
+  .photo-frame img-comparison-slider {
+    border-radius: 0.5rem;
+  }
+
+  /* Wipe reveal animation */
+  .reveal-wipe {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reveal-wipe::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-navy-950, #0A1628);
+    transform: scaleX(1);
+    transform-origin: left;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .reveal-wipe.is-visible::after {
+    animation: wipeReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
+
+  @keyframes wipeReveal {
+    0%   { transform: scaleX(1); transform-origin: left; }
+    50%  { transform: scaleX(1); transform-origin: right; }
+    100% { transform: scaleX(0); transform-origin: right; }
+  }
+
   /* img-comparison-slider customization */
   img-comparison-slider {
     --divider-width: 3px;

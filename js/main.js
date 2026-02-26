@@ -96,7 +96,7 @@
      Scroll Reveal (IntersectionObserver)
      ======================================== */
   var revealElements = document.querySelectorAll(
-    ".reveal, .reveal-left, .reveal-right, .reveal-scale"
+    ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-wipe"
   );
 
   if (revealElements.length > 0) {

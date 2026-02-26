@@ -130,6 +130,15 @@
 
     img-comparison-slider { --divider-width: 3px; --divider-color: white; --default-handle-opacity: 1; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
 
+    /* Project card */
+    .project-card { background: white; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 24px rgba(28,18,16,0.08); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease-out; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,18,16,0.14); }
+    .project-card-body { padding: 1.25rem 1.5rem 1.5rem; }
+
+    /* Photo frame */
+    .photo-frame { padding: 0.75rem; background: white; border-radius: 1rem; box-shadow: 0 4px 24px rgba(28,18,16,0.08); }
+    .photo-frame img, .photo-frame img-comparison-slider { border-radius: 0.5rem; }
+
     /* Gallery image hover */
     .gallery-image { transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; cursor: pointer; }
     .gallery-image:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(28,18,16,0.15); }
@@ -139,8 +148,7 @@
     .filter-tab:hover { color: var(--color-navy-700); border-color: var(--color-navy-400); }
     .filter-tab.is-active { color: white; background: var(--color-navy-800); border-color: var(--color-navy-800); }
 
-    /* Offset gallery grid */
-    .gallery-offset > *:nth-child(even) { transform: translateY(1.5rem); }
+    /* Offset gallery grid (legacy, kept for reference) */
 
     /* Lightbox */
     .lightbox-overlay { position: fixed; inset: 0; z-index: 400; background: rgba(12,10,9,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease-out; }
@@ -242,14 +250,14 @@
         <!-- ===== Featured: GLOW ===== -->
         <article class="reveal mb-20" data-category="nightclub">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div class="relative">
+            <div class="photo-frame relative">
               <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="新宿区ナイトクラブの施工前後比較">
                 <figure slot="first" class="m-0 p-0"><img src="../images/projects/glow/before.jpg" alt="ナイトクラブ 施工前" width="600" height="400" loading="lazy"></figure>
                 <figure slot="second" class="m-0 p-0"><img src="../images/projects/glow/after.jpg" alt="ナイトクラブ 施工後" width="600" height="400" loading="lazy"></figure>
                 <div slot="handle"><div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize"><svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg></div></div>
               </img-comparison-slider>
-              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
-              <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
+              <span class="absolute top-4 left-4 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
+              <span class="absolute top-4 right-4 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
             </div>
             <div class="py-2">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">ナイトクラブ</span>
@@ -268,8 +276,8 @@
         <!-- ===== Featured: SERENE ===== -->
         <article class="reveal mb-20" data-category="nightclub">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div class="md:order-2">
-              <img src="../images/projects/serene/photo1.jpg" alt="プレミアムクラブ メインフロア" class="w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
+            <div class="photo-frame md:order-2">
+              <img src="../images/projects/serene/photo1.jpg" alt="プレミアムクラブ メインフロア" class="w-full aspect-[4/3] object-cover" loading="lazy" width="600" height="400">
             </div>
             <div class="py-2 md:order-1">
               <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">プレミアムクラブ</span>
@@ -283,20 +291,46 @@
               <p class="text-navy-400 text-fluid-sm leading-relaxed">新宿区のプレミアムクラブをスケルトンから新装。高級感のあるマテリアル選定、間接照明による演出、VIPエリアの造作まで一貫施工。</p>
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-3 mt-6 reveal-stagger">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6 reveal-stagger">
             <img src="../images/projects/serene/photo2.jpg" alt="プレミアムクラブ VIPエリア" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267" data-lightbox-src="../images/projects/serene/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: プレミアムクラブ VIPエリア">
             <img src="../images/projects/serene/photo3.jpg" alt="プレミアムクラブ 照明デザイン" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267" data-lightbox-src="../images/projects/serene/photo3.jpg" tabindex="0" role="button" aria-label="写真を拡大: プレミアムクラブ 照明デザイン">
             <img src="../images/projects/serene/photo4.jpg" alt="プレミアムクラブ バーカウンター" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267" data-lightbox-src="../images/projects/serene/photo4.jpg" tabindex="0" role="button" aria-label="写真を拡大: プレミアムクラブ バーカウンター">
+            <img src="../images/projects/serene/photo5.jpg" alt="プレミアムクラブ エントランス" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="400" height="267" data-lightbox-src="../images/projects/serene/photo5.jpg" tabindex="0" role="button" aria-label="写真を拡大: プレミアムクラブ エントランス">
           </div>
         </article>
 
-        <!-- ===== Offset Grid: Remaining Projects ===== -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 gallery-offset">
+        <!-- ===== Featured: IWANAGA ===== -->
+        <article class="reveal mb-20" data-category="bar">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <div class="photo-frame">
+              <img src="../images/projects/iwanaga/20241222_K2291033_3000.jpg" alt="バー＆ラウンジ メインフロア全景" class="w-full aspect-[4/3] object-cover" loading="lazy" width="3000" height="2000">
+            </div>
+            <div class="py-2">
+              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">バー＆ラウンジ</span>
+              <h2 class="text-fluid-2xl font-bold text-navy-900 mt-2 mb-3">バー＆ラウンジ 新装工事</h2>
+              <dl class="grid grid-cols-2 gap-3 mb-4 text-fluid-sm">
+                <div><dt class="text-navy-400">工事種別</dt><dd class="text-navy-700">内装工事</dd></div>
+                <div><dt class="text-navy-400">施工タイプ</dt><dd class="text-navy-700">新装工事</dd></div>
+                <div><dt class="text-navy-400">施工内容</dt><dd class="text-navy-700">バー＆ラウンジの空間デザイン</dd></div>
+                <div><dt class="text-navy-400">エリア</dt><dd class="text-navy-700">東京都</dd></div>
+              </dl>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">鏡面仕上げのバーカウンター、壁面パネルのディテール、間接照明を駆使したラグジュアリーなバー空間。プロフェッショナルな照明設計で、昼夜で異なる表情を演出。</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-6 reveal-stagger">
+            <img src="../images/projects/iwanaga/20241222_K2291058_3000.jpg" alt="バー＆ラウンジ 鏡面バーカウンター" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="3000" height="2000" data-lightbox-src="../images/projects/iwanaga/20241222_K2291058_3000.jpg" tabindex="0" role="button" aria-label="写真を拡大: 鏡面バーカウンター">
+            <img src="../images/projects/iwanaga/20241222_K2291039_3000.jpg" alt="バー＆ラウンジ 壁面パネル" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="3000" height="2000" data-lightbox-src="../images/projects/iwanaga/20241222_K2291039_3000.jpg" tabindex="0" role="button" aria-label="写真を拡大: 壁面パネル">
+            <img src="../images/projects/iwanaga/20241222_K2291044_3000.jpg" alt="バー＆ラウンジ 照明ディテール" class="reveal gallery-image w-full rounded-xl aspect-[3/2] object-cover" loading="lazy" width="3000" height="2000" data-lightbox-src="../images/projects/iwanaga/20241222_K2291044_3000.jpg" tabindex="0" role="button" aria-label="写真を拡大: 照明ディテール">
+          </div>
+        </article>
+
+        <!-- ===== Card Grid: Other Projects ===== -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
           <!-- Dog Cafe -->
-          <article class="reveal" data-category="cafe">
-            <div class="relative mb-4">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="千葉県ドッグカフェの施工前後比較">
+          <article class="project-card reveal" data-category="cafe">
+            <div class="relative">
+              <img-comparison-slider class="w-full aspect-[4/3]" style="border-radius: 0; box-shadow: none;" tabindex="0" aria-label="千葉県ドッグカフェの施工前後比較">
                 <figure slot="first" class="m-0 p-0"><img src="../images/projects/dog-cafe/before.jpg" alt="ドッグカフェ 施工前" width="600" height="400" loading="lazy"></figure>
                 <figure slot="second" class="m-0 p-0"><img src="../images/projects/dog-cafe/after.jpg" alt="ドッグカフェ 施工後" width="600" height="400" loading="lazy"></figure>
                 <div slot="handle"><div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize"><svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg></div></div>
@@ -304,19 +338,21 @@
               <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
               <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
             </div>
-            <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">ドッグカフェ</span>
-            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">千葉県 ドッグカフェ新装工事</h3>
-            <p class="text-navy-400 text-fluid-sm leading-relaxed">ペットと人が快適に過ごせる耐久性のある床材選定、動線設計、照明計画まで一貫対応。</p>
-            <div class="grid grid-cols-2 gap-2 mt-4">
-              <img src="../images/projects/dog-cafe/gallery1.jpg" alt="ドッグカフェ 店内" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/dog-cafe/gallery1.jpg" tabindex="0" role="button" aria-label="写真を拡大: ドッグカフェ 店内">
-              <img src="../images/projects/dog-cafe/gallery2.jpg" alt="ドッグカフェ カウンター" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/dog-cafe/gallery2.jpg" tabindex="0" role="button" aria-label="写真を拡大: ドッグカフェ カウンター">
+            <div class="project-card-body">
+              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">ドッグカフェ</span>
+              <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">千葉県 ドッグカフェ新装工事</h3>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">ペットと人が快適に過ごせる耐久性のある床材選定、動線設計、照明計画まで一貫対応。</p>
+              <div class="grid grid-cols-2 gap-2 mt-4">
+                <img src="../images/projects/dog-cafe/gallery1.jpg" alt="ドッグカフェ 店内" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/dog-cafe/gallery1.jpg" tabindex="0" role="button" aria-label="写真を拡大: ドッグカフェ 店内">
+                <img src="../images/projects/dog-cafe/gallery2.jpg" alt="ドッグカフェ カウンター" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/dog-cafe/gallery2.jpg" tabindex="0" role="button" aria-label="写真を拡大: ドッグカフェ カウンター">
+              </div>
             </div>
           </article>
 
           <!-- Friends Bar -->
-          <article class="reveal" data-category="bar">
-            <div class="relative mb-4">
-              <img-comparison-slider class="w-full aspect-[4/3]" tabindex="0" aria-label="港区赤坂バーの施工前後比較">
+          <article class="project-card reveal" data-category="bar">
+            <div class="relative">
+              <img-comparison-slider class="w-full aspect-[4/3]" style="border-radius: 0; box-shadow: none;" tabindex="0" aria-label="港区赤坂バーの施工前後比較">
                 <figure slot="first" class="m-0 p-0"><img src="../images/projects/friends-bar/before.jpg" alt="バー 施工前" width="600" height="400" loading="lazy"></figure>
                 <figure slot="second" class="m-0 p-0"><img src="../images/projects/friends-bar/after.jpg" alt="バー 施工後" width="600" height="400" loading="lazy"></figure>
                 <div slot="handle"><div class="flex items-center justify-center size-10 rounded-full bg-white shadow-lg cursor-ew-resize"><svg class="size-4 text-navy-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg></div></div>
@@ -324,57 +360,48 @@
               <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">Before</span>
               <span class="absolute top-3 right-3 px-2.5 py-0.5 bg-navy-950/70 text-white text-xs font-display font-bold rounded" style="z-index: 10; backdrop-filter: blur(4px);">After</span>
             </div>
-            <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">バー</span>
-            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">港区赤坂 バー改装工事</h3>
-            <p class="text-navy-400 text-fluid-sm leading-relaxed">カウンター造作、照明のリデザイン、壁面・床の仕上げまで、居心地のよい空間に一新。</p>
-            <div class="grid grid-cols-2 gap-2 mt-4">
-              <img src="../images/projects/friends-bar/after.jpg" alt="バー 完成した店内" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/friends-bar/after.jpg" tabindex="0" role="button" aria-label="写真を拡大: バー 完成した店内">
-              <img src="../images/projects/friends-bar/gallery2.jpg" alt="バー 客席エリア" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/friends-bar/gallery2.jpg" tabindex="0" role="button" aria-label="写真を拡大: バー 客席エリア">
+            <div class="project-card-body">
+              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">バー</span>
+              <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">港区赤坂 バー改装工事</h3>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">カウンター造作、照明のリデザイン、壁面・床の仕上げまで、居心地のよい空間に一新。</p>
+              <div class="grid grid-cols-2 gap-2 mt-4">
+                <img src="../images/projects/friends-bar/after.jpg" alt="バー 完成した店内" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/friends-bar/after.jpg" tabindex="0" role="button" aria-label="写真を拡大: バー 完成した店内">
+                <img src="../images/projects/friends-bar/gallery2.jpg" alt="バー 客席エリア" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/friends-bar/gallery2.jpg" tabindex="0" role="button" aria-label="写真を拡大: バー 客席エリア">
+              </div>
             </div>
           </article>
 
           <!-- Office -->
-          <article class="reveal" data-category="office">
-            <div class="mb-4">
-              <img src="../images/projects/office/photo1.jpg" alt="レンタルオフィス エントランス" class="gallery-image w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400" data-lightbox-src="../images/projects/office/photo1.jpg" tabindex="0" role="button" aria-label="写真を拡大: レンタルオフィス">
+          <article class="project-card reveal" data-category="office">
+            <div>
+              <img src="../images/projects/office/photo1.jpg" alt="レンタルオフィス エントランス" class="gallery-image w-full aspect-[4/3] object-cover" loading="lazy" width="600" height="400" data-lightbox-src="../images/projects/office/photo1.jpg" tabindex="0" role="button" aria-label="写真を拡大: レンタルオフィス">
             </div>
-            <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">オフィス</span>
-            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">港区御成門 オフィス内装工事</h3>
-            <p class="text-navy-400 text-fluid-sm leading-relaxed">パーテーション、天井・壁・床仕上げ、照明・空調設備まで一括施工。</p>
-            <div class="grid grid-cols-2 gap-2 mt-4">
-              <img src="../images/projects/office/photo2.jpg" alt="オフィス ワークスペース" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/office/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: オフィス ワークスペース">
-              <img src="../images/projects/office/photo3.jpg" alt="オフィス 会議室" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/office/photo3.jpg" tabindex="0" role="button" aria-label="写真を拡大: オフィス 会議室">
+            <div class="project-card-body">
+              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">オフィス</span>
+              <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">港区御成門 オフィス内装工事</h3>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">パーテーション、天井・壁・床仕上げ、照明・空調設備まで一括施工。</p>
+              <div class="grid grid-cols-2 gap-2 mt-4">
+                <img src="../images/projects/office/photo2.jpg" alt="オフィス ワークスペース" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/office/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: オフィス ワークスペース">
+                <img src="../images/projects/office/photo3.jpg" alt="オフィス 会議室" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/office/photo3.jpg" tabindex="0" role="button" aria-label="写真を拡大: オフィス 会議室">
+              </div>
             </div>
           </article>
 
           <!-- Rakuen -->
-          <article class="reveal" data-category="amusement">
-            <div class="mb-4">
-              <img src="../images/projects/rakuen/photo1.jpg" alt="アミューズメント施設 店内" class="gallery-image w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400" data-lightbox-src="../images/projects/rakuen/photo1.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設">
+          <article class="project-card reveal" data-category="amusement">
+            <div>
+              <img src="../images/projects/rakuen/photo1.jpg" alt="アミューズメント施設 店内" class="gallery-image w-full aspect-[4/3] object-cover" loading="lazy" width="600" height="400" data-lightbox-src="../images/projects/rakuen/photo1.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設">
             </div>
-            <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">アミューズメント</span>
-            <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">豊島区池袋 アミューズメント施設内装工事</h3>
-            <dl class="flex gap-4 mb-2 text-fluid-xs text-navy-400">
-              <div><dt class="inline">予算:</dt> <dd class="inline text-navy-600" style="font-variant-numeric: tabular-nums;">1,600万円</dd></div>
-            </dl>
-            <p class="text-navy-400 text-fluid-sm leading-relaxed">大型アミューズメント施設の遊技台配置設計、照明計画、空調・換気システムまで一括対応。</p>
-            <div class="grid grid-cols-2 gap-2 mt-4">
-              <img src="../images/projects/rakuen/photo2.jpg" alt="アミューズメント施設 フロア" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/rakuen/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設 フロア">
-              <img src="../images/projects/rakuen/photo3.jpg" alt="アミューズメント施設 エントランス" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/rakuen/photo3.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設 エントランス">
-            </div>
-          </article>
-
-          <!-- Yakiniku -->
-          <article class="reveal md:col-span-2" data-category="restaurant">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              <div>
-                <img src="../images/projects/yakiniku/photo1.jpg" alt="焼肉店 店内" class="gallery-image w-full rounded-2xl aspect-[4/3] object-cover" loading="lazy" width="600" height="400" data-lightbox-src="../images/projects/yakiniku/photo1.jpg" tabindex="0" role="button" aria-label="写真を拡大: 焼肉店 店内">
-              </div>
-              <div class="py-2">
-                <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">飲食店</span>
-                <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">越谷市 焼肉店内装工事</h3>
-                <p class="text-navy-400 text-fluid-sm leading-relaxed mb-4">排煙ダクト設計、客席レイアウト、カウンター造作、照明計画まで飲食店特有の要件に対応した施工。</p>
-                <img src="../images/projects/yakiniku/photo2.jpg" alt="焼肉店 客席エリア" class="gallery-image w-full rounded-xl aspect-[21/9] object-cover" loading="lazy" width="600" height="257" data-lightbox-src="../images/projects/yakiniku/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: 焼肉店 客席エリア">
+            <div class="project-card-body">
+              <span class="text-accent-500 text-fluid-xs font-display font-bold tracking-wider">アミューズメント</span>
+              <h3 class="text-fluid-xl font-bold text-navy-900 mt-1 mb-2">豊島区池袋 アミューズメント施設内装工事</h3>
+              <dl class="flex gap-4 mb-2 text-fluid-xs text-navy-400">
+                <div><dt class="inline">予算:</dt> <dd class="inline text-navy-600" style="font-variant-numeric: tabular-nums;">1,600万円</dd></div>
+              </dl>
+              <p class="text-navy-400 text-fluid-sm leading-relaxed">大型アミューズメント施設の遊技台配置設計、照明計画、空調・換気システムまで一括対応。</p>
+              <div class="grid grid-cols-2 gap-2 mt-4">
+                <img src="../images/projects/rakuen/photo2.jpg" alt="アミューズメント施設 フロア" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/rakuen/photo2.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設 フロア">
+                <img src="../images/projects/rakuen/photo3.jpg" alt="アミューズメント施設 エントランス" class="gallery-image w-full rounded-lg aspect-[3/2] object-cover" loading="lazy" width="300" height="200" data-lightbox-src="../images/projects/rakuen/photo3.jpg" tabindex="0" role="button" aria-label="写真を拡大: アミューズメント施設 エントランス">
               </div>
             </div>
           </article>
