@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせ | 株式会社ポラーノプラザ</title>
   <meta name="description" content="内装工事・空調設備・電気工事・消防設備に関するお問い合わせ・お見積もり依頼はこちら。24時間お電話でも受付中。">
-  <link rel="canonical" href="https://poranoplaza.com/pages/contact.html">
+  <link rel="canonical" href="https://yuyasuzuki117.github.io/Poranoplazaweb/pages/contact.html">
   <meta property="og:title" content="お問い合わせ | 株式会社ポラーノプラザ">
   <meta property="og:description" content="内装工事に関するお問い合わせ・お見積もり依頼はこちら。24時間お電話でも受付中。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://poranoplaza.com/pages/contact.html">
+  <meta property="og:url" content="https://yuyasuzuki117.github.io/Poranoplazaweb/pages/contact.html">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
   <meta property="og:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
   <meta name="twitter:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
 
@@ -91,8 +92,10 @@
     .reveal { opacity: 0; transform: translateY(2rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-    .section-label { display: block; font-family: var(--font-serif); font-size: clamp(2.5rem, 1.8rem + 3.5vw, 5rem); font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--color-navy-200); line-height: 0.9; opacity: 0.35; }
-    .section-label-light { color: var(--color-accent-400); opacity: 0.15; }
+    .section-label { display: inline-flex; align-items: center; gap: 1rem; font-family: var(--font-serif); font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent-500); }
+    .section-label::before { content: ""; display: block; width: 2.5rem; height: 1px; background: var(--color-accent-500); }
+    .section-label-light { color: var(--color-accent-400); }
+    .section-label-light::before { background: var(--color-accent-400); }
 
     .link-hover { position: relative; display: inline-block; }
     .link-hover::after { content: ""; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -340,6 +343,14 @@
                   <label for="field-message" class="form-label">お問い合わせ内容<span class="form-required" aria-label="必須">*</span></label>
                   <textarea id="field-message" name="message" class="form-input" rows="6" placeholder="工事内容やご要望をお知らせください" required aria-describedby="error-message"></textarea>
                   <p id="error-message" class="form-error" hidden aria-live="polite"></p>
+                </div>
+
+                <div class="mb-6">
+                  <label class="flex items-start gap-3 cursor-pointer">
+                    <input type="checkbox" id="field-privacy" name="privacy" class="mt-1 size-4 rounded border-navy-300 text-accent-500 focus:ring-accent-500" required aria-describedby="error-privacy">
+                    <span class="text-fluid-sm text-navy-500">個人情報の取り扱いに同意の上、送信してください。ご記入いただいた情報は、お問い合わせへの回答および弊社サービスのご案内にのみ使用いたします。</span>
+                  </label>
+                  <p id="error-privacy" class="form-error" hidden aria-live="polite"></p>
                 </div>
 
                 <button type="submit" class="submit-btn inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-3.5 bg-navy-800 hover:bg-navy-700 text-white font-display font-bold rounded-lg transition-colors duration-150 text-fluid-base">

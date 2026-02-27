@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>サービス紹介 | 株式会社ポラーノプラザ</title>
   <meta name="description" content="内装工事・空調設備工事・一般電気工事・消防設備工事の4つのサービスをワンストップで提供。見積もりから施工まで一貫対応。">
-  <link rel="canonical" href="https://poranoplaza.com/pages/services.html">
+  <link rel="canonical" href="https://yuyasuzuki117.github.io/Poranoplazaweb/pages/services.html">
   <meta property="og:title" content="サービス紹介 | 株式会社ポラーノプラザ">
   <meta property="og:description" content="内装工事・空調設備工事・一般電気工事・消防設備工事の4つのサービスをワンストップで提供。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://poranoplaza.com/pages/services.html">
+  <meta property="og:url" content="https://yuyasuzuki117.github.io/Poranoplazaweb/pages/services.html">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
   <meta property="og:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
   <meta name="twitter:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
 
@@ -110,8 +111,10 @@
     .reveal-stagger > .reveal:nth-child(6) { transition-delay: 600ms; }
 
     /* Section Label */
-    .section-label { display: block; font-family: var(--font-serif); font-size: clamp(2.5rem, 1.8rem + 3.5vw, 5rem); font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--color-navy-200); line-height: 0.9; opacity: 0.35; }
-    .section-label-light { color: var(--color-accent-400); opacity: 0.15; }
+    .section-label { display: inline-flex; align-items: center; gap: 1rem; font-family: var(--font-serif); font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem); font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent-500); }
+    .section-label::before { content: ""; display: block; width: 2.5rem; height: 1px; background: var(--color-accent-500); }
+    .section-label-light { color: var(--color-accent-400); }
+    .section-label-light::before { background: var(--color-accent-400); }
 
     /* Link Hover Underline */
     .link-hover { position: relative; display: inline-block; }
@@ -248,7 +251,7 @@
       <div class="mx-auto max-w-6xl">
         <!-- Full-width image with overlay -->
         <div class="reveal-scale relative rounded-2xl overflow-hidden mb-10">
-          <img src="../images/services/interior.jpg" alt="内装工事の施工イメージ" class="w-full aspect-[4/3] md:aspect-[21/9] object-cover" loading="lazy" width="1200" height="514">
+          <img src="../images/services/interior.webp" alt="内装工事の施工イメージ" class="w-full aspect-[4/3] md:aspect-[21/9] object-cover" loading="lazy" width="1200" height="514">
           <div class="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-navy-950/40 to-transparent flex items-end p-6 md:p-10">
             <div>
               <span class="watermark-number text-accent-400/30 text-fluid-6xl block mb-2" aria-hidden="true">01</span>
@@ -299,7 +302,7 @@
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="reveal-right md:order-2 relative">
-            <img src="../images/services/aircon.jpg" alt="空調設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <img src="../images/services/aircon.webp" alt="空調設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
             <span class="watermark-number absolute -top-4 -right-2 md:-right-6 text-white/[0.04] text-fluid-6xl" aria-hidden="true">02</span>
           </div>
           <div class="reveal-left md:order-1">
@@ -332,7 +335,7 @@
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-10">
           <div class="reveal-left relative">
-            <img src="../images/services/electrical.jpg" alt="一般電気工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <img src="../images/services/electrical.webp" alt="一般電気工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
             <span class="watermark-number absolute -top-4 -left-2 md:-left-6 text-navy-900/[0.04] text-fluid-6xl" aria-hidden="true">03</span>
           </div>
           <div class="reveal-right">
@@ -375,7 +378,7 @@
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="reveal-right md:order-2 relative">
-            <img src="../images/services/fire.jpg" alt="消防設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <img src="../images/services/fire.webp" alt="消防設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
             <span class="watermark-number absolute -bottom-4 -right-2 md:-right-6 text-white/[0.04] text-fluid-6xl" aria-hidden="true">04</span>
           </div>
           <div class="reveal-left md:order-1">

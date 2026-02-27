@@ -46,6 +46,14 @@
       validate: (v) => v.trim().length >= 10,
       message: "お問い合わせ内容を10文字以上入力してください。",
     },
+    privacy: {
+      el: form.querySelector("#field-privacy"),
+      error: form.querySelector("#error-privacy"),
+      validate: function () {
+        return fields.privacy.el && fields.privacy.el.checked;
+      },
+      message: "個人情報の取り扱いに同意してください。",
+    },
   };
 
   /**
@@ -82,7 +90,7 @@
     const field = fields[key];
     if (!field.el) return true;
 
-    const value = field.el.value;
+    const value = field.el.type === "checkbox" ? field.el.checked : field.el.value;
     if (!field.validate(value)) {
       showError(field);
       return false;
@@ -94,18 +102,25 @@
   // Focus animation: add/remove is-focused class for CSS transitions
   Object.keys(fields).forEach((key) => {
     if (!fields[key].el) return;
-    fields[key].el.addEventListener("focus", function () {
-      this.parentElement.classList.add("is-focused");
-    });
-    fields[key].el.addEventListener("blur", function () {
-      this.parentElement.classList.remove("is-focused");
-      validateField(key);
-    });
-    fields[key].el.addEventListener("input", () => {
-      if (fields[key].el.getAttribute("aria-invalid") === "true") {
+    var isCheckbox = fields[key].el.type === "checkbox";
+    if (!isCheckbox) {
+      fields[key].el.addEventListener("focus", function () {
+        this.parentElement.classList.add("is-focused");
+      });
+      fields[key].el.addEventListener("blur", function () {
+        this.parentElement.classList.remove("is-focused");
         validateField(key);
-      }
-    });
+      });
+      fields[key].el.addEventListener("input", () => {
+        if (fields[key].el.getAttribute("aria-invalid") === "true") {
+          validateField(key);
+        }
+      });
+    } else {
+      fields[key].el.addEventListener("change", () => {
+        validateField(key);
+      });
+    }
   });
 
   // Form submission

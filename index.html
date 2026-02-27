@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>株式会社ポラーノプラザ | 内装工事・空調設備・電気工事 一都三県対応</title>
   <meta name="description" content="飲食店・店舗の内装工事はポラーノプラザへ。スケルトンから500万〜1億規模まで対応。イメージパース提案・図面作成・施工まで全工程を自社で一貫対応。24時間受付。">
-  <link rel="canonical" href="https://poranoplaza.com/">
+  <link rel="canonical" href="https://yuyasuzuki117.github.io/Poranoplazaweb/">
 
   <!-- OGP -->
   <meta property="og:title" content="株式会社ポラーノプラザ | 内装工事・空調設備・電気工事">
   <meta property="og:description" content="飲食店・店舗の内装工事はポラーノプラザへ。スケルトンから全工程を自社で一貫対応。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://poranoplaza.com/">
+  <meta property="og:url" content="https://yuyasuzuki117.github.io/Poranoplazaweb/">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta property="og:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
   <meta name="twitter:image" content="https://yuyasuzuki117.github.io/Poranoplazaweb/images/hero/og-image.jpg">
 
@@ -257,20 +258,17 @@
       100% { transform: scaleX(0); transform-origin: right; }
     }
 
-    /* ===== SECTION LABEL (editorial — bold typography) ===== */
+    /* ===== SECTION LABEL (eyebrow + accent line) ===== */
     .section-label {
-      display: block;
-      font-family: var(--font-serif); font-size: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
-      font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase;
-      color: var(--color-navy-200); line-height: 0.9;
-      opacity: 0.35;
+      display: inline-flex; align-items: center; gap: 1rem;
+      font-family: var(--font-serif); font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem);
+      font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--color-accent-500);
     }
+    .section-label::before { content: ""; display: block; width: 2.5rem; height: 1px; background: var(--color-accent-500); }
 
-    .section-label-light { color: var(--color-accent-400); opacity: 0.15; }
-
-    /* Divider line as a separate element now */
-    .section-divider-line { display: block; width: 2.5rem; height: 2px; background: var(--color-accent-500); }
-    .section-divider-line-light { background: var(--color-accent-400); }
+    .section-label-light { color: var(--color-accent-400); }
+    .section-label-light::before { background: var(--color-accent-400); }
 
     /* ===== BENTO CARD ===== */
     .bento-card { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease-out; }
@@ -442,13 +440,13 @@
           <img src="images/projects/null/photo2.webp" alt="代官山カフェ＆バーNULLのバーカウンターと照明デザイン" class="hero-slide-img" loading="eager" width="1920" height="1280">
         </div>
         <div class="hero-slide" data-drift="left" role="group" aria-roledescription="slide" aria-label="施工事例 2 / 5">
-          <img src="images/projects/serene/photo1.webp" alt="ゴールドと黒を基調としたプレミアムクラブの内装施工事例" class="hero-slide-img" loading="eager" width="1200" height="800">
+          <img src="images/projects/serene/photo1.webp" alt="ゴールドと黒を基調としたプレミアムクラブの内装施工事例" class="hero-slide-img" loading="eager" width="1200" height="799">
         </div>
         <div class="hero-slide" data-drift="up" role="group" aria-roledescription="slide" aria-label="施工事例 3 / 5">
-          <img src="images/projects/serene/photo2.webp" alt="クリスタルシャンデリアが輝く回廊の内装施工事例" class="hero-slide-img" loading="eager" width="600" height="450">
+          <img src="images/projects/serene/photo2.webp" alt="クリスタルシャンデリアが輝く回廊の内装施工事例" class="hero-slide-img" loading="eager" width="1200" height="799">
         </div>
         <div class="hero-slide" data-drift="down" role="group" aria-roledescription="slide" aria-label="施工事例 4 / 5">
-          <img src="images/projects/glow/after.webp" alt="ネオン照明が映えるナイトクラブVIPエリアの内装施工事例" class="hero-slide-img" loading="eager" width="600" height="450">
+          <img src="images/projects/glow/after.webp" alt="ネオン照明が映えるナイトクラブVIPエリアの内装施工事例" class="hero-slide-img" loading="eager" width="1200" height="900">
         </div>
         <div class="hero-slide" data-drift="left" role="group" aria-roledescription="slide" aria-label="施工事例 5 / 5">
           <img src="images/projects/null/photo5.webp" alt="代官山カフェ＆バーNULLのラウンジエリアとガラス壁" class="hero-slide-img" loading="lazy" width="1920" height="1280">
@@ -532,7 +530,7 @@
               <img src="images/projects/null/photo4.webp" alt="代官山NULLカフェ＆バーの内装" class="w-full rounded-2xl object-cover aspect-[4/3]" loading="lazy">
               <!-- Floating accent -->
               <div class="absolute -bottom-6 -left-6 bg-navy-950 text-white px-6 py-4 rounded-xl hidden lg:block" aria-hidden="true">
-                <p class="font-serif text-accent-400 text-fluid-xs tracking-[0.15em] uppercase mb-1">Since 2020</p>
+                <p class="font-serif text-accent-400 text-fluid-xs tracking-[0.15em] uppercase mb-1">Coverage</p>
                 <p class="font-display font-bold text-fluid-lg">一都三県対応</p>
               </div>
             </div>
@@ -743,17 +741,17 @@
           <div class="reveal">
             <span class="text-accent-400/15 font-serif font-bold leading-none block mb-5" style="font-size: clamp(3.5rem, 2.5rem + 5vw, 6rem);" aria-hidden="true">01</span>
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">店舗内装に特化</h3>
-            <p class="text-white/50 text-fluid-sm leading-relaxed">飲食・物販など店舗施工に多数実績。大手アミューズメント施設、病院・クリニック、イタリアン、焼肉屋、BAR等、幅広い業態に対応。</p>
+            <p class="text-white/70 text-fluid-sm leading-relaxed">飲食・物販など店舗施工に多数実績。大手アミューズメント施設、病院・クリニック、イタリアン、焼肉屋、BAR等、幅広い業態に対応。</p>
           </div>
           <div class="reveal">
             <span class="text-accent-400/15 font-serif font-bold leading-none block mb-5" style="font-size: clamp(3.5rem, 2.5rem + 5vw, 6rem);" aria-hidden="true">02</span>
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">海外資材の直輸入</h3>
-            <p class="text-white/50 text-fluid-sm leading-relaxed">海外資材を独自ルートで安定調達。コストダウンとオリジナリティの高いデザインを両立します。</p>
+            <p class="text-white/70 text-fluid-sm leading-relaxed">海外資材を独自ルートで安定調達。コストダウンとオリジナリティの高いデザインを両立します。</p>
           </div>
           <div class="reveal">
             <span class="text-accent-400/15 font-serif font-bold leading-none block mb-5" style="font-size: clamp(3.5rem, 2.5rem + 5vw, 6rem);" aria-hidden="true">03</span>
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">特殊工事にも対応</h3>
-            <p class="text-white/50 text-fluid-sm leading-relaxed">照明の多い工事や病院のような特殊な要件にも対応。第一種電気工事士、消防設備士甲種など国家資格保有者が在籍。</p>
+            <p class="text-white/70 text-fluid-sm leading-relaxed">照明の多い工事や病院のような特殊な要件にも対応。第一種電気工事士、消防設備士甲種など国家資格保有者が在籍。</p>
           </div>
         </div>
       </div>
