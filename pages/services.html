@@ -167,6 +167,30 @@
 
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "内装工事サービス",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "株式会社ポラーノプラザ",
+      "telephone": "03-6821-1924"
+    },
+    "areaServed": ["東京都", "神奈川県", "埼玉県", "千葉県", "兵庫県"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "サービス一覧",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "内装工事", "description": "飲食店・店舗のスケルトンから内装仕上げまで全工程対応" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "空調設備工事", "description": "業務用エアコンの設置・交換・メンテナンス。24時間緊急対応" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "一般電気工事", "description": "照明・分電盤・配線工事。LED化・省エネ提案" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "消防設備工事", "description": "自動火災報知設備・消火器・スプリンクラー設置。届出代行" } }
+      ]
+    }
+  }
+  </script>
 </head>
 <body class="bg-white text-navy-900 leading-relaxed overflow-x-hidden">
   <div class="scroll-progress" aria-hidden="true"></div>
@@ -251,7 +275,7 @@
       <div class="mx-auto max-w-6xl">
         <!-- Full-width image with overlay -->
         <div class="reveal-scale relative rounded-2xl overflow-hidden mb-10">
-          <img src="../images/services/interior.webp" alt="内装工事の施工イメージ" class="w-full aspect-[4/3] md:aspect-[21/9] object-cover" loading="lazy" width="1200" height="514">
+          <img src="../images/services/interior.webp" srcset="../images/services/interior-640w.webp 640w, ../images/services/interior.webp 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="内装工事の施工イメージ" class="w-full aspect-[4/3] md:aspect-[21/9] object-cover" loading="lazy" width="1200" height="514">
           <div class="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-navy-950/40 to-transparent flex items-end p-6 md:p-10">
             <div>
               <span class="watermark-number text-accent-400/30 text-fluid-6xl block mb-2" aria-hidden="true">01</span>
@@ -290,6 +314,10 @@
                 イメージパース提案・図面作成・店舗デザイン
               </li>
             </ul>
+            <a href="works.html" class="inline-flex items-center gap-2 mt-6 text-accent-500 hover:text-accent-400 font-medium text-fluid-sm no-underline transition-colors duration-150">
+              内装工事の施工実績を見る
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -302,7 +330,7 @@
       <div class="mx-auto max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div class="reveal-right md:order-2 relative">
-            <img src="../images/services/aircon.webp" alt="空調設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
+            <img src="../images/services/aircon.webp" srcset="../images/services/aircon-640w.webp 640w, ../images/services/aircon.webp 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="空調設備工事の施工イメージ" class="w-full rounded-2xl" loading="lazy" width="600" height="400">
             <span class="watermark-number absolute -top-4 -right-2 md:-right-6 text-white/[0.04] text-fluid-6xl" aria-hidden="true">02</span>
           </div>
           <div class="reveal-left md:order-1">
@@ -323,6 +351,10 @@
                 定期点検・メンテナンス
               </li>
             </ul>
+            <a href="works.html" class="inline-flex items-center gap-2 mt-6 text-accent-400 hover:text-accent-300 font-medium text-fluid-sm no-underline transition-colors duration-150">
+              施工実績を見る
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -368,6 +400,12 @@
             <p class="text-navy-400 text-fluid-xs leading-relaxed">安全基準に準拠した設計施工</p>
           </div>
         </div>
+        <div class="text-center mt-8 reveal">
+          <a href="works.html" class="inline-flex items-center gap-2 text-accent-500 hover:text-accent-400 font-medium text-fluid-sm no-underline transition-colors duration-150">
+            施工実績を見る
+            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -399,7 +437,59 @@
                 定期点検・届出代行
               </li>
             </ul>
+            <a href="works.html" class="inline-flex items-center gap-2 mt-6 text-accent-400 hover:text-accent-300 font-medium text-fluid-sm no-underline transition-colors duration-150">
+              施工実績を見る
+              <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="noise-texture bg-navy-50 py-(--spacing-section-y) px-(--spacing-section-x)">
+      <div class="mx-auto max-w-5xl">
+        <div class="reveal mb-10 text-center">
+          <span class="section-label mb-3 justify-center mx-auto block">Voice</span>
+          <h2 class="text-fluid-2xl font-bold text-navy-900">お客様の声</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal-stagger">
+          <blockquote class="reveal relative rounded-xl overflow-hidden min-h-[14rem]">
+            <img src="../images/projects/serene/photo1.webp" srcset="../images/projects/serene/photo1-640w.webp 640w, ../images/projects/serene/photo1.webp 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+            <div class="absolute inset-0 bg-navy-950/80"></div>
+            <div class="relative z-[1] p-6 flex flex-col justify-between h-full">
+              <div>
+                <span class="quote-mark block -mb-4" aria-hidden="true" style="color: var(--color-accent-400); opacity: 0.5;">&ldquo;</span>
+                <p class="text-white/85 text-fluid-sm leading-relaxed mb-3">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
+              </div>
+              <footer>
+                <div class="w-8 h-px bg-accent-400/40 mb-2" aria-hidden="true"></div>
+                <cite class="not-italic text-white font-bold text-fluid-sm block">&mdash; T.S 様</cite>
+                <span class="text-white/50 text-fluid-xs">飲食チェーン / 経営企画部</span>
+              </footer>
+            </div>
+          </blockquote>
+          <blockquote class="reveal relative rounded-xl overflow-hidden min-h-[14rem]">
+            <img src="../images/projects/null/photo6.webp" srcset="../images/projects/null/photo6-640w.webp 640w, ../images/projects/null/photo6.webp 1920w" sizes="(max-width: 768px) 100vw, 50vw" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+            <div class="absolute inset-0 bg-navy-950/80"></div>
+            <div class="relative z-[1] p-6 flex flex-col justify-between h-full">
+              <div>
+                <span class="quote-mark block -mb-4" aria-hidden="true" style="color: var(--color-accent-400); opacity: 0.5;">&ldquo;</span>
+                <p class="text-white/85 text-fluid-sm leading-relaxed mb-3">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
+              </div>
+              <footer>
+                <div class="w-8 h-px bg-accent-400/40 mb-2" aria-hidden="true"></div>
+                <cite class="not-italic text-white font-bold text-fluid-sm block">&mdash; M.K 様</cite>
+                <span class="text-white/50 text-fluid-xs">IT企業 / 総務部長</span>
+              </footer>
+            </div>
+          </blockquote>
+        </div>
+        <div class="text-center mt-8 reveal">
+          <a href="works.html" class="inline-flex items-center gap-2 text-accent-500 hover:text-accent-400 font-medium text-fluid-sm no-underline transition-colors duration-150">
+            施工実績を見る
+            <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
         </div>
       </div>
     </section>

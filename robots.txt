@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yuyasuzuki117.github.io/Poranoplazaweb/sitemap.xml
