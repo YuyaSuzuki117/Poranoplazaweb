@@ -11,17 +11,46 @@
   ).matches;
 
   /* ========================================
-     Sticky Header (transparent → solid)
+     Smart Sticky Header
+     - transparent → solid on scroll
+     - hide on scroll down, show on scroll up
      ======================================== */
   var header = document.querySelector(".site-header");
   var SCROLL_THRESHOLD = 80;
+  var HIDE_THRESHOLD = 10;
+  var lastScrollY = 0;
+  var headerHidden = false;
 
   function handleHeaderScroll() {
-    if (window.scrollY > SCROLL_THRESHOLD) {
+    var currentScrollY = window.scrollY;
+    var delta = currentScrollY - lastScrollY;
+
+    // Background: transparent → solid
+    if (currentScrollY > SCROLL_THRESHOLD) {
       header.classList.add("is-scrolled");
     } else {
       header.classList.remove("is-scrolled");
+      // Always show header at top of page
+      if (headerHidden) {
+        header.classList.remove("is-hidden");
+        headerHidden = false;
+      }
     }
+
+    // Smart hide/show (only after passing threshold)
+    if (currentScrollY > SCROLL_THRESHOLD) {
+      if (delta > HIDE_THRESHOLD && !headerHidden) {
+        // Scrolling down — hide
+        header.classList.add("is-hidden");
+        headerHidden = true;
+      } else if (delta < -HIDE_THRESHOLD && headerHidden) {
+        // Scrolling up — show
+        header.classList.remove("is-hidden");
+        headerHidden = false;
+      }
+    }
+
+    lastScrollY = currentScrollY;
   }
 
   window.addEventListener("scroll", handleHeaderScroll, { passive: true });
@@ -440,6 +469,72 @@
           e.preventDefault();
           openLightbox(trigger.getAttribute("data-lightbox-src"), trigger.getAttribute("alt") || trigger.getAttribute("aria-label") || "");
         }
+      });
+    });
+  }
+
+  /* ========================================
+     Scroll Progress Bar
+     ======================================== */
+  var progressBar = document.querySelector(".scroll-progress");
+  if (progressBar && !prefersReducedMotion) {
+    function updateProgress() {
+      var scrollTop = window.scrollY;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      progressBar.style.transform = "scaleX(" + Math.min(progress, 1) + ")";
+    }
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  /* ========================================
+     Parallax Photos
+     ======================================== */
+  var parallaxEls = document.querySelectorAll("[data-parallax]");
+  if (parallaxEls.length > 0 && !prefersReducedMotion) {
+    function updateParallax() {
+      var vh = window.innerHeight;
+      parallaxEls.forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > vh) return;
+        var speed = parseFloat(el.getAttribute("data-parallax")) || 0.1;
+        var center = rect.top + rect.height / 2;
+        var offset = (center - vh / 2) * speed;
+        el.style.transform = "translateY(" + offset + "px)";
+      });
+    }
+    window.addEventListener("scroll", updateParallax, { passive: true });
+    updateParallax();
+  }
+
+  /* ========================================
+     Progressive Text Reveal
+     ======================================== */
+  var textRevealEls = document.querySelectorAll(".text-reveal");
+  if (textRevealEls.length > 0 && !prefersReducedMotion) {
+    var textRevealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var lines = entry.target.querySelectorAll(".text-reveal-line");
+            lines.forEach(function (line, i) {
+              line.style.transitionDelay = (i * 120) + "ms";
+              line.classList.add("is-visible");
+            });
+            textRevealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    textRevealEls.forEach(function (el) { textRevealObserver.observe(el); });
+  }
+  // Reduced motion: show immediately
+  if (textRevealEls.length > 0 && prefersReducedMotion) {
+    textRevealEls.forEach(function (el) {
+      el.querySelectorAll(".text-reveal-line").forEach(function (line) {
+        line.classList.add("is-visible");
       });
     });
   }

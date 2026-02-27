@@ -1,39 +1,40 @@
 @import "tailwindcss";
 
 /* ============================================
-   Poranoplaza - Industrial Navy Theme
+   Poranoplaza - Warm Stone Theme
    Tailwind CSS v4 Theme Configuration
    ============================================ */
 
 @theme {
-  /* --- Color Palette: Industrial Navy --- */
-  --color-navy-50: #E8EDF6;
-  --color-navy-100: #C5D0E8;
-  --color-navy-200: #9FB2D9;
-  --color-navy-300: #7894CA;
-  --color-navy-400: #5B7DBE;
-  --color-navy-500: #3E66B2;
-  --color-navy-600: #204495;
-  --color-navy-700: #1A3778;
-  --color-navy-800: #142B5E;
-  --color-navy-900: #0E1F44;
-  --color-navy-950: #0A1628;
+  /* --- Color Palette: Warm Stone --- */
+  --color-navy-50: #FAFAF9;
+  --color-navy-100: #F5F5F4;
+  --color-navy-200: #E7E5E4;
+  --color-navy-300: #D6D3D1;
+  --color-navy-400: #A8A29E;
+  --color-navy-500: #78716C;
+  --color-navy-600: #57534E;
+  --color-navy-700: #44403C;
+  --color-navy-800: #292524;
+  --color-navy-900: #1C1917;
+  --color-navy-950: #0C0A09;
 
-  --color-accent-400: #4DA3DB;
-  --color-accent-500: #2589D0;
-  --color-accent-600: #1E6FA8;
+  --color-accent-400: #E5B84A;
+  --color-accent-500: #D4A43A;
+  --color-accent-600: #B58A2C;
 
   --color-warm-400: #D97706;
   --color-warm-500: #B45309;
   --color-warm-600: #92400E;
 
-  --color-surface-light: #F9FAFB;
-  --color-surface-warm: #FFFBF5;
-  --color-surface-dark: #0A1628;
+  --color-surface-light: #FAFAF9;
+  --color-surface-warm: #F7F7F5;
+  --color-surface-dark: #0C0A09;
 
   /* --- Typography --- */
   --font-display: "Zen Kaku Gothic New", sans-serif;
   --font-body: "Noto Sans JP", sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
 
   /* Fluid type scale using clamp() */
   --text-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
@@ -45,6 +46,7 @@
   --text-fluid-3xl: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
   --text-fluid-4xl: clamp(1.875rem, 1.3rem + 2.875vw, 3.25rem);
   --text-fluid-5xl: clamp(2.25rem, 1.5rem + 3.75vw, 4rem);
+  --text-fluid-6xl: clamp(2.75rem, 1.8rem + 4.75vw, 5.5rem);
 
   /* --- Z-index Scale (fixed) --- */
   --z-base: 0;
@@ -55,8 +57,9 @@
   --z-toast: 500;
 
   /* --- Spacing (section padding) --- */
-  --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
+  --spacing-section-y: clamp(5rem, 3.5rem + 6vw, 10rem);
   --spacing-section-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+  --spacing-bridge-y: clamp(2.5rem, 2rem + 3vw, 5rem);
 }
 
 /* ============================================
@@ -281,6 +284,24 @@
     padding: 1.5rem;
   }
 
+  /* Section label (bold editorial typography) */
+  .section-label {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--color-navy-200);
+    line-height: 0.9;
+    opacity: 0.35;
+  }
+
+  .section-label-light {
+    color: var(--color-accent-400);
+    opacity: 0.15;
+  }
+
   /* Section heading */
   .section-heading {
     font-size: var(--text-fluid-3xl);
@@ -326,7 +347,7 @@
     left: 0;
     right: 0;
     z-index: var(--z-sticky);
-    transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
+    transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out, transform 0.3s ease-out;
   }
 
   .site-header.is-scrolled {
@@ -334,6 +355,10 @@
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .site-header.is-hidden {
+    transform: translateY(-100%);
   }
 
   /* Mobile menu */
@@ -401,6 +426,32 @@
   .photo-frame img,
   .photo-frame img-comparison-slider {
     border-radius: 0.5rem;
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--color-accent-500);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 600;
+    pointer-events: none;
+  }
+
+  /* Progressive text reveal */
+  .text-reveal-line {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .text-reveal-line.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* Wipe reveal animation */

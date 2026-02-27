@@ -83,7 +83,8 @@
     .skip-link:focus { top: 0; }
 
     /* Header */
-    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out, transform 0.3s ease-out; }
+    .site-header.is-hidden { transform: translateY(-100%); }
     .site-header.is-scrolled { background-color: rgba(255, 255, 255, 0.97); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
     .site-header > div { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem clamp(1rem, 0.5rem + 2.5vw, 2rem); max-width: 80rem; margin: 0 auto; }
     .site-header .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
@@ -109,15 +110,8 @@
     .reveal-stagger > .reveal:nth-child(6) { transition-delay: 600ms; }
 
     /* Section Label */
-    .section-label {
-      display: inline-flex; align-items: center; gap: 1rem;
-      font-family: var(--font-serif); font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem);
-      font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--color-accent-500);
-    }
-    .section-label::before { content: ""; display: block; width: 2.5rem; height: 1px; background: var(--color-accent-500); }
-    .section-label-light { color: var(--color-accent-400); }
-    .section-label-light::before { background: var(--color-accent-400); }
+    .section-label { display: block; font-family: var(--font-serif); font-size: clamp(2.5rem, 1.8rem + 3.5vw, 5rem); font-weight: 700; letter-spacing: -0.02em; text-transform: uppercase; color: var(--color-navy-200); line-height: 0.9; opacity: 0.35; }
+    .section-label-light { color: var(--color-accent-400); opacity: 0.15; }
 
     /* Link Hover Underline */
     .link-hover { position: relative; display: inline-block; }
@@ -172,6 +166,7 @@
   </style>
 </head>
 <body class="bg-white text-navy-900 leading-relaxed overflow-x-hidden">
+  <div class="scroll-progress" aria-hidden="true"></div>
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
   <!-- HEADER -->
