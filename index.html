@@ -28,329 +28,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css">
   <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
 
-  <!-- Tailwind CSS v4 (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <style type="text/tailwindcss">
-    @theme {
-      --color-navy-50: #FAFAF9;
-      --color-navy-100: #F5F5F4;
-      --color-navy-200: #E7E5E4;
-      --color-navy-300: #D6D3D1;
-      --color-navy-400: #A8A29E;
-      --color-navy-500: #78716C;
-      --color-navy-600: #57534E;
-      --color-navy-700: #44403C;
-      --color-navy-800: #292524;
-      --color-navy-900: #1C1917;
-      --color-navy-950: #0C0A09;
-      --color-accent-400: #E5B84A;
-      --color-accent-500: #D4A43A;
-      --color-accent-600: #B58A2C;
-      --color-warm-400: #D97706;
-      --color-warm-500: #B45309;
-      --color-warm-600: #92400E;
-      --color-surface-light: #FAFAF9;
-      --color-surface-warm: #F7F7F5;
-      --color-surface-dark: #0C0A09;
-      --font-display: "Zen Kaku Gothic New", sans-serif;
-      --font-body: "Noto Sans JP", sans-serif;
-      --font-serif: "Cormorant Garamond", Georgia, serif;
-      --text-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-      --text-fluid-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.9375rem);
-      --text-fluid-base: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-      --text-fluid-lg: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-      --text-fluid-xl: clamp(1.125rem, 0.95rem + 0.875vw, 1.5rem);
-      --text-fluid-2xl: clamp(1.25rem, 1rem + 1.25vw, 1.875rem);
-      --text-fluid-3xl: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
-      --text-fluid-4xl: clamp(1.875rem, 1.3rem + 2.875vw, 3.25rem);
-      --text-fluid-5xl: clamp(2.25rem, 1.5rem + 3.75vw, 4rem);
-      --text-fluid-6xl: clamp(2.75rem, 1.8rem + 4.75vw, 5.5rem);
-      --z-base: 0;
-      --z-dropdown: 100;
-      --z-sticky: 200;
-      --z-overlay: 300;
-      --z-modal: 400;
-      --z-toast: 500;
-      --spacing-section-y: clamp(5rem, 3.5rem + 6vw, 10rem);
-      --spacing-section-x: clamp(1rem, 0.5rem + 2.5vw, 2rem);
-      --spacing-bridge-y: clamp(2.5rem, 2rem + 3vw, 5rem);
-    }
-  </style>
-
-  <style>
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-    }
-    body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); text-wrap: balance; }
-    p { text-wrap: pretty; }
-    ::selection { background-color: var(--color-accent-500); color: white; }
-    :focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
-
-    .skip-link { position: absolute; top: -100%; left: 1rem; z-index: var(--z-toast); padding: 0.75rem 1.5rem; background: var(--color-navy-600); color: white; border-radius: 0 0 0.5rem 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s ease-out; }
-    .skip-link:focus { top: 0; }
-
-    /* ===== HEADER: transparent → solid ===== */
-    .site-header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      background-color: transparent;
-      transition: background-color 0.4s ease-out, box-shadow 0.4s ease-out, transform 0.3s ease-out;
-    }
-    .site-header.is-hidden { transform: translateY(-100%); }
-    .site-header.is-scrolled {
-      background-color: rgba(255, 255, 255, 0.97);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-    .site-header > div {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.25rem clamp(1rem, 0.5rem + 2.5vw, 2rem);
-      max-width: 80rem; margin: 0 auto;
-    }
-    .site-header .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-    .site-header .header-logo img { height: 2.25rem; width: auto; transition: filter 0.4s ease-out; }
-
-    /* Header over hero (white mode) */
-    .site-header:not(.is-scrolled) .header-logo img { filter: brightness(0) invert(1); }
-    .site-header:not(.is-scrolled) .header-logo-text { color: white; }
-    .site-header:not(.is-scrolled) .header-logo-sub { color: rgba(255,255,255,0.5); }
-    .site-header:not(.is-scrolled) .nav-link { color: rgba(255,255,255,0.7); }
-    .site-header:not(.is-scrolled) .nav-link:hover { color: white; }
-    .site-header:not(.is-scrolled) .header-cta { background: transparent; border: 1.5px solid rgba(255,255,255,0.4); color: white; }
-    .site-header:not(.is-scrolled) .header-cta:hover { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.1); }
-    .site-header:not(.is-scrolled) .hamburger-line { background: white; }
-
-    /* Header scrolled (dark mode) */
-    .site-header.is-scrolled .header-logo img { filter: brightness(0); }
-    .site-header.is-scrolled .header-logo-text { color: var(--color-navy-900); }
-    .site-header.is-scrolled .header-logo-sub { color: var(--color-navy-400); }
-    .site-header.is-scrolled .nav-link { color: var(--color-navy-500); }
-    .site-header.is-scrolled .nav-link:hover { color: var(--color-navy-900); }
-    .site-header.is-scrolled .header-cta { background: var(--color-navy-800); border: 1.5px solid transparent; color: white; }
-    .site-header.is-scrolled .header-cta:hover { background: var(--color-navy-700); }
-    .site-header.is-scrolled .hamburger-line { background: var(--color-navy-800); }
-
-    .header-logo-text, .header-logo-sub, .nav-link, .hamburger-line { transition: color 0.4s ease-out, background 0.4s ease-out; }
-    .header-cta { transition: all 0.3s ease-out; }
-
-    .mobile-menu { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0.3s ease-out; }
-    .mobile-menu.is-open { opacity: 1; visibility: visible; }
-
-    /* ===== HERO SLIDESHOW ===== */
-    .hero-slideshow { background: var(--color-navy-950); position: relative; }
-
-    .hero-slide {
-      position: absolute; inset: 0; opacity: 0; z-index: 1;
-      transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-      will-change: opacity;
-    }
-    .hero-slide.is-active { opacity: 1; z-index: 2; }
-    .hero-slide.is-entering { opacity: 1; z-index: 3; }
-
-    .hero-slide-img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 7s cubic-bezier(0.25, 0, 0.3, 1);
-      will-change: transform;
-    }
-
-    .hero-slide[data-drift="right"] .hero-slide-img { transform: scale(1.0) translate(0, 0); }
-    .hero-slide[data-drift="right"].is-active .hero-slide-img,
-    .hero-slide[data-drift="right"].is-entering .hero-slide-img { transform: scale(1.08) translate(1.5%, -0.5%); will-change: transform; }
-    .hero-slide[data-drift="left"] .hero-slide-img { transform: scale(1.0) translate(0, 0); }
-    .hero-slide[data-drift="left"].is-active .hero-slide-img,
-    .hero-slide[data-drift="left"].is-entering .hero-slide-img { transform: scale(1.08) translate(-1.5%, 0.5%); will-change: transform; }
-    .hero-slide[data-drift="up"] .hero-slide-img { transform: scale(1.0) translate(0, 0); }
-    .hero-slide[data-drift="up"].is-active .hero-slide-img,
-    .hero-slide[data-drift="up"].is-entering .hero-slide-img { transform: scale(1.08) translate(0.5%, -1.5%); will-change: transform; }
-    .hero-slide[data-drift="down"] .hero-slide-img { transform: scale(1.0) translate(0, 0); }
-    .hero-slide[data-drift="down"].is-active .hero-slide-img,
-    .hero-slide[data-drift="down"].is-entering .hero-slide-img { transform: scale(1.08) translate(-0.5%, 1.5%); will-change: transform; }
-
-    /* Scrim — strong at bottom for text readability */
-    .hero-slide::after {
-      content: ""; position: absolute; inset: 0;
-      background:
-        linear-gradient(to top, rgba(12,10,9,0.88) 0%, rgba(12,10,9,0.5) 35%, rgba(12,10,9,0.08) 65%, transparent 100%),
-        linear-gradient(to right, rgba(12,10,9,0.2) 0%, transparent 60%);
-      z-index: 2; pointer-events: none;
-    }
-
-    /* Hero text entrance animation */
-    @keyframes heroReveal {
-      from { opacity: 0; transform: translateY(1.5rem); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .hero-anim { opacity: 0; }
-    .hero-loaded .hero-anim-1 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
-    .hero-loaded .hero-anim-2 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
-    .hero-loaded .hero-anim-3 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both; }
-    .hero-loaded .hero-anim-4 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both; }
-    .hero-loaded .hero-anim-5 { animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.0s both; }
-
-    /* Scroll indicator */
-    @keyframes scrollPulse {
-      0%, 100% { transform: translateY(0); opacity: 0.4; }
-      50% { transform: translateY(0.5rem); opacity: 0.8; }
-    }
-    .scroll-indicator { animation: scrollPulse 2s ease-in-out infinite; }
-
-    /* Hero counter + dots */
-    .hero-counter {
-      font-family: var(--font-serif); font-variant-numeric: tabular-nums;
-      color: rgba(255,255,255,0.4); display: flex; align-items: center; gap: 0.75rem;
-    }
-    .hero-counter-current { color: white; font-size: clamp(1.25rem, 1rem + 1.25vw, 2rem); font-weight: 700; line-height: 1; }
-    .hero-counter-line { width: 2.5rem; height: 1px; background: rgba(255,255,255,0.2); position: relative; overflow: hidden; }
-    .hero-counter-fill { position: absolute; inset: 0; background: var(--color-accent-400); transform-origin: left; transform: scaleX(0); }
-
-    .hero-dot {
-      width: 2rem; height: 2px; border-radius: 1px; background: rgba(255,255,255,0.2);
-      border: none; padding: 0; cursor: pointer; position: relative; overflow: hidden;
-    }
-    .hero-dot::after {
-      content: ""; position: absolute; inset: 0; background: var(--color-accent-400);
-      transform-origin: left; transform: scaleX(0); transition: transform 5.5s linear;
-    }
-    .hero-dot.is-active::after { transform: scaleX(1); }
-    .hero-dot:not(.is-active)::after { transition: transform 0.3s ease-out; transform: scaleX(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero-slide-img { transform: none !important; }
-      .hero-counter-fill { transform: scaleX(1); }
-      .hero-anim { opacity: 1; }
-      .scroll-indicator { animation: none; }
-    }
-
-    /* ===== SCROLL REVEAL ===== */
-    .reveal { opacity: 0; transform: translateY(2rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
-
-    .reveal-left { opacity: 0; transform: translateX(-3rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal-left.is-visible { opacity: 1; transform: translateX(0); }
-
-    .reveal-right { opacity: 0; transform: translateX(3rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal-right.is-visible { opacity: 1; transform: translateX(0); }
-
-    .reveal-scale { opacity: 0; transform: scale(0.92); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal-scale.is-visible { opacity: 1; transform: scale(1); }
-
-    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
-    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 200ms; }
-    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 400ms; }
-    .reveal-stagger > .reveal:nth-child(4) { transition-delay: 600ms; }
-    .reveal-stagger > .reveal:nth-child(5) { transition-delay: 800ms; }
-    .reveal-stagger > .reveal:nth-child(6) { transition-delay: 1000ms; }
-
-    /* Photo frame */
-    .photo-frame { padding: 0.75rem; background: white; border-radius: 1rem; box-shadow: 0 4px 24px rgba(28,18,16,0.08); }
-    .photo-frame img, .photo-frame img-comparison-slider { border-radius: 0.5rem; }
-
-    /* Wipe reveal */
-    .reveal-wipe { position: relative; overflow: hidden; }
-    .reveal-wipe::after { content: ""; position: absolute; inset: 0; background: var(--color-navy-950); transform: scaleX(1); transform-origin: left; z-index: 5; pointer-events: none; }
-    .reveal-wipe.is-visible::after { animation: wipeReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards; }
-    @keyframes wipeReveal {
-      0%   { transform: scaleX(1); transform-origin: left; }
-      50%  { transform: scaleX(1); transform-origin: right; }
-      100% { transform: scaleX(0); transform-origin: right; }
-    }
-
-    /* ===== SECTION LABEL (eyebrow + accent line) ===== */
-    .section-label {
-      display: inline-flex; align-items: center; gap: 1rem;
-      font-family: var(--font-serif); font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem);
-      font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--color-accent-500);
-    }
-    .section-label::before { content: ""; display: block; width: 2.5rem; height: 1px; background: var(--color-accent-500); }
-
-    .section-label-light { color: var(--color-accent-400); }
-    .section-label-light::before { background: var(--color-accent-400); }
-
-    /* ===== BENTO CARD ===== */
-    .bento-card { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease-out; }
-    .bento-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(28,18,16,0.2); }
-    .bento-card img { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-    .bento-card:hover img { transform: scale(1.06); }
-
-    /* ===== PHOTO MARQUEE ===== */
-    .marquee-track { overflow: hidden; }
-    .marquee-inner {
-      display: flex; gap: 0.375rem; width: max-content;
-      animation: marqueeScroll 40s linear infinite;
-    }
-    .marquee-inner.is-paused { animation-play-state: paused; }
-    @keyframes marqueeScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-img { height: clamp(6rem, 5rem + 4vw, 10rem); width: auto; object-fit: cover; flex-shrink: 0; }
-
-    /* ===== img-comparison-slider ===== */
-    img-comparison-slider { --divider-width: 3px; --divider-color: white; --default-handle-opacity: 1; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-
-    /* ===== COUNTER ANIMATION ===== */
-    .counter-number { font-family: var(--font-serif); font-variant-numeric: tabular-nums; line-height: 1; }
-
-    /* ===== TEXTURES ===== */
-    .noise-texture { position: relative; }
-    .noise-texture::before {
-      content: ""; position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      background-repeat: repeat; background-size: 128px 128px;
-      opacity: 0.03; pointer-events: none; z-index: 1;
-    }
-    .noise-texture > * { position: relative; z-index: 2; }
-
-    .diagonal-texture { position: relative; }
-    .diagonal-texture::before {
-      content: ""; position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0' stroke='%23ffffff' stroke-width='0.5' fill='none' opacity='0.07'/%3E%3C/svg%3E");
-      background-repeat: repeat; background-size: 40px 40px;
-      pointer-events: none; z-index: 1;
-    }
-    .diagonal-texture > * { position: relative; z-index: 2; }
-
-    /* ===== SECTION TRANSITIONS ===== */
-    .section-divider-top { position: relative; }
-    .section-divider-top::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.06) 15%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.06) 85%, transparent 100%);
-      pointer-events: none;
-    }
-
-    .section-divider-dark-top { position: relative; }
-    .section-divider-dark-top::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 80%, transparent 100%);
-      pointer-events: none; z-index: 2;
-    }
-
-    /* ===== FOOTER ===== */
-    .footer-fade { position: relative; }
-    .footer-fade::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 80%, transparent 100%);
-      pointer-events: none;
-    }
-
-    /* ===== LINK HOVER UNDERLINE ===== */
-    .link-hover { position: relative; display: inline-block; }
-    .link-hover::after {
-      content: ""; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1.5px;
-      background: currentColor; transform: scaleX(0); transform-origin: right;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .link-hover:hover::after { transform: scaleX(1); transform-origin: left; }
-
-    /* Quote mark */
-    .quote-mark { font-family: Georgia, serif; font-size: clamp(3rem, 2rem + 5vw, 6rem); line-height: 1; user-select: none; }
-
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
-  </style>
+  <!-- Tailwind CSS (static build) -->
+  <link rel="stylesheet" href="css/output.css">
 
   <script type="application/ld+json">
   {
@@ -431,7 +110,7 @@
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
   <!-- ==================== HEADER ==================== -->
-  <header class="site-header" role="banner">
+  <header class="site-header site-header--hero" role="banner">
     <div>
       <a href="index.html" class="header-logo" aria-label="ポラーノプラザ ホーム">
         <img src="images/logo-original.png" alt="" aria-hidden="true">
@@ -495,13 +174,13 @@
           <img src="images/projects/null/photo2.webp" srcset="images/projects/null/photo2-640w.webp 640w, images/projects/null/photo2.webp 1920w" sizes="100vw" alt="代官山カフェ＆バーNULLのバーカウンターと照明デザイン" class="hero-slide-img" loading="eager" width="1920" height="1280">
         </div>
         <div class="hero-slide" data-drift="left" role="group" aria-roledescription="slide" aria-label="施工事例 2 / 5">
-          <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="100vw" alt="ゴールドと黒を基調としたプレミアムクラブの内装施工事例" class="hero-slide-img" loading="eager" width="1200" height="799">
+          <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="100vw" alt="ゴールドと黒を基調としたプレミアムクラブの内装施工事例" class="hero-slide-img" loading="lazy" width="1200" height="799">
         </div>
         <div class="hero-slide" data-drift="up" role="group" aria-roledescription="slide" aria-label="施工事例 3 / 5">
-          <img src="images/projects/serene/photo2.webp" srcset="images/projects/serene/photo2-640w.webp 640w, images/projects/serene/photo2.webp 1200w" sizes="100vw" alt="クリスタルシャンデリアが輝く回廊の内装施工事例" class="hero-slide-img" loading="eager" width="1200" height="799">
+          <img src="images/projects/serene/photo2.webp" srcset="images/projects/serene/photo2-640w.webp 640w, images/projects/serene/photo2.webp 1200w" sizes="100vw" alt="クリスタルシャンデリアが輝く回廊の内装施工事例" class="hero-slide-img" loading="lazy" width="1200" height="799">
         </div>
         <div class="hero-slide" data-drift="down" role="group" aria-roledescription="slide" aria-label="施工事例 4 / 5">
-          <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="100vw" alt="ネオン照明が映えるナイトクラブVIPエリアの内装施工事例" class="hero-slide-img" loading="eager" width="1200" height="900">
+          <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="100vw" alt="ネオン照明が映えるナイトクラブVIPエリアの内装施工事例" class="hero-slide-img" loading="lazy" width="1200" height="900">
         </div>
         <div class="hero-slide" data-drift="left" role="group" aria-roledescription="slide" aria-label="施工事例 5 / 5">
           <img src="images/projects/null/photo5.webp" srcset="images/projects/null/photo5-640w.webp 640w, images/projects/null/photo5.webp 1920w" sizes="100vw" alt="代官山カフェ＆バーNULLのラウンジエリアとガラス壁" class="hero-slide-img" loading="lazy" width="1920" height="1280">
@@ -514,7 +193,7 @@
             <h1 class="hero-anim hero-anim-2 font-display text-fluid-6xl font-bold text-white leading-[1.1] mb-6">
               図面を描き、<br><span class="text-accent-400">空間をつくる。</span>
             </h1>
-            <p class="hero-anim hero-anim-3 text-fluid-base text-white/50 mb-10 max-w-lg" style="text-wrap: pretty;">
+            <p class="hero-anim hero-anim-3 text-fluid-base text-white/70 mb-10 max-w-lg" style="text-wrap: pretty;">
               イメージパース提案、図面作成、施工まで一気通貫。<br class="hidden md:inline">一都三県、500万〜1億規模の店舗内装を自社で完結。
             </p>
             <div class="hero-anim hero-anim-4 flex flex-col sm:flex-row items-start gap-4">
@@ -522,7 +201,7 @@
                 ご相談・お見積り
                 <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
               </a>
-              <a href="pages/works.html" class="group inline-flex items-center gap-2 text-white/50 hover:text-white font-display font-medium no-underline transition-colors duration-150 text-fluid-sm py-3.5">
+              <a href="pages/works.html" class="group inline-flex items-center gap-2 text-white/70 hover:text-white font-display font-medium no-underline transition-colors duration-150 text-fluid-sm py-3.5">
                 施工実績を見る
                 <svg class="size-4 transition-transform duration-150 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
               </a>
@@ -761,27 +440,27 @@
     <!-- ===== PHOTO MARQUEE ===== -->
     <div class="marquee-track py-1 bg-navy-950" aria-hidden="true">
       <div class="marquee-inner">
-        <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/null/photo1.webp" srcset="images/projects/null/photo1-640w.webp 640w, images/projects/null/photo1.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/iwanaga/20241222_K2291033_3000.webp" srcset="images/projects/iwanaga/20241222_K2291033_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291033_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/office/photo1.webp" srcset="images/projects/office/photo1-640w.webp 640w, images/projects/office/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/serene/photo4.webp" srcset="images/projects/serene/photo4-640w.webp 640w, images/projects/serene/photo4.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/null/photo3.webp" srcset="images/projects/null/photo3-640w.webp 640w, images/projects/null/photo3.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/iwanaga/20241222_K2291058_3000.webp" srcset="images/projects/iwanaga/20241222_K2291058_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291058_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/friends-bar/after.webp" srcset="images/projects/friends-bar/after-640w.webp 640w, images/projects/friends-bar/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/rakuen/photo2.webp" srcset="images/projects/rakuen/photo2-640w.webp 640w, images/projects/rakuen/photo2.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
+        <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/null/photo1.webp" srcset="images/projects/null/photo1-640w.webp 640w, images/projects/null/photo1.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/iwanaga/20241222_K2291033_3000.webp" srcset="images/projects/iwanaga/20241222_K2291033_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291033_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/office/photo1.webp" srcset="images/projects/office/photo1-640w.webp 640w, images/projects/office/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/serene/photo4.webp" srcset="images/projects/serene/photo4-640w.webp 640w, images/projects/serene/photo4.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/null/photo3.webp" srcset="images/projects/null/photo3-640w.webp 640w, images/projects/null/photo3.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/iwanaga/20241222_K2291058_3000.webp" srcset="images/projects/iwanaga/20241222_K2291058_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291058_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/friends-bar/after.webp" srcset="images/projects/friends-bar/after-640w.webp 640w, images/projects/friends-bar/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/rakuen/photo2.webp" srcset="images/projects/rakuen/photo2-640w.webp 640w, images/projects/rakuen/photo2.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
         <!-- Duplicate for seamless loop -->
-        <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/null/photo1.webp" srcset="images/projects/null/photo1-640w.webp 640w, images/projects/null/photo1.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/iwanaga/20241222_K2291033_3000.webp" srcset="images/projects/iwanaga/20241222_K2291033_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291033_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/office/photo1.webp" srcset="images/projects/office/photo1-640w.webp 640w, images/projects/office/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/serene/photo4.webp" srcset="images/projects/serene/photo4-640w.webp 640w, images/projects/serene/photo4.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/null/photo3.webp" srcset="images/projects/null/photo3-640w.webp 640w, images/projects/null/photo3.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/iwanaga/20241222_K2291058_3000.webp" srcset="images/projects/iwanaga/20241222_K2291058_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291058_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/friends-bar/after.webp" srcset="images/projects/friends-bar/after-640w.webp 640w, images/projects/friends-bar/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy">
-        <img src="images/projects/rakuen/photo2.webp" srcset="images/projects/rakuen/photo2-640w.webp 640w, images/projects/rakuen/photo2.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy">
+        <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/null/photo1.webp" srcset="images/projects/null/photo1-640w.webp 640w, images/projects/null/photo1.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/iwanaga/20241222_K2291033_3000.webp" srcset="images/projects/iwanaga/20241222_K2291033_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291033_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/office/photo1.webp" srcset="images/projects/office/photo1-640w.webp 640w, images/projects/office/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/serene/photo4.webp" srcset="images/projects/serene/photo4-640w.webp 640w, images/projects/serene/photo4.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/null/photo3.webp" srcset="images/projects/null/photo3-640w.webp 640w, images/projects/null/photo3.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/iwanaga/20241222_K2291058_3000.webp" srcset="images/projects/iwanaga/20241222_K2291058_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291058_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/friends-bar/after.webp" srcset="images/projects/friends-bar/after-640w.webp 640w, images/projects/friends-bar/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+        <img src="images/projects/rakuen/photo2.webp" srcset="images/projects/rakuen/photo2-640w.webp 640w, images/projects/rakuen/photo2.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
       </div>
     </div>
 
@@ -905,46 +584,46 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal-stagger" role="list" aria-label="お客様の声一覧">
           <blockquote class="reveal relative rounded-xl overflow-hidden min-h-[18rem]" role="listitem">
             <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
-            <div class="absolute inset-0 bg-navy-950/80"></div>
+            <div class="absolute inset-0 bg-navy-950/90"></div>
             <div class="relative z-[1] p-6 md:p-8 flex flex-col justify-between h-full">
               <div>
                 <span class="quote-mark block -mb-4" aria-hidden="true" style="color: var(--color-accent-400); opacity: 0.5;">&ldquo;</span>
-                <p class="text-white/85 text-fluid-sm leading-relaxed mb-4">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
+                <p class="text-white text-fluid-sm leading-relaxed mb-4">スケルトンからの店舗工事を依頼しましたが、イメージパースの段階から具体的な提案があり、そのまま任せられました。全工程を自社で回してくれるので、業者間の調整が一切不要だったのが大きいです。</p>
               </div>
               <footer>
                 <div class="w-8 h-px bg-accent-400/40 mb-3" aria-hidden="true"></div>
                 <cite class="not-italic text-white font-bold text-fluid-sm block">&mdash; T.S 様</cite>
-                <span class="text-white/50 text-fluid-xs">飲食チェーン / 経営企画部</span>
+                <span class="text-white/70 text-fluid-xs">飲食チェーン / 経営企画部</span>
               </footer>
             </div>
           </blockquote>
           <blockquote class="reveal relative rounded-xl overflow-hidden min-h-[18rem]" role="listitem">
             <img src="images/projects/null/photo6.webp" srcset="images/projects/null/photo6-640w.webp 640w, images/projects/null/photo6.webp 1920w" sizes="(max-width: 768px) 100vw, 50vw" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
-            <div class="absolute inset-0 bg-navy-950/80"></div>
+            <div class="absolute inset-0 bg-navy-950/90"></div>
             <div class="relative z-[1] p-6 md:p-8 flex flex-col justify-between h-full">
               <div>
                 <span class="quote-mark block -mb-4" aria-hidden="true" style="color: var(--color-accent-400); opacity: 0.5;">&ldquo;</span>
-                <p class="text-white/85 text-fluid-sm leading-relaxed mb-4">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
+                <p class="text-white text-fluid-sm leading-relaxed mb-4">深夜の空調トラブルで急遽連絡しましたが、すぐに技術者の方が到着。翌日の営業に支障なく復旧していただきました。「とりあえず来てくれる」、この速さが一番助かります。</p>
               </div>
               <footer>
                 <div class="w-8 h-px bg-accent-400/40 mb-3" aria-hidden="true"></div>
                 <cite class="not-italic text-white font-bold text-fluid-sm block">&mdash; M.K 様</cite>
-                <span class="text-white/50 text-fluid-xs">IT企業 / 総務部長</span>
+                <span class="text-white/70 text-fluid-xs">IT企業 / 総務部長</span>
               </footer>
             </div>
           </blockquote>
           <blockquote class="reveal relative rounded-xl overflow-hidden min-h-[18rem]" role="listitem">
             <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="(max-width: 768px) 100vw, 50vw" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
-            <div class="absolute inset-0 bg-navy-950/80"></div>
+            <div class="absolute inset-0 bg-navy-950/90"></div>
             <div class="relative z-[1] p-6 md:p-8 flex flex-col justify-between h-full">
               <div>
                 <span class="quote-mark block -mb-4" aria-hidden="true" style="color: var(--color-accent-400); opacity: 0.5;">&ldquo;</span>
-                <p class="text-white/85 text-fluid-sm leading-relaxed mb-4">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
+                <p class="text-white text-fluid-sm leading-relaxed mb-4">3店舗の同時改装を依頼しましたが、各店舗の工期を調整し営業への影響を最小限に抑えてくれました。海外資材の直輸入でコストも抑えられ、デザイン性も高くて大満足です。</p>
               </div>
               <footer>
                 <div class="w-8 h-px bg-accent-400/40 mb-3" aria-hidden="true"></div>
                 <cite class="not-italic text-white font-bold text-fluid-sm block">&mdash; A.Y 様</cite>
-                <span class="text-white/50 text-fluid-xs">小売チェーン / 店舗開発部</span>
+                <span class="text-white/70 text-fluid-xs">小売チェーン / 店舗開発部</span>
               </footer>
             </div>
           </blockquote>
@@ -958,7 +637,7 @@
         <div class="reveal">
           <p class="font-serif text-accent-400/70 text-fluid-sm tracking-[0.2em] uppercase mb-4">Contact</p>
           <h2 class="text-fluid-4xl font-bold text-white mb-4 font-display">内装の図面、描きます。</h2>
-          <p class="text-white/50 text-fluid-base mb-12 max-w-2xl mx-auto">スケルトンからの新装も、営業中の改装も。500万〜1億規模まで、見積もり無料で対応します。</p>
+          <p class="text-white/70 text-fluid-base mb-12 max-w-2xl mx-auto">スケルトンからの新装も、営業中の改装も。500万〜1億規模まで、見積もり無料で対応します。</p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="tel:03-6821-1924" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg shadow-lg hover:shadow-xl transition-shadow duration-150">
               <svg class="size-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
@@ -995,8 +674,8 @@
             <img src="images/logo-original.png" alt="" class="h-8 w-auto brightness-0 invert" aria-hidden="true">
             <span class="font-display font-bold text-fluid-lg">ポラーノプラザ</span>
           </a>
-          <p class="text-white/40 text-fluid-sm leading-relaxed mb-2">イメージを、空間にする。</p>
-          <p class="text-white/30 text-fluid-xs">株式会社ポラーノプラザ<br>〒170-0013 東京都豊島区東池袋1-44-4</p>
+          <p class="text-white/60 text-fluid-sm leading-relaxed mb-2">イメージを、空間にする。</p>
+          <p class="text-white/50 text-fluid-xs">株式会社ポラーノプラザ<br>〒170-0013 東京都豊島区東池袋1-44-4</p>
         </div>
         <div>
           <h3 class="font-display font-bold text-white text-fluid-sm mb-4">サービス</h3>
@@ -1013,6 +692,7 @@
             <li><a href="pages/company.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">会社概要</a></li>
             <li><a href="pages/works.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">施工実績</a></li>
             <li><a href="pages/contact.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">お問い合わせ</a></li>
+            <li><a href="pages/privacy.html" class="text-white/50 hover:text-white text-fluid-sm no-underline transition-colors duration-150">プライバシーポリシー</a></li>
           </ul>
         </div>
         <div>
@@ -1029,8 +709,8 @@
         </div>
       </div>
       <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-white/30 text-fluid-xs">&copy; <span id="current-year">2026</span> 株式会社ポラーノプラザ All Rights Reserved.</p>
-        <p class="text-white/30 text-fluid-xs">建設業許可 東京都知事許可（般-3）第154705号</p>
+        <p class="text-white/50 text-fluid-xs">&copy; <span id="current-year">2026</span> 株式会社ポラーノプラザ All Rights Reserved.</p>
+        <p class="text-white/50 text-fluid-xs">建設業許可 東京都知事許可（般-3）第154705号</p>
       </div>
     </div>
   </footer>
@@ -1040,7 +720,24 @@
     <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
   </a>
 
-  <script src="js/main.js"></script>
-  <script src="js/comparison-slider.js"></script>
+  <!-- Desktop Sticky CTA -->
+  <div class="hidden lg:block fixed bottom-0 left-0 right-0 z-40 bg-navy-900/95 backdrop-blur-sm border-t border-white/10" id="desktop-cta" role="complementary" aria-label="お問い合わせ">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <p class="text-white/70 text-fluid-sm">内装工事のご相談・お見積りは<span class="text-white font-bold">24時間受付</span></p>
+      <div class="flex items-center gap-4">
+        <a href="tel:03-6821-1924" class="inline-flex items-center gap-2 text-white/70 hover:text-white text-fluid-sm transition-colors">
+          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          03-6821-1924
+        </a>
+        <a href="pages/contact.html" class="inline-flex items-center gap-2 px-5 py-2 bg-accent-500 hover:bg-accent-400 text-navy-950 font-bold text-fluid-sm rounded-lg transition-colors">
+          無料相談・お見積り
+          <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="js/main.js"></script>
+  <script defer src="js/comparison-slider.js"></script>
 </body>
 </html>

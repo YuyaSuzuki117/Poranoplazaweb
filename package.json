@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build:css": "tailwindcss -i css/input.css -o css/output.css --minify",
+    "dev:css": "tailwindcss -i css/input.css -o css/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +23,7 @@
     "googleapis": "^171.4.0"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.2.1",
     "sharp": "^0.34.5"
   }
 }

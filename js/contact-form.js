@@ -102,7 +102,7 @@
   // Focus animation: add/remove is-focused class for CSS transitions
   Object.keys(fields).forEach((key) => {
     if (!fields[key].el) return;
-    var isCheckbox = fields[key].el.type === "checkbox";
+    const isCheckbox = fields[key].el.type === "checkbox";
     if (!isCheckbox) {
       fields[key].el.addEventListener("focus", function () {
         this.parentElement.classList.add("is-focused");
@@ -187,28 +187,42 @@
       "&body=" +
       encodeURIComponent(bodyParts);
 
-    // Show confirmation message with entrance animation
-    form.innerHTML = `
-      <div class="text-center py-12 success-message" style="opacity:0;transform:translateY(1rem);">
-        <div class="size-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center success-icon" style="opacity:0;transform:scale(0.6);">
-          <svg class="size-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
-        </div>
-        <h3 class="font-display text-fluid-2xl font-bold text-navy-900 mb-3">メールアプリが開きます</h3>
-        <p class="text-navy-500 text-fluid-base mb-6">内容をご確認の上、送信してください。<br>メールアプリが開かない場合は、下のボタンをクリックしてください。</p>
-        <a href="${mailtoUrl}" class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-navy-600 hover:bg-navy-500 text-white font-display font-bold rounded-lg no-underline transition-colors duration-150 text-fluid-base">
-          <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-          </svg>
-          メールアプリを開く
-        </a>
-      </div>
-    `;
+    // Show confirmation message with entrance animation (DOM API — no innerHTML injection)
+    while (form.firstChild) form.removeChild(form.firstChild);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "text-center py-12 success-message";
+    wrapper.style.cssText = "opacity:0;transform:translateY(1rem);";
+
+    const iconWrap = document.createElement("div");
+    iconWrap.className = "size-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center success-icon";
+    iconWrap.style.cssText = "opacity:0;transform:scale(0.6);";
+    iconWrap.innerHTML = '<svg class="size-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>';
+    wrapper.appendChild(iconWrap);
+
+    const heading = document.createElement("h3");
+    heading.className = "font-display text-fluid-2xl font-bold text-navy-900 mb-3";
+    heading.textContent = "メールアプリが開きます";
+    wrapper.appendChild(heading);
+
+    const desc = document.createElement("p");
+    desc.className = "text-navy-500 text-fluid-base mb-6";
+    desc.innerHTML = "内容をご確認の上、送信してください。<br>メールアプリが開かない場合は、下のボタンをクリックしてください。";
+    wrapper.appendChild(desc);
+
+    const link = document.createElement("a");
+    link.href = mailtoUrl;
+    link.className = "inline-flex items-center justify-center gap-2 px-8 py-3 bg-navy-600 hover:bg-navy-500 text-white font-display font-bold rounded-lg no-underline transition-colors duration-150 text-fluid-base";
+    link.innerHTML = '<svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>';
+    const linkText = document.createTextNode(" メールアプリを開く");
+    link.appendChild(linkText);
+    wrapper.appendChild(link);
+
+    form.appendChild(wrapper);
 
     // Animate success message entrance
-    var successMsg = form.querySelector(".success-message");
-    var successIcon = form.querySelector(".success-icon");
+    const successMsg = form.querySelector(".success-message");
+    const successIcon = form.querySelector(".success-icon");
     if (successMsg) {
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {

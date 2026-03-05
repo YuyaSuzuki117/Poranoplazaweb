@@ -32,11 +32,19 @@
 ├── CLAUDE.md
 ├── index.html
 ├── css/
-│   └── style.css
+│   ├── input.css      ← Tailwind CSS v4 ソース（マスター）
+│   └── output.css     ← ビルド済みCSS（全ページが参照）
 ├── js/
-│   └── main.js
+│   ├── main.js
+│   ├── contact-form.js
+│   └── comparison-slider.js
 ├── images/
 └── pages/
+    ├── services.html
+    ├── works.html
+    ├── company.html
+    ├── contact.html
+    └── privacy.html
 ```
 
 ## デザイン方針
@@ -185,6 +193,40 @@
 - Grepは files_with_matches モードをデフォルトに（content は必要時のみ）
 - 画像ファイルのリストは必要な時だけ取得
 - git log は --oneline -5 程度に留める
+
+## 専門スキル（作業前に該当ファイルを読み込むこと）
+
+| スキル | ファイル | 使用場面 |
+|--------|---------|---------|
+| 写真選定 | `SKILL_photo_selection_v2.md` | Google Drive写真の品質評価・配置決定 |
+| クロスページ同期 | `SKILL_cross_page_sync.md` | ヘッダー/フッター/ナビ/@themeの全ページ同期 |
+| セクション編集 | `SKILL_section_edit.md` | HTMLセクション単位の安全な編集 |
+| ビジュアルQA | `SKILL_visual_qa.md` | Playwrightによる表示確認・レスポンシブチェック |
+| デプロイチェック | `SKILL_deploy_checklist.md` | push前の品質・SEO・a11y網羅確認 |
+
+### スキル使用ルール
+- 写真選定: 必ず `SKILL_photo_selection_v2.md` を読み込んでから作業開始
+- 現行サイトの写真品質を下回る写真は絶対に採用しない
+- 判断に迷ったら「不採用」「現行維持」を選択する
+- ヘッダー/フッター/ナビ/@theme変更時 → `SKILL_cross_page_sync.md` 必須
+- 大きなHTML編集 → `SKILL_section_edit.md` の手順に従う
+- デプロイ前 → `SKILL_deploy_checklist.md` を実行
+
+## 重要な技術的注意点
+
+### CSS ビルド運用
+Tailwind CSS v4 CLI でビルド済み静的CSSを使用:
+- **ソース**: `css/input.css` — @theme + 全コンポーネントスタイルの単一ソース
+- **出力**: `css/output.css` — 全6ページが参照する minified CSS
+- **ビルド**: `npm run build:css` (`tailwindcss -i css/input.css -o css/output.css --minify`)
+- **開発**: `npm run dev:css` (--watch モード)
+
+**カラー・フォント・コンポーネント変更時は `css/input.css` を編集 → `npm run build:css` → コミット。**
+インラインCSS（`<style>` ブロック）はどのHTMLにも存在しない。
+
+### ファイルサイズの注意
+- `index.html` は約740行 — セクション単位で操作推奨
+- サブページは300-460行規模 — 同様にセクション単位で操作
 
 ## 作業ルール
 - 変更前に必ず既存コードを読んでから編集する（ただし必要最小限の範囲）

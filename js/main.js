@@ -6,7 +6,9 @@
 (function () {
   "use strict";
 
-  var prefersReducedMotion = window.matchMedia(
+  let revealObserver, marqueeObserver, textRevealObserver;
+
+  const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
@@ -15,15 +17,15 @@
      - transparent → solid on scroll
      - hide on scroll down, show on scroll up
      ======================================== */
-  var header = document.querySelector(".site-header");
-  var SCROLL_THRESHOLD = 80;
-  var HIDE_THRESHOLD = 10;
-  var lastScrollY = 0;
-  var headerHidden = false;
+  const header = document.querySelector(".site-header");
+  const SCROLL_THRESHOLD = 80;
+  const HIDE_THRESHOLD = 10;
+  let lastScrollY = 0;
+  let headerHidden = false;
 
   function handleHeaderScroll() {
-    var currentScrollY = window.scrollY;
-    var delta = currentScrollY - lastScrollY;
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - lastScrollY;
 
     // Background: transparent → solid
     if (currentScrollY > SCROLL_THRESHOLD) {
@@ -53,37 +55,31 @@
     lastScrollY = currentScrollY;
   }
 
-  window.addEventListener("scroll", handleHeaderScroll, { passive: true });
-  // Run once on load
-  handleHeaderScroll();
-
   /* ========================================
      Sticky Phone CTA
      ======================================== */
-  var stickyCta = document.getElementById("sticky-cta");
-  if (stickyCta) {
-    function handleStickyCta() {
-      if (window.scrollY > window.innerHeight * 0.8) {
-        stickyCta.style.opacity = "1";
-        stickyCta.style.pointerEvents = "auto";
-        stickyCta.style.transform = "translateY(0)";
-      } else {
-        stickyCta.style.opacity = "0";
-        stickyCta.style.pointerEvents = "none";
-        stickyCta.style.transform = "translateY(1rem)";
-      }
+  const stickyCta = document.getElementById("sticky-cta");
+  function handleStickyCta() {
+    if (!stickyCta) return;
+    if (window.scrollY > window.innerHeight * 0.8) {
+      stickyCta.style.opacity = "1";
+      stickyCta.style.pointerEvents = "auto";
+      stickyCta.style.transform = "translateY(0)";
+    } else {
+      stickyCta.style.opacity = "0";
+      stickyCta.style.pointerEvents = "none";
+      stickyCta.style.transform = "translateY(1rem)";
     }
-    window.addEventListener("scroll", handleStickyCta, { passive: true });
   }
 
   /* ========================================
      Mobile Menu
      ======================================== */
-  var menuToggle = document.getElementById("menu-toggle");
-  var menuClose = document.getElementById("menu-close");
-  var mobileMenu = document.getElementById("mobile-menu");
-  var menuLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
-  var previousFocus = null;
+  const menuToggle = document.getElementById("menu-toggle");
+  const menuClose = document.getElementById("menu-close");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+  let previousFocus = null;
 
   function openMenu() {
     previousFocus = document.activeElement;
@@ -107,9 +103,9 @@
   function trapFocus(e) {
     if (e.key === "Escape") { closeMenu(); return; }
     if (e.key !== "Tab") return;
-    var focusable = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
-    var first = focusable[0];
-    var last = focusable[focusable.length - 1];
+    const focusable = mobileMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
     if (e.shiftKey) {
       if (document.activeElement === first) { e.preventDefault(); last.focus(); }
     } else {
@@ -124,7 +120,7 @@
   /* ========================================
      Scroll Reveal (IntersectionObserver)
      ======================================== */
-  var revealElements = document.querySelectorAll(
+  const revealElements = document.querySelectorAll(
     ".reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-wipe"
   );
 
@@ -132,7 +128,7 @@
     if (prefersReducedMotion) {
       revealElements.forEach(function (el) { el.classList.add("is-visible"); });
     } else {
-      var revealObserver = new IntersectionObserver(
+      revealObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
@@ -150,7 +146,7 @@
   /* ========================================
      Hero Text Entrance Animation
      ======================================== */
-  var heroSlideshow = document.querySelector(".hero-slideshow");
+  const heroSlideshow = document.querySelector(".hero-slideshow");
   if (heroSlideshow) {
     // Trigger hero text animation after a brief delay
     if (prefersReducedMotion) {
@@ -169,13 +165,13 @@
      ======================================== */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener("click", function (e) {
-      var targetId = this.getAttribute("href");
+      const targetId = this.getAttribute("href");
       if (targetId === "#") return;
-      var target = document.querySelector(targetId);
+      const target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
-        var headerHeight = header ? header.offsetHeight : 0;
-        var targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+        const headerHeight = header ? header.offsetHeight : 0;
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
         window.scrollTo({ top: targetPosition, behavior: "smooth" });
       }
     });
@@ -184,21 +180,21 @@
   /* ========================================
      Hero Cinematic Slideshow
      ======================================== */
-  var heroEl = document.querySelector(".hero-slideshow");
+  const heroEl = document.querySelector(".hero-slideshow");
   if (heroEl) {
     (function () {
-      var slides = heroEl.querySelectorAll(".hero-slide");
-      var allDots = heroEl.querySelectorAll(".hero-dot");
-      var counterEl = heroEl.querySelector("[data-counter]");
-      var fillEl = heroEl.querySelector(".hero-counter-fill");
-      var DURATION = 5500;
-      var FADE = 1400;
-      var current = 0;
-      var offscreen = false;
+      const slides = heroEl.querySelectorAll(".hero-slide");
+      const allDots = heroEl.querySelectorAll(".hero-dot");
+      const counterEl = heroEl.querySelector("[data-counter]");
+      const fillEl = heroEl.querySelector(".hero-counter-fill");
+      const DURATION = 5500;
+      const FADE = 1400;
+      let current = 0;
+      let offscreen = false;
 
       function updateUI(index) {
         if (counterEl) counterEl.textContent = String(index + 1).padStart(2, "0");
-        for (var d = 0; d < allDots.length; d++) {
+        for (let d = 0; d < allDots.length; d++) {
           allDots[d].classList.remove("is-active");
           allDots[d].setAttribute("aria-selected", "false");
         }
@@ -206,9 +202,9 @@
           fillEl.style.transition = "none";
           fillEl.style.transform = "scaleX(0)";
         }
-        var reflow = fillEl ? fillEl.offsetWidth : document.body.offsetWidth;
-        for (var d = 0; d < allDots.length; d++) {
-          var di = d % slides.length;
+        const reflow = fillEl ? fillEl.offsetWidth : document.body.offsetWidth;
+        for (let d = 0; d < allDots.length; d++) {
+          const di = d % slides.length;
           if (di === index) {
             allDots[d].classList.add("is-active");
             allDots[d].setAttribute("aria-selected", "true");
@@ -222,7 +218,7 @@
 
       function goTo(next) {
         if (next === current) return;
-        var prev = current;
+        const prev = current;
         current = next;
         slides[next].classList.add("is-entering");
         updateUI(next);
@@ -233,11 +229,11 @@
         }, FADE);
       }
 
-      var elapsed = 0;
-      var lastTS = 0;
+      let elapsed = 0;
+      let lastTS = 0;
       function loop(ts) {
         if (!lastTS) lastTS = ts;
-        var dt = ts - lastTS;
+        const dt = ts - lastTS;
         lastTS = ts;
         if (!offscreen && dt < 200) {
           elapsed += dt;
@@ -249,16 +245,16 @@
         requestAnimationFrame(loop);
       }
 
-      for (var d = 0; d < allDots.length; d++) {
+      for (let d = 0; d < allDots.length; d++) {
         (function (i) {
           allDots[i].addEventListener("click", function () {
-            var target = i % slides.length;
+            const target = i % slides.length;
             if (target !== current) { elapsed = 0; goTo(target); }
           });
         })(d);
       }
 
-      var obs = new IntersectionObserver(function (entries) {
+      const obs = new IntersectionObserver(function (entries) {
         offscreen = !entries[0].isIntersecting;
       }, { threshold: 0.01 });
       obs.observe(heroEl);
@@ -275,28 +271,28 @@
   /* ========================================
      Counter Animation
      ======================================== */
-  var counterItems = document.querySelectorAll("[data-counter-target]");
+  const counterItems = document.querySelectorAll("[data-counter-target]");
   if (counterItems.length > 0) {
-    var countersAnimated = false;
+    let countersAnimated = false;
 
     function animateCounters() {
       if (countersAnimated) return;
       countersAnimated = true;
 
       counterItems.forEach(function (item) {
-        var target = parseInt(item.getAttribute("data-counter-target"), 10);
-        var valueEl = item.querySelector(".counter-value");
+        const target = parseInt(item.getAttribute("data-counter-target"), 10);
+        const valueEl = item.querySelector(".counter-value");
         if (!valueEl) return;
 
-        var startTime = null;
-        var duration = 1600;
+        let startTime = null;
+        const duration = 1600;
 
         function step(timestamp) {
           if (!startTime) startTime = timestamp;
-          var progress = Math.min((timestamp - startTime) / duration, 1);
+          const progress = Math.min((timestamp - startTime) / duration, 1);
           // Ease out cubic
-          var eased = 1 - Math.pow(1 - progress, 3);
-          var currentVal = Math.round(eased * target);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.round(eased * target);
           valueEl.textContent = currentVal.toLocaleString();
           if (progress < 1) {
             requestAnimationFrame(step);
@@ -311,7 +307,7 @@
       });
     }
 
-    var counterObserver = new IntersectionObserver(
+    const counterObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -331,9 +327,9 @@
   /* ========================================
      Photo Marquee (pause when off-screen)
      ======================================== */
-  var marqueeInner = document.querySelector(".marquee-inner");
+  const marqueeInner = document.querySelector(".marquee-inner");
   if (marqueeInner && !prefersReducedMotion) {
-    var marqueeObserver = new IntersectionObserver(
+    marqueeObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -355,16 +351,16 @@
   /* ========================================
      Before/After Toggle (Portfolio)
      ======================================== */
-  var baToggles = document.querySelectorAll(".ba-toggle");
+  const baToggles = document.querySelectorAll(".ba-toggle");
   baToggles.forEach(function (el) {
     function toggle() {
-      var state = el.getAttribute("data-state");
-      var next = state === "after" ? "before" : "after";
+      const state = el.getAttribute("data-state");
+      const next = state === "after" ? "before" : "after";
       el.setAttribute("data-state", next);
-      var label = el.querySelector("[data-ba-label]");
+      const label = el.querySelector("[data-ba-label]");
       if (label) label.textContent = next === "after" ? "Before" : "After";
     }
-    var btn = el.querySelector(".ba-btn");
+    const btn = el.querySelector(".ba-btn");
     if (btn) btn.addEventListener("click", toggle);
     el.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
@@ -374,13 +370,13 @@
   /* ========================================
      Category Filter (Works page)
      ======================================== */
-  var filterBtns = document.querySelectorAll("[data-filter]");
-  var filterItems = document.querySelectorAll("[data-category]");
+  const filterBtns = document.querySelectorAll("[data-filter]");
+  const filterItems = document.querySelectorAll("[data-category]");
 
   if (filterBtns.length > 0 && filterItems.length > 0) {
     filterBtns.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        var cat = btn.getAttribute("data-filter");
+        const cat = btn.getAttribute("data-filter");
 
         filterBtns.forEach(function (b) {
           b.classList.remove("is-active");
@@ -390,7 +386,7 @@
         btn.setAttribute("aria-selected", "true");
 
         filterItems.forEach(function (item) {
-          var itemCat = item.getAttribute("data-category");
+          const itemCat = item.getAttribute("data-category");
           if (cat === "all" || itemCat === cat) {
             item.style.display = "";
             item.removeAttribute("hidden");
@@ -399,6 +395,13 @@
             item.setAttribute("hidden", "");
           }
         });
+
+        const resultCount = document.getElementById("filter-result-count");
+        if (resultCount) {
+          const visibleCount = Array.from(filterItems).filter(function (item) { return !item.hasAttribute("hidden"); }).length;
+          const catName = btn.textContent.trim();
+          resultCount.textContent = catName + "の施工実績 " + visibleCount + "件を表示中";
+        }
       });
     });
   }
@@ -406,10 +409,10 @@
   /* ========================================
      Lightbox (Works page)
      ======================================== */
-  var lightbox = document.getElementById("lightbox");
-  var lightboxImg = lightbox ? lightbox.querySelector("img") : null;
-  var lightboxClose = lightbox ? lightbox.querySelector("[data-lightbox-close]") : null;
-  var previousLightboxFocus = null;
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = lightbox ? lightbox.querySelector("img") : null;
+  const lightboxClose = lightbox ? lightbox.querySelector("[data-lightbox-close]") : null;
+  let previousLightboxFocus = null;
 
   function openLightbox(src, alt) {
     if (!lightbox || !lightboxImg) return;
@@ -449,9 +452,9 @@
     lightbox.addEventListener("keydown", function (e) {
       if (e.key === "Escape") { closeLightbox(); return; }
       if (e.key !== "Tab") return;
-      var focusable = lightbox.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
-      var first = focusable[0];
-      var last = focusable[focusable.length - 1];
+      const focusable = lightbox.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
       if (e.shiftKey) {
         if (document.activeElement === first) { e.preventDefault(); last.focus(); }
       } else {
@@ -476,48 +479,61 @@
   /* ========================================
      Scroll Progress Bar
      ======================================== */
-  var progressBar = document.querySelector(".scroll-progress");
-  if (progressBar && !prefersReducedMotion) {
-    function updateProgress() {
-      var scrollTop = window.scrollY;
-      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var progress = docHeight > 0 ? scrollTop / docHeight : 0;
-      progressBar.style.transform = "scaleX(" + Math.min(progress, 1) + ")";
-    }
-    window.addEventListener("scroll", updateProgress, { passive: true });
-    updateProgress();
+  const progressBar = document.querySelector(".scroll-progress");
+  function updateProgress() {
+    if (!progressBar || prefersReducedMotion) return;
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+    progressBar.style.transform = "scaleX(" + Math.min(progress, 1) + ")";
   }
 
   /* ========================================
      Parallax Photos
      ======================================== */
-  var parallaxEls = document.querySelectorAll("[data-parallax]");
-  if (parallaxEls.length > 0 && !prefersReducedMotion) {
-    function updateParallax() {
-      var vh = window.innerHeight;
-      parallaxEls.forEach(function (el) {
-        var rect = el.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > vh) return;
-        var speed = parseFloat(el.getAttribute("data-parallax")) || 0.1;
-        var center = rect.top + rect.height / 2;
-        var offset = (center - vh / 2) * speed;
-        el.style.transform = "translateY(" + offset + "px)";
-      });
-    }
-    window.addEventListener("scroll", updateParallax, { passive: true });
-    updateParallax();
+  const parallaxEls = document.querySelectorAll("[data-parallax]");
+  function updateParallax() {
+    if (parallaxEls.length === 0 || prefersReducedMotion) return;
+    const vh = window.innerHeight;
+    parallaxEls.forEach(function (el) {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > vh) return;
+      const speed = parseFloat(el.getAttribute("data-parallax")) || 0.1;
+      const center = rect.top + rect.height / 2;
+      const offset = (center - vh / 2) * speed;
+      el.style.transform = "translateY(" + offset + "px)";
+    });
   }
+
+  /* ========================================
+     Unified Scroll Handler
+     ======================================== */
+  let scrollTicking = false;
+  function onScroll() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(function () {
+      handleHeaderScroll();
+      handleStickyCta();
+      updateProgress();
+      updateParallax();
+      scrollTicking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  // Run once on load
+  onScroll();
 
   /* ========================================
      Progressive Text Reveal
      ======================================== */
-  var textRevealEls = document.querySelectorAll(".text-reveal");
+  const textRevealEls = document.querySelectorAll(".text-reveal");
   if (textRevealEls.length > 0 && !prefersReducedMotion) {
-    var textRevealObserver = new IntersectionObserver(
+    textRevealObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            var lines = entry.target.querySelectorAll(".text-reveal-line");
+            const lines = entry.target.querySelectorAll(".text-reveal-line");
             lines.forEach(function (line, i) {
               line.style.transitionDelay = (i * 120) + "ms";
               line.classList.add("is-visible");
@@ -542,8 +558,17 @@
   /* ========================================
      Current Year in Footer
      ======================================== */
-  var yearEl = document.getElementById("current-year");
+  const yearEl = document.getElementById("current-year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  /* ========================================
+     Cleanup on page unload
+     ======================================== */
+  window.addEventListener("beforeunload", function () {
+    if (typeof revealObserver !== "undefined" && revealObserver) revealObserver.disconnect();
+    if (typeof marqueeObserver !== "undefined" && marqueeObserver) marqueeObserver.disconnect();
+    if (typeof textRevealObserver !== "undefined" && textRevealObserver) textRevealObserver.disconnect();
+  });
 })();
