@@ -188,16 +188,16 @@
         <!-- Hero Content Overlay -->
         <div class="absolute inset-0 flex items-end" style="z-index: 4; pointer-events: none;">
           <div class="w-full max-w-7xl mx-auto px-4 sm:px-(--spacing-section-x) pb-16 sm:pb-20 md:pb-28" style="pointer-events: auto;">
-            <p class="hero-anim hero-anim-1 font-serif text-accent-400/80 text-fluid-sm tracking-[0.2em] uppercase mb-4">Interior Design & Construction</p>
+            <p class="hero-anim hero-anim-1 font-display text-accent-400 text-fluid-2xl sm:text-fluid-3xl font-bold tracking-wide mb-2">ポラーノプラザ</p>
             <h1 class="hero-anim hero-anim-2 font-display text-[2.375rem] sm:text-fluid-6xl font-bold text-white leading-[1.1] mb-6">
               図面から、<br><span class="text-accent-400">繁盛する空間まで。</span>
             </h1>
-            <p class="hero-anim hero-anim-3 text-fluid-base text-white/70 mb-10 max-w-lg" style="text-wrap: pretty;">
-              ナイトクラブ・バー・飲食店。<br class="hidden md:inline">設計、電気、空調。<br class="hidden md:inline">高難易度な内装工事でも一括対応。
+            <p class="hero-anim hero-anim-3 text-fluid-base text-white/70 mb-10 max-w-md" style="text-wrap: pretty;">
+              設計、電気、空調、消防。<br class="hidden md:inline">下請けなしの自社施工で一括対応。
             </p>
             <div class="hero-anim hero-anim-4 flex flex-col sm:flex-row items-start gap-4">
               <a href="pages/contact.html" class="inline-flex items-center gap-2.5 px-8 py-3.5 bg-accent-500 hover:bg-accent-600 text-white font-display font-bold rounded-lg no-underline transition-colors duration-150 text-fluid-sm">
-                ご相談・お見積り
+                無料相談・お見積り
                 <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
               </a>
               <a href="pages/works.html" class="group inline-flex items-center gap-2 text-white/70 hover:text-white font-display font-medium no-underline transition-colors duration-150 text-fluid-sm py-3.5">
@@ -208,36 +208,13 @@
           </div>
         </div>
 
-        <!-- Desktop: Counter + Dots (bottom-right) -->
-        <div class="hidden md:flex flex-col items-end gap-4 absolute bottom-8 right-8" style="z-index: 5; pointer-events: auto;">
-          <div class="hero-counter">
-            <span class="hero-counter-current" data-counter>01</span>
-            <span class="hero-counter-line"><span class="hero-counter-fill"></span></span>
-            <span>05</span>
-          </div>
-          <div class="flex gap-1.5" role="tablist" aria-label="スライド切り替え">
-            <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド1を表示"></button>
-            <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド2を表示"></button>
-            <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド3を表示"></button>
-            <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド4を表示"></button>
-            <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド5を表示"></button>
-          </div>
-        </div>
-
-        <!-- Mobile Dots -->
-        <div class="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5" style="z-index: 5;" role="tablist" aria-label="スライド切り替え">
+        <!-- Minimal slide dots -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2" style="z-index: 5;" role="tablist" aria-label="スライド切り替え">
           <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド1を表示"></button>
           <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド2を表示"></button>
           <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド3を表示"></button>
           <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド4を表示"></button>
           <button type="button" class="hero-dot" role="tab" aria-selected="false" aria-label="スライド5を表示"></button>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="hidden md:flex flex-col items-center gap-2 absolute bottom-8 left-1/2 -translate-x-1/2" style="z-index: 5;" aria-hidden="true">
-          <span class="text-white/30 font-serif text-[0.65rem] tracking-[0.3em] uppercase">Scroll</span>
-          <div class="scroll-indicator w-px h-8 bg-white/30 rounded-full overflow-hidden">
-          </div>
         </div>
       </div>
     </section>
@@ -258,14 +235,7 @@
           </div>
           <!-- Image -->
           <div class="lg:col-span-6 reveal-right">
-            <div class="relative">
-              <img src="images/projects/null/photo6.webp" srcset="images/projects/null/photo6-640w.webp 640w, images/projects/null/photo6.webp 1920w" sizes="(max-width: 768px) 100vw, 50vw" alt="代官山NULLカフェ＆バーのバーカウンター" class="w-full rounded-2xl object-cover aspect-[4/3]" loading="lazy">
-              <!-- Floating accent -->
-              <div class="absolute -bottom-6 -left-6 bg-navy-950 text-white px-6 py-4 rounded-xl hidden lg:block" aria-hidden="true">
-                <p class="font-serif text-accent-400 text-fluid-xs tracking-[0.15em] uppercase mb-1">Coverage</p>
-                <p class="font-display font-bold text-fluid-lg">一都三県対応</p>
-              </div>
-            </div>
+            <img src="images/projects/null/photo6.webp" srcset="images/projects/null/photo6-640w.webp 640w, images/projects/null/photo6.webp 1920w" sizes="(max-width: 768px) 100vw, 50vw" alt="代官山NULLカフェ＆バーのバーカウンター" class="w-full rounded-2xl object-cover aspect-[4/3]" loading="lazy">
           </div>
         </div>
 
@@ -327,29 +297,7 @@
             </div>
           </a>
 
-          <div class="reveal bento-card diagonal-texture relative overflow-hidden rounded-2xl bg-navy-800 flex flex-col items-center justify-center p-5 text-center">
-            <span class="text-white font-serif font-bold text-fluid-5xl leading-none block mb-2" style="font-variant-numeric: tabular-nums;" aria-hidden="true">24</span>
-            <span class="text-white/90 font-display font-bold text-fluid-sm">時間受付</span>
-            <span class="text-white/50 text-fluid-xs mt-2">緊急時の即時対応体制</span>
-          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== MID CTA STRIP ===== -->
-    <section class="bg-navy-950 py-5 px-(--spacing-section-x)">
-      <div class="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10">
-        <a href="tel:03-6821-1924" class="inline-flex items-center gap-3 text-white/70 hover:text-white no-underline transition-colors duration-150 text-fluid-sm font-medium">
-          <svg class="size-4 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
-          <span>お電話 <strong class="text-white font-display" style="font-variant-numeric: tabular-nums;">03-6821-1924</strong></span>
-          <span class="text-white/30 text-fluid-xs">24時間</span>
-        </a>
-        <span class="hidden sm:block w-px h-5 bg-white/15" aria-hidden="true"></span>
-        <a href="pages/contact.html" class="inline-flex items-center gap-2 text-white/70 hover:text-white no-underline transition-colors duration-150 text-fluid-sm font-medium group">
-          <svg class="size-4 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-          メールで無料見積り
-          <svg class="size-3.5 transition-transform duration-150 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-        </a>
       </div>
     </section>
 
@@ -416,56 +364,30 @@
       </div>
     </section>
 
-    <!-- ===== PHOTO MARQUEE ===== -->
-    <div class="marquee-track py-1 bg-navy-950" aria-hidden="true">
-      <div class="marquee-inner">
-        <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/null/photo1.webp" srcset="images/projects/null/photo1-640w.webp 640w, images/projects/null/photo1.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/iwanaga/20241222_K2291033_3000.webp" srcset="images/projects/iwanaga/20241222_K2291033_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291033_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/office/photo1.webp" srcset="images/projects/office/photo1-640w.webp 640w, images/projects/office/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/serene/photo4.webp" srcset="images/projects/serene/photo4-640w.webp 640w, images/projects/serene/photo4.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/null/photo3.webp" srcset="images/projects/null/photo3-640w.webp 640w, images/projects/null/photo3.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/iwanaga/20241222_K2291058_3000.webp" srcset="images/projects/iwanaga/20241222_K2291058_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291058_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/friends-bar/after.webp" srcset="images/projects/friends-bar/after-640w.webp 640w, images/projects/friends-bar/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/rakuen/photo2.webp" srcset="images/projects/rakuen/photo2-640w.webp 640w, images/projects/rakuen/photo2.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/ebisu-dental/photo1.webp" srcset="images/projects/ebisu-dental/photo1-640w.webp 640w, images/projects/ebisu-dental/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/ebisu-dental/photo2.webp" srcset="images/projects/ebisu-dental/photo2-640w.webp 640w, images/projects/ebisu-dental/photo2.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <!-- Duplicate for seamless loop -->
-        <img src="images/projects/serene/photo1.webp" srcset="images/projects/serene/photo1-640w.webp 640w, images/projects/serene/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/null/photo1.webp" srcset="images/projects/null/photo1-640w.webp 640w, images/projects/null/photo1.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/iwanaga/20241222_K2291033_3000.webp" srcset="images/projects/iwanaga/20241222_K2291033_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291033_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/office/photo1.webp" srcset="images/projects/office/photo1-640w.webp 640w, images/projects/office/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/glow/after.webp" srcset="images/projects/glow/after-640w.webp 640w, images/projects/glow/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/serene/photo4.webp" srcset="images/projects/serene/photo4-640w.webp 640w, images/projects/serene/photo4.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/null/photo3.webp" srcset="images/projects/null/photo3-640w.webp 640w, images/projects/null/photo3.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/iwanaga/20241222_K2291058_3000.webp" srcset="images/projects/iwanaga/20241222_K2291058_3000-640w.webp 640w, images/projects/iwanaga/20241222_K2291058_3000.webp 1920w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/friends-bar/after.webp" srcset="images/projects/friends-bar/after-640w.webp 640w, images/projects/friends-bar/after.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/rakuen/photo2.webp" srcset="images/projects/rakuen/photo2-640w.webp 640w, images/projects/rakuen/photo2.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/ebisu-dental/photo1.webp" srcset="images/projects/ebisu-dental/photo1-640w.webp 640w, images/projects/ebisu-dental/photo1.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
-        <img src="images/projects/ebisu-dental/photo2.webp" srcset="images/projects/ebisu-dental/photo2-640w.webp 640w, images/projects/ebisu-dental/photo2.webp 1200w" sizes="(max-width: 640px) 100vw, 50vw" class="marquee-img" alt="" loading="lazy" aria-hidden="true">
+    <!-- ===== STRENGTHS (with visual anchor) ===== -->
+    <section id="strengths" class="relative bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x) overflow-hidden">
+      <!-- Full-bleed background image as visual anchor -->
+      <div class="absolute inset-0" aria-hidden="true">
+        <img src="images/projects/iwanaga/20241222_K2291033_3000.webp" alt="" class="w-full h-full object-cover opacity-15" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950/80 to-navy-950"></div>
       </div>
-    </div>
-
-    <!-- ===== STRENGTHS ===== -->
-    <section id="strengths" class="diagonal-texture section-divider-dark-top bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x)">
-      <div class="mx-auto max-w-6xl">
+      <div class="relative mx-auto max-w-6xl">
         <div class="reveal mb-16">
           <span class="section-label section-label-light mb-4">Why Us</span>
-          <h2 class="text-fluid-2xl font-bold text-white/60 leading-relaxed max-w-2xl text-reveal"><span class="text-reveal-line">夜の店は、昼の店と勝手が違う。</span><br><span class="text-reveal-line text-white">だからうちに声がかかる。</span></h2>
+          <h2 class="text-fluid-3xl font-bold text-white leading-snug max-w-2xl"><span class="text-white/50">夜の店は、昼の店と勝手が違う。</span><br>だからうちに声がかかる。</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-10 reveal-stagger">
           <div class="reveal">
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">ナイト・飲食に強い</h3>
-            <p class="text-white/70 text-fluid-sm leading-relaxed">ホストクラブ、キャバクラ、バー、カフェ、焼肉屋。照明が多く、防音や換気に気を使う業態を数多く手がけてきました。</p>
+            <p class="text-white/70 text-fluid-sm leading-relaxed">バー、クラブ、焼肉屋。照明・防音・換気に気を使う業態を数多く手がけてきました。</p>
           </div>
           <div class="reveal">
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">間に業者を挟まない</h3>
-            <p class="text-white/70 text-fluid-sm leading-relaxed">内装・電気・空調・消防、全部自社の人間が施工します。「言った言わない」がなくなるし、工期も縮まる。担当者は最初から最後まで同じです。</p>
+            <p class="text-white/70 text-fluid-sm leading-relaxed">内装・電気・空調・消防、全部自社施工。担当者は最初から最後まで同じです。</p>
           </div>
-          <div class="reveal sm:col-span-2 lg:col-span-1 lg:border-l lg:border-white/10 lg:pl-10">
+          <div class="reveal lg:border-l lg:border-white/10 lg:pl-10">
             <h3 class="font-display text-fluid-xl font-bold text-white mb-3">資格持ちが現場にいる</h3>
-            <p class="text-white/70 text-fluid-sm leading-relaxed">第一種電気工事士、消防設備士甲種。資格を持った人間が実際に現場で手を動かします。照明回路の多い店舗や、消防検査が厳しい物件でも対応できます。</p>
+            <p class="text-white/70 text-fluid-sm leading-relaxed">第一種電気工事士、消防設備士甲種。資格者が実際に手を動かします。</p>
           </div>
         </div>
       </div>
@@ -549,7 +471,7 @@
         <div class="reveal mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <span class="section-label section-label--inline mb-4">Voice</span>
-            <h2 class="text-fluid-3xl font-bold text-navy-900">現場の話</h2>
+            <h2 class="text-fluid-3xl font-bold text-navy-900">お客様の声</h2>
           </div>
         </div>
 
@@ -604,11 +526,16 @@
     </section>
 
     <!-- ===== FINAL CTA ===== -->
-    <section id="cta" class="noise-texture bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x)">
-      <div class="mx-auto max-w-4xl text-center">
+    <section id="cta" class="relative bg-navy-950 py-(--spacing-section-y) px-(--spacing-section-x) overflow-hidden">
+      <!-- Atmospheric background -->
+      <div class="absolute inset-0" aria-hidden="true">
+        <img src="images/projects/null/photo2.webp" alt="" class="w-full h-full object-cover opacity-10" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/90 to-navy-950/70"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl text-center">
         <div class="reveal">
           <h2 class="text-fluid-4xl font-bold text-white mb-4 font-display">内装の図面、描きます。</h2>
-          <p class="text-white/70 text-fluid-base mb-12 max-w-2xl mx-auto">スケルトンからの新装も、居抜きの改装も。見積もり無料、現場調査から始めます。</p>
+          <p class="text-white/70 text-fluid-base mb-12 max-w-xl mx-auto">新装も改装も。見積もり無料、現場調査から。</p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="tel:03-6821-1924" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-navy-900 font-display font-bold rounded-xl no-underline text-fluid-lg shadow-lg hover:shadow-xl transition-shadow duration-150">
               <svg class="size-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
